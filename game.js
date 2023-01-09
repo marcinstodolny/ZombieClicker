@@ -2,7 +2,9 @@ let brains = 0;
 let zombies = 0;
 let clickPower = 1;
 let clicksPerSecond = 0;
+let buildings = [];
 let totalPopulation = 8010096000;
+
 initGame();
 
 function initGame() {
@@ -37,5 +39,20 @@ function buttonClick() {
     zombies = Math.min(zombies, totalPopulation);
     let zombieDelta = zombies - initialZombies;
     brains += zombieDelta;
+    updateStats();
+}
+function buyElement(element, price, cps){
+    if (price <= brains){
+        if (buildings.some(item => item.name === element)){
+            let index = buildings.findIndex(({ name }) => name === element);
+            buildings[index]['count'] += 1;
+            brains -= price;
+            clicksPerSecond += cps;
+        } else {
+            buildings[buildings.length] = {name:element, count:1};
+            brains -= price;
+            clicksPerSecond += cps;
+        }
+    }
     updateStats();
 }
