@@ -1,5 +1,7 @@
 let brains = 0;
 let zombies = 0;
+let clickPower = 1;
+let clicksPerSecond = 0;
 initGame();
 
 function initGame() {
@@ -15,7 +17,7 @@ function updateStats() {
 }
 
 function buttonClick() {
-    brains++;
-    zombies++;
+    brains += clickPower;
+    zombies += clickPower;
     updateStats();
 }
