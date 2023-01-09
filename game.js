@@ -105,5 +105,6 @@ function resetGame() {
     clicksPerSecond = 0;
     buildings = [];
     totalPopulation = 8010096000;
+    location.reload()
     updateGame()
 }
