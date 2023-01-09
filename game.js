@@ -1,18 +1,21 @@
-let score = 1;
+let brains = 0;
+let zombies = 0;
 initGame();
 
 function initGame() {
 
     // Your game can start here, but define separate functions, don't write everything in here :)
-    updateScore();
+    updateStats();
 
 }
 
-function updateScore() {
-    document.getElementById('score').innerText = score + ' zombies';
+function updateStats() {
+    document.getElementById('brains').innerText = brains + ' brains';
+    document.getElementById('zombies').innerText = zombies + ' zombies';
 }
 
 function buttonClick() {
-    score++;
-    updateScore();
+    brains++;
+    zombies++;
+    updateStats();
 }
