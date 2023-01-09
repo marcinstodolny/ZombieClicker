@@ -1,0 +1,7 @@
+.container {
+    display: inline-block;
+    padding: 5px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+}

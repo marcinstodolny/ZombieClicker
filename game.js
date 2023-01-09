@@ -12,7 +12,7 @@ initGame();
 function initGame() {
 
     // Your game can start here, but define separate functions, don't write everything in here :)
-    updateStats();
+    updateGame();
     setInterval(idle_loop, 1000);
 
 }
@@ -23,16 +23,23 @@ function idle_loop() {
     zombies = Math.min(zombies, totalPopulation);
     let zombieDelta = zombies - initialZombies;
     brains += zombieDelta;
-    updateStats();
+    updateGame();
 }
 
-function updateStats() {
+function updateGame() {
     document.getElementById('brains').innerText = brains + ' brains';
     document.getElementById('living').innerText = totalPopulation - zombies + ' living';
     document.getElementById('zombies').innerText = zombies + ' zombies';
+    updateStats();
     if (zombies === totalPopulation) {
         alert('You win!')
     }
+}
+function updateStats() {
+    document.getElementById('clickPower').innerText = String(clickPower);
+    document.getElementById('clickPowerMultiplier').innerText = String(clickPowerMultiplier);
+    document.getElementById('clicksPerSecond').innerText = String(clicksPerSecond);
+    document.getElementById('clicksPerSecondMultiplier').innerText = String(clicksPerSecondMultiplier);
 }
 
 function buttonClick() {
@@ -41,7 +48,7 @@ function buttonClick() {
     zombies = Math.min(zombies, totalPopulation);
     let zombieDelta = zombies - initialZombies;
     brains += zombieDelta;
-    updateStats();
+    updateGame();
 }
 function buyElement(element, price, cps){
     if (price <= brains){
@@ -56,5 +63,5 @@ function buyElement(element, price, cps){
             clicksPerSecond += cps;
         }
     }
-    updateStats();
+    updateGame();
 }
