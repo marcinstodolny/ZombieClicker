@@ -30,12 +30,12 @@ function updateGame() {
     document.getElementById('brains').innerText = brains + ' brains';
     document.getElementById('living').innerText = totalPopulation - zombies + ' living';
     document.getElementById('zombies').innerText = zombies + ' zombies';
-    updateStats();
+    updateStatistics();
     if (zombies === totalPopulation) {
         alert('You win!')
     }
 }
-function updateStats() {
+function updateStatistics() {
     document.getElementById('clickPower').innerText = String(clickPower);
     document.getElementById('clickPowerMultiplier').innerText = String(clickPowerMultiplier);
     document.getElementById('clicksPerSecond').innerText = String(clicksPerSecond);
