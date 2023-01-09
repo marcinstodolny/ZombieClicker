@@ -8,7 +8,14 @@ function initGame() {
 
     // Your game can start here, but define separate functions, don't write everything in here :)
     updateStats();
+    setInterval(idle_loop, 1000);
 
+}
+
+function idle_loop() {
+        brains += clicksPerSecond;
+        zombies += clicksPerSecond;
+        updateStats();
 }
 
 function updateStats() {
