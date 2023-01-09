@@ -2,6 +2,7 @@ let brains = 0;
 let zombies = 0;
 let clickPower = 1;
 let clicksPerSecond = 0;
+let buildings = [{}]
 initGame();
 
 function initGame() {
@@ -20,4 +21,19 @@ function buttonClick() {
     brains += clickPower;
     zombies += clickPower;
     updateStats();
+}
+function buyElement(element, price, cps){
+    if (price <= brains){
+        if (buildings.some(item => item.name === element)){
+            let index = buildings.findIndex(({ name }) => name === element)
+            buildings[index]['count'] += 1
+            brains -= price
+            clicksPerSecond += cps
+        } else {
+            buildings[buildings.length] = {name:element, count:1}
+            brains -= price
+            clicksPerSecond += cps
+        }
+    }
+    updateStats()
 }
