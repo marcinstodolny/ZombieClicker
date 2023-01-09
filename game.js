@@ -1,7 +1,9 @@
 let brains = 0;
 let zombies = 0;
 let clickPower = 1;
+let clickPowerMultiplier = 1;
 let clicksPerSecond = 0;
+let clicksPerSecondMultiplier = 1;
 let buildings = [];
 let totalPopulation = 8010096000;
 
@@ -17,7 +19,7 @@ function initGame() {
 
 function idle_loop() {
     let initialZombies = zombies;
-    zombies += clicksPerSecond;
+    zombies += Math.round(clicksPerSecond *clicksPerSecondMultiplier);
     zombies = Math.min(zombies, totalPopulation);
     let zombieDelta = zombies - initialZombies;
     brains += zombieDelta;
@@ -35,7 +37,7 @@ function updateStats() {
 
 function buttonClick() {
     let initialZombies = zombies;
-    zombies += clickPower;
+    zombies += Math.round(clickPower * clickPowerMultiplier);
     zombies = Math.min(zombies, totalPopulation);
     let zombieDelta = zombies - initialZombies;
     brains += zombieDelta;
