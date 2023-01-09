@@ -14,7 +14,17 @@
     <p id="living"></p>
     <p id="brains"></p>
     <button onclick="buttonClick()">Eat brain</button>
-    <button onclick="buyElement('Cemetery', 10, 1)">Cemetery 10 brains</button>
+</div>
+<br>
+<div id="shop">
+    <button id="cemetery" value='10' onclick="buyElement('cemetery', Number(this.value), 1)">Cemetery 10 brains</button>
+    <button id="morgue" value="100" onclick="buyElement('morgue', Number(this.value), 10)">Morgue 100 brains</button>
+</div>
+<br>
+<div id="buildings">
+</div>
+<div>
+    <button id="reset" onclick="resetGame()">Reset game</button>
 </div>
 <div id="statistics" class="container">
     <h3><u>Statistics:</u></h3>
