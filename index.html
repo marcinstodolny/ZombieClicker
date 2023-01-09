@@ -6,9 +6,10 @@
     <!-- http://proger.i-forge.net/The_smallest_transparent_pixel/ -->
     <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
     <script src="game.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="main">
+<div id="main" class="container">
     <p id="zombies"></p>
     <p id="living"></p>
     <p id="brains"></p>
@@ -24,6 +25,13 @@
 </div>
 <div>
     <button id="reset" onclick="resetGame()">Reset game</button>
+</div>
+<div id="statistics" class="container">
+    <h3><u>Statistics:</u></h3>
+    <p><span>Click Power: </span><span id="clickPower"></span></p>
+    <p><span>Click Power Multiplier: </span><span id="clickPowerMultiplier"></span></p>
+    <p><span>Clicks Per Second: </span><span id="clicksPerSecond"></span></p>
+    <p><span>Clicks Per Second Multiplier: </span><span id="clicksPerSecondMultiplier"></span></p>
 </div>
 </body>
 </html>

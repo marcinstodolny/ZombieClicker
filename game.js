@@ -1,7 +1,9 @@
 let brains = 0;
 let zombies = 0;
 let clickPower = 1;
+let clickPowerMultiplier = 1;
 let clicksPerSecond = 0;
+let clicksPerSecondMultiplier = 1;
 let buildings = [];
 let totalPopulation = 8010096000;
 
@@ -31,7 +33,7 @@ function readCookies(){
 
 function idle_loop() {
     let initialZombies = zombies;
-    zombies += clicksPerSecond;
+    zombies += Math.round(clicksPerSecond *clicksPerSecondMultiplier);
     zombies = Math.min(zombies, totalPopulation);
     let zombieDelta = zombies - initialZombies;
     brains += zombieDelta;
@@ -47,20 +49,28 @@ function updateGame() {
     document.cookie = 'buildings=' + JSON.stringify(buildings) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'clicksPerSecond=' + clicksPerSecond + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'clickPower=' + clickPower + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    updateStatistics();
     if (zombies === totalPopulation) {
         alert('You win!')
     }
     getBuildings();
 }
+function updateStatistics() {
+    document.getElementById('clickPower').innerText = String(clickPower);
+    document.getElementById('clickPowerMultiplier').innerText = String(clickPowerMultiplier);
+    document.getElementById('clicksPerSecond').innerText = String(clicksPerSecond);
+    document.getElementById('clicksPerSecondMultiplier').innerText = String(clicksPerSecondMultiplier);
+}
 
 function buttonClick() {
     let initialZombies = zombies;
-    zombies += clickPower;
+    zombies += Math.round(clickPower * clickPowerMultiplier);
     zombies = Math.min(zombies, totalPopulation);
     let zombieDelta = zombies - initialZombies;
     brains += zombieDelta;
     updateGame();
 }
+
 function buyElement(element, price, cps){
     let element_name = element.charAt(0).toUpperCase() + element.slice(1)
     if (price <= brains){
@@ -80,6 +90,7 @@ function buyElement(element, price, cps){
     }
     updateGame();
 }
+
 function getBuildings(){
     let text = ''
     for (let i = 0; i< buildings.length; i++){
@@ -87,6 +98,7 @@ function getBuildings(){
         }
     document.getElementById('buildings').innerText = text
 }
+
 function resetGame() {
     brains = 0;
     zombies = 0;
@@ -95,4 +107,3 @@ function resetGame() {
     buildings = [];
     totalPopulation = 8010096000;
     updateGame()
-}
