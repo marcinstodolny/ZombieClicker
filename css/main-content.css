@@ -1,0 +1,31 @@
+h1 {
+    text-align: center;
+}
+
+.stats {
+    padding: 15%;
+}
+
+.brain-container {
+    margin-top: 1vh;
+    border: #497174 0.2vw solid;
+    border-radius: 5px;
+    text-align: center;
+    width: 20vw;
+    height: 70vh;
+    float: left;
+}
+
+.buildings {
+    margin: 1vh 1vw;
+    border: #497174 0.2vw solid;
+    border-radius: 5px;
+    text-align: center;
+    width: 30vw;
+    height: 70vh;
+    float: left;
+}
+
+.sidebar-right {
+    float: left;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Zombie Clicker</title>
+    <meta charset="UTF-8">
+    <!-- http://proger.i-forge.net/The_smallest_transparent_pixel/ -->
+    <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
+    <script src="game.js" defer></script>
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/main-content.css">
+    <link rel="stylesheet" href="css/containers/brain.css">
+    <link rel="stylesheet" href="css/containers/buildings.css">
+    <link rel="stylesheet" href="css/containers/sidebar-right.css">
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="main-content">
+        <h1>Zombie Clicker</h1>
+        <div class="statistics-header">
+            <span id="living" class="stats">Living left: {number}</span>
+            <span id="zombies" class="stats">Zombies Total: {number}</span>
+        </div>
+        <div class="brain-container">
+            <h2>EAT BRAINS!</h2>
+            <div class="brain-stats">
+                <p id="brains">Brains: {number}</p>
+                <p><span>BPS (brains per second):</span><span id="clicksPerSecond"></span></p>
+            </div>
+            <div id="brain" class="brain" onclick="buttonClick()">
+                <img src="images/brain.png" alt="brain" class="brain-image">
+            </div>
+        </div>
+
+        <div class="buildings">
+            <h2>Build:</h2>
+            <div id="shop">
+                <button id="cemetery" value='10' onclick="buyElement('cemetery', Number(this.value), 1)">Cemetery 10 brains</button>
+                <button id="morgue" value="100" onclick="buyElement('morgue', Number(this.value), 10)">Morgue 100 brains</button>
+            </div>
+        </div>
+        <div class="sidebar-right">
+            <div class="placeholder"></div>
+            <div class="placeholder2"></div>
+        </div>
+    </div>
+<!--    <div id="statistics" class="container">-->
+<!--    <h3><u>Statistics:</u></h3>-->
+<!--        <p><span>Click Power: </span><span id="clickPower"></span></p>-->
+<!--        <p><span>Click Power Multiplier: </span><span id="clickPowerMultiplier"></span></p>-->
+<!--        <p><span>Clicks Per Second: </span><span id="clicksPerSecond"></span></p>-->
+<!--        <p><span>Clicks Per Second Multiplier: </span><span id="clicksPerSecondMultiplier"></span></p>-->
+<!--    </div>-->
+<!--    <br><br>-->
+    <div>
+        <button id="reset" onclick="resetGame()">Reset game</button>
+    </div>
+</div>
+</body>
+</html>
