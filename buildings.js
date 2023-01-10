@@ -16,7 +16,7 @@ function getBuildings(){
     for (let i = 0; i< buildings.length; i++){
         text += (buildings[i]['name'] +' '+ buildings[i]['count'] + '\n')
         }
-    document.getElementById('buildings').innerText = text
+    document.getElementById('buildingsList').innerText = text
 }
 
 function buyBuilding(evt) {
