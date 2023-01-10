@@ -17,13 +17,13 @@ initGame();
 
 async function initGame() {
     await initBuildings();
-    if ((Number(document.cookie.match(new RegExp('(^| )' + 'brains' + '=([^;]+)'))) !== 0))
+    if ((Number((document.cookie.match(new RegExp('(^| )' + 'brains' + '=([^;]+)'))[2])) !== 0)){
         readCookies()
+    }
     updateGame();
     setInterval(idle_loop, 1000);
     initResetButton();
     initMainButton();
-    console.log(buildings);
 }
 
 async function initBuildings() {
