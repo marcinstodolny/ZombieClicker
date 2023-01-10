@@ -78,6 +78,14 @@ function readCookies(){
 
 }
 
+function saveCookies() {
+    document.cookie = 'brains=' + brains + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'zombies=' + zombies + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'buildings=' + JSON.stringify(buildings) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'clicksPerSecond=' + clicksPerSecond + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'clickPower=' + clickPower + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+}
+
 function idle_loop() {
     let initialZombies = zombies;
     zombies += Math.round(clicksPerSecond *clicksPerSecondMultiplier);
@@ -91,11 +99,7 @@ function updateGame() {
     document.getElementById('brains').innerText = brains + ' brains';
     document.getElementById('living').innerText = totalPopulation - zombies + ' living';
     document.getElementById('zombies').innerText = zombies + ' zombies';
-    document.cookie = 'brains=' + brains + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
-    document.cookie = 'zombies=' + zombies + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
-    document.cookie = 'buildings=' + JSON.stringify(buildings) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
-    document.cookie = 'clicksPerSecond=' + clicksPerSecond + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
-    document.cookie = 'clickPower=' + clickPower + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    saveCookies();
     updateStatistics();
     if (zombies === totalPopulation) {
         alert('You win!')
