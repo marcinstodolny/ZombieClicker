@@ -98,11 +98,16 @@ function updateGame() {
     document.getElementById('zombies').innerText = zombies + ' zombies';
     saveCookies();
     updateStatistics();
+    updateBuildingCounts();
+    checkWinCondition();
+}
+
+function checkWinCondition() {
     if (zombies === totalPopulation) {
         alert('You win!')
     }
-    updateBuildingCounts();
 }
+
 function updateStatistics() {
     document.getElementById('clickPower').innerText = String(clickPower);
     // document.getElementById('clickPowerMultiplier').innerText = String(clickPowerMultiplier);
