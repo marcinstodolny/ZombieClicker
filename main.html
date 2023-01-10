@@ -5,43 +5,43 @@
     <meta charset="UTF-8">
     <!-- http://proger.i-forge.net/The_smallest_transparent_pixel/ -->
     <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
-    <script src="game.js" defer></script>
     <link rel="stylesheet" href="css/sections.css">
     <link rel="stylesheet" href="css/main-content.css">
     <link rel="stylesheet" href="css/containers/brain.css">
     <link rel="stylesheet" href="css/containers/buildings.css">
     <link rel="stylesheet" href="css/containers/sidebar-right.css">
+    <script type="module" src="game.js" defer></script>
 </head>
 <body>
 <div class="wrapper">
-
     <div class="main-content">
         <h1>Zombie Clicker</h1>
         <div class="statistics-header">
-            <span id="living" class="stats">Living left: {number}</span>
-            <span id="zombies" class="stats">Zombies Total: {number}</span>
+            <span id="living" class="stats"></span>
+            <span id="zombies" class="stats"></span>
         </div>
         <div class="brain-container">
             <h2>EAT BRAINS!</h2>
             <div class="brain-stats">
-                <p id="brains" class="brains-counter">Brains: {number}</p>
+                <p id="brains" class="brains-counter"></p>
                 <p><span>BPS (brains per second):</span><span id="clicksPerSecond"></span></p>
             </div>
-            <div id="brain" class="brain" onclick="buttonClick()">
+            <div id="mainButton" class="brain">
                 <img src="images/brain.png" alt="brain" class="brain-image">
             </div>
             <p><span>Click Power: </span><span id="clickPower"></span></p>
         </div>
 
-        <div class="buildings">
-            <h2>Build:</h2>
-            <div id="shop">
-                <button id="cemetery" value='10' onclick="buyElement('cemetery', Number(this.value), 1)">Cemetery 10 brains</button>
-                <button id="morgue" value="100" onclick="buyElement('morgue', Number(this.value), 10)">Morgue 100 brains</button>
-            </div>
+        <div id="buildings" class="buildings">
+            <h3><u>Buildings:</u></h3>
+                <p id="buildingsList"></p>
         </div>
         <div class="sidebar-right">
-            <div class="placeholder"></div>
+            <div id="shop" class="placeholder">
+                <h3><u>Shop:</u></h3>
+                    <ol id="shopList">
+                    </ol>
+            </div>
             <div class="placeholder2"></div>
         </div>
     </div>
@@ -54,7 +54,7 @@
 <!--    </div>-->
 <!--    <br><br>-->
     <div>
-        <button id="reset" onclick="resetGame()">Reset game</button>
+        <button id="resetButton">Reset game</button>
     </div>
 </div>
 </body>
