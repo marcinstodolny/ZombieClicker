@@ -8,10 +8,10 @@ let buildings = [];
 let totalPopulation = 8010096000;
 
 //import
-import {getBuildings, fetchBuildings} from './buildings.js';
+import {getBuildings, fetchBuildings, buyBuilding} from './buildings.js';
 
 //exports
-export {buildings, brains, clicksPerSecond, updateGame};
+export {buildings, brains, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond};
 
 initGame();
 
@@ -24,6 +24,14 @@ async function initGame() {
     setInterval(idle_loop, 1000);
     initResetButton();
     initMainButton();
+}
+
+function adjustBrains(delta) {
+    brains += delta;
+}
+
+function adjustClicksPerSecond(delta) {
+    clicksPerSecond += delta;
 }
 
 async function initBuildings() {
@@ -119,26 +127,4 @@ function resetGame() {
     totalPopulation = 8010096000;
     location.reload()
     updateGame()
-}
-
-function buyBuilding(evt) {
-    let element = evt.currentTarget.name;
-    let price = evt.currentTarget.cost;
-    let cps = evt.currentTarget.cps;
-    if (price <= brains){
-        let new_price = Math.round(price * 1.5)
-        if (buildings.some(item => item.name === element)){
-            let index = buildings.findIndex(({ name }) => name === element);
-            buildings[index]['count'] += 1;
-            buildings[index]['cost'] = new_price;
-        } else {
-            console.log('here');
-            buildings[buildings.length] = {name:element, count:1, cost:new_price, cps:cps};
-        }
-        brains -= price;
-        clicksPerSecond += cps;
-        document.getElementById(element).cost = new_price;
-        document.getElementById(element).innerText = element + ' ' + new_price + ' brains';
-    }
-    updateGame();
 }
