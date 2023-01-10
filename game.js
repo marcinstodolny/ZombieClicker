@@ -23,6 +23,7 @@ async function initGame() {
     setInterval(idle_loop, 1000);
     initResetButton();
     initMainButton();
+    console.log(buildings);
 }
 
 async function initBuildings() {
@@ -131,7 +132,8 @@ function buyBuilding(evt) {
             buildings[index]['count'] += 1;
             buildings[index]['cost'] = new_price;
         } else {
-            buildings[buildings.length] = {name:element, count:1, current_price:new_price};
+            console.log('here');
+            buildings[buildings.length] = {name:element, count:1, cost:new_price, cps:cps};
         }
         brains -= price;
         clicksPerSecond += cps;
