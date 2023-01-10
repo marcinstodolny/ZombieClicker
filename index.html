@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <!-- http://proger.i-forge.net/The_smallest_transparent_pixel/ -->
     <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
-    <script src="game.js" defer></script>
+    <script type="module" src="game.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,15 +13,17 @@
     <p id="zombies"></p>
     <p id="living"></p>
     <p id="brains"></p>
-    <button onclick="buttonClick()">Eat brain</button>
+    <button id="mainButton">Eat brain</button>
 </div>
 <br><br>
-<div id="shop">
-    <button id="cemetery" value='10' onclick="buyElement('cemetery', Number(this.value), 1)">Cemetery 10 brains</button>
-    <button id="morgue" value="100" onclick="buyElement('morgue', Number(this.value), 10)">Morgue 100 brains</button>
+<div id="shop" class="container">
+    <h3><u>Shop:</u></h3>
+    <ol id="shopList">
+    </ol>
 </div>
 <br>
-<div id="buildings">
+<div id="buildings" class="container">
+    <h3><u>Buildings:</u></h3>
 </div>
 <br>
 <div id="statistics" class="container">
@@ -33,7 +35,7 @@
 </div>
 <br><br>
 <div>
-    <button id="reset" onclick="resetGame()">Reset game</button>
+    <button id="resetButton">Reset game</button>
 </div>
 </body>
 </html>
