@@ -1,0 +1,17 @@
+{
+"items":[ {
+  "id": 0,
+  "name": "shovel",
+  "buildingName": "grave",
+  "requirement":5,
+  "clickP": 1,
+  "cost":100
+}, {
+  "id": 1,
+  "name": "test",
+  "buildingName": "morgue",
+  "requirement":5,
+  "clickP": 10,
+  "cost":1000
+}]
+}
