@@ -8,7 +8,7 @@ let buildings = [];
 let totalPopulation = 8010096000;
 
 //import
-import {getBuildings, fetchBuildings, buyBuilding} from './buildings.js';
+import {updateBuildingCounts, fetchBuildings, buyBuilding} from './buildings.js';
 
 //exports
 export {buildings, brains, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond};
@@ -104,7 +104,7 @@ function updateGame() {
     if (zombies === totalPopulation) {
         alert('You win!')
     }
-    getBuildings();
+    updateBuildingCounts();
 }
 function updateStatistics() {
     document.getElementById('clickPower').innerText = String(clickPower);
