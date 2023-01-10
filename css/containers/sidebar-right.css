@@ -1,0 +1,18 @@
+.shop {
+    margin-top: 1vh;
+    border: #497174 0.2vw solid;
+    border-radius: 5px;
+    width: 36.8vw;
+    height: 30vh;
+    display: inline-block;
+}
+
+.placeholder2 {
+    margin-top: 1vh;
+    border: #497174 0.2vw solid;
+    border-radius: 5px;
+    text-align: center;
+    width: 36.8vw;
+    height: 38vh;
+    position: relative;
+}

@@ -6,21 +6,21 @@ let clicksPerSecond = 0;
 let clicksPerSecondMultiplier = 1;
 let buildings = [];
 let items = [];
-let bought_upgrades = [];
+let bought_items = [];
 let totalPopulation = 8010096000;
 
 //import
-import {getBuildings, fetchBuildings, buyBuilding} from './buildings.js';
-import {getItems, fetchItems, buyItem, matchRequirements} from './items.js';
+import {updateBuildingCounts, fetchBuildings, buyBuilding} from './buildings.js';
+import {getItems, fetchItems, buyItem, matchRequirements, updateItemsOwned} from './items.js';
 
 //exports
-export {buildings, brains, items, clickPower, bought_upgrades, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond, adjustClickPower};
+export {buildings, brains, items, clickPower, bought_items, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond, adjustClickPower};
 
 initGame();
 
 async function initGame() {
     await initBuildings();
-    if ((Number((document.cookie.match(new RegExp('(^| )' + 'brains' + '=([^;]+)'))[2])) !== 0)){
+    if ((document.cookie.match(new RegExp('(^| )' + 'brains' + '=([^;]+)')) !== null)){
         readCookies()
     }
     await updateItems();
@@ -53,10 +53,7 @@ async function initBuildings() {
     )
     buildings.forEach(building => {
         document.getElementById(building['name']).addEventListener("click", buyBuilding, false);
-        document.getElementById(building['name']).name = building['name'];
-        document.getElementById(building['name']).cost = building['cost'];
-        document.getElementById(building['name']).cps = building['cps'];
-        document.getElementById(building['name']).innerText = building['name'] + ' ' + building['cost'] + ' brains';
+        setBuildingButtonValues(building['name'], building['cost'], building['cps']);
     });
 }
 async function updateItems() {
@@ -72,21 +69,31 @@ async function updateItems() {
     itemShopList.innerHTML = ''
     jsonItems['items'].forEach(
         item => {
-            if (!bought_upgrades.some(element => element === item.name) && matchRequirements(item.name)){
+            if (!bought_items.some(element => element === item.name) && matchRequirements(item.name)){
             itemShopList.innerHTML = itemShopList.innerHTML + '<li><button id="' + item['name'] + '" value="10">' + item['name'] + ' ' + item['cost'] + ' brains</button></li>';
         }})
     items.forEach(item => {
         if (document.getElementById(item['name']) != null) {
-        document.getElementById(item['name']).addEventListener("click", buyItem, false);
-        document.getElementById(item['name']).name = item['name'];
-        document.getElementById(item['name']).cost = item['cost'];
-        document.getElementById(item['name']).clickP = item['clickP'];
-        document.getElementById(item['name']).requirement = item['requirement'];
-        document.getElementById(item['name']).innerText = item['name'] + ' ' + item['cost'] + ' brains';
+            document.getElementById(item['name']).addEventListener("click", buyItem, false);
+            setItemsButtonValues(item['name'], item['cost'], item['clickP'])
     }})
 
 }
+function setItemsButtonValues(name, cost, clickP) {
+    let button = document.getElementById(name);
+    button.name = name;
+    button.cost = cost;
+    button.clickP = clickP;
+    button.innerText = name + ' ' + cost + ' brains';
+}
 
+function setBuildingButtonValues(name, cost, cps) {
+    let button = document.getElementById(name);
+    button.name = name;
+    button.cost = cost;
+    button.cps = cps;
+    button.innerText = name + ' ' + cost + ' brains';
+}
 
 function initResetButton() {
     document.getElementById('resetButton').addEventListener("click", resetGame);
@@ -102,16 +109,17 @@ function readCookies(){
     buildings = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'buildings' + '=([^;]+)'))[2]);
     clickPower = Number(document.cookie.match(new RegExp('(^| )' + 'clickPower' + '=([^;]+)'))[2]);
     clicksPerSecond = Number(document.cookie.match(new RegExp('(^| )' + 'clicksPerSecond' + '=([^;]+)'))[2]);
-    bought_upgrades = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'bought_upgrades' + '=([^;]+)'))[2]);
-    buildings.forEach(building => {
-        document.getElementById(building['name']).addEventListener("click", buyBuilding, false);
-        document.getElementById(building['name']).name = building['name'];
-        document.getElementById(building['name']).cost = building['cost'];
-        document.getElementById(building['name']).cps = building['cps'];
-        document.getElementById(building['name']).innerText = building['name'] + ' ' + building['cost'] + ' brains';
-        }
-    );
+    bought_items = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'bought_items' + '=([^;]+)'))[2]);
+    buildings.forEach(building => setBuildingButtonValues(building['name'], building['cost'], building['cps']))
+}
 
+function saveCookies() {
+    document.cookie = 'brains=' + brains + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'zombies=' + zombies + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'buildings=' + JSON.stringify(buildings) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'clicksPerSecond=' + clicksPerSecond + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'clickPower=' + clickPower + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'bought_items=' + JSON.stringify(bought_items) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
 }
 
 function idle_loop() {
@@ -127,24 +135,25 @@ function updateGame() {
     document.getElementById('brains').innerText = brains + ' brains';
     document.getElementById('living').innerText = totalPopulation - zombies + ' living';
     document.getElementById('zombies').innerText = zombies + ' zombies';
-    document.cookie = 'brains=' + brains + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
-    document.cookie = 'zombies=' + zombies + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
-    document.cookie = 'buildings=' + JSON.stringify(buildings) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
-    document.cookie = 'clicksPerSecond=' + clicksPerSecond + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
-    document.cookie = 'clickPower=' + clickPower + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
-    document.cookie = 'bought_upgrades=' + JSON.stringify(bought_upgrades) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    saveCookies();
     updateStatistics();
+    updateBuildingCounts();
+    updateItems();
+    updateItemsOwned();
+    checkWinCondition();
+}
+
+function checkWinCondition() {
     if (zombies === totalPopulation) {
         alert('You win!')
     }
-    getBuildings();
-    updateItems()
 }
+
 function updateStatistics() {
     document.getElementById('clickPower').innerText = String(clickPower);
-    document.getElementById('clickPowerMultiplier').innerText = String(clickPowerMultiplier);
+    // document.getElementById('clickPowerMultiplier').innerText = String(clickPowerMultiplier);
     document.getElementById('clicksPerSecond').innerText = String(clicksPerSecond);
-    document.getElementById('clicksPerSecondMultiplier').innerText = String(clicksPerSecondMultiplier);
+    // document.getElementById('clicksPerSecondMultiplier').innerText = String(clicksPerSecondMultiplier);
 }
 
 function buttonClick() {
@@ -163,6 +172,7 @@ function resetGame() {
     clicksPerSecond = 0;
     buildings = [];
     totalPopulation = 8010096000;
+    bought_items = [];
     location.reload()
     updateGame()
 }

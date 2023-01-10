@@ -1,7 +1,7 @@
-import {buildings, brains, bought_upgrades, items, clickPower, updateGame, adjustBrains, adjustClickPower} from "./game.js";
+import {buildings, brains, bought_items, items, updateGame, adjustBrains, adjustClickPower} from "./game.js";
 
 //exports
-export {getItems, fetchItems, buyItem, matchRequirements};
+export {getItems, fetchItems, buyItem, matchRequirements, updateItemsOwned};
 
 async function fetchItems() {
     let response = await fetch('items.json')
@@ -23,8 +23,8 @@ function buyItem(evt){
     let element = evt.currentTarget.name;
     let price = evt.currentTarget.cost;
     let cp = evt.currentTarget.clickP;
-     if (price <= brains && !bought_upgrades.some(item => item === element)){
-         bought_upgrades.push(element)
+     if (price <= brains && !bought_items.some(item => item === element)){
+         bought_items.push(element)
          adjustBrains(-price);
          adjustClickPower(cp);
          updateGame()
@@ -32,16 +32,25 @@ function buyItem(evt){
 }
 
 function matchRequirements(itemToCheck){
-    bought_upgrades.some(item => item.name === items[0]['name'])
+    bought_items.some(item => item.name === items[0]['name'])
         for(let i = 0; i < items.length; i++){
             let index = buildings.findIndex(({ name }) => name === items[i]['buildingName']);
-            if (items[i]['requirement'] <= buildings[index]['count']
+            if (index !== -1
+                && items[i]['requirement'] <= buildings[index]['count']
                 && buildings[index]['name'] === items[i]['buildingName']
-                && !bought_upgrades.some(item => item.name === items[i]['name'])
+                && !bought_items.some(item => item.name === items[i]['name'])
                 && items[i]['name'] === itemToCheck
             ){
                 return true
         }
     }
         return false
+}
+
+function updateItemsOwned(){
+    let text = ''
+    for (let i = 0; i< bought_items.length; i++){
+        text += (bought_items[i] +' ' + '\n')
+        }
+    document.getElementById('itemList').innerText = text
 }
