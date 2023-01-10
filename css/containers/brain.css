@@ -1,7 +1,6 @@
 .brain-stats {
     bottom: 10px;
     margin-top: 12vh;
-    font-size: small;
 }
 
 .brain {
@@ -14,4 +13,9 @@
 .brain-image {
     width: 60%;
     margin: 4vh 1vw;
+}
+
+.brains-counter {
+    font-weight: bold;
+    font-size: x-large;
 }
