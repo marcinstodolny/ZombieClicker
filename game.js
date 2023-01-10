@@ -100,6 +100,12 @@ function updateGame() {
     updateStatistics();
     updateBuildingCounts();
     checkWinCondition();
+    updateProgressBar()
+}
+
+function updateProgressBar() {
+    let bar = document.getElementById('progessBar');
+    bar.style.width=zombies / totalPopulation * 100 + '%';
 }
 
 function checkWinCondition() {
