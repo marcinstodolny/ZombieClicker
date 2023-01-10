@@ -1,0 +1,18 @@
+{
+  "buildings": [ {
+    "id": 0,
+    "name": "grave",
+    "cps": 1,
+    "cost": 10
+  }, {
+    "id": 1,
+    "name": "morgue",
+    "cps": 10,
+    "cost": 100
+  }, {
+    "id": 2,
+    "name": "cemetery",
+    "cps": 100,
+    "cost": 1000
+  }]
+}

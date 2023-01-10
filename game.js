@@ -7,27 +7,75 @@ let clicksPerSecondMultiplier = 1;
 let buildings = [];
 let totalPopulation = 8010096000;
 
+//import
+import {getBuildings, fetchBuildings, buyBuilding} from './buildings.js';
+
+//exports
+export {buildings, brains, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond};
+
 initGame();
 
-function initGame() {
-    if ((Number(document.cookie.match(new RegExp('(^| )' + 'brains' + '=([^;]+)'))) !== 0))
+async function initGame() {
+    await initBuildings();
+    if ((Number((document.cookie.match(new RegExp('(^| )' + 'brains' + '=([^;]+)'))[2])) !== 0)){
         readCookies()
-    // Your game can start here, but define separate functions, don't write everything in here :)
+    }
     updateGame();
     setInterval(idle_loop, 1000);
-
-
+    initResetButton();
+    initMainButton();
 }
+
+function adjustBrains(delta) {
+    brains += delta;
+}
+
+function adjustClicksPerSecond(delta) {
+    clicksPerSecond += delta;
+}
+
+async function initBuildings() {
+    let jsonBuildings = await fetchBuildings();
+    let shopList = document.getElementById('shopList');
+    jsonBuildings['buildings'].forEach(
+        building => {
+            building['count'] = 0;
+            buildings.push(building);
+            shopList.innerHTML = shopList.innerHTML + '<li><button id="' + building['name'] + '" value="10">' + building['name'] + ' ' + building['cost'] + ' brains</button></li>';
+        }
+    )
+    buildings.forEach(building => {
+        document.getElementById(building['name']).addEventListener("click", buyBuilding, false);
+        document.getElementById(building['name']).name = building['name'];
+        document.getElementById(building['name']).cost = building['cost'];
+        document.getElementById(building['name']).cps = building['cps'];
+        document.getElementById(building['name']).innerText = building['name'] + ' ' + building['cost'] + ' brains';
+    });
+}
+
+function initResetButton() {
+    document.getElementById('resetButton').addEventListener("click", resetGame);
+}
+
+function initMainButton() {
+    document.getElementById('mainButton').addEventListener("click", buttonClick)
+}
+
 function readCookies(){
     zombies = Number(document.cookie.match(new RegExp('(^| )' + 'zombies' + '=([^;]+)'))[2]);
     brains = Number(document.cookie.match(new RegExp('(^| )' + 'brains' + '=([^;]+)'))[2]);
     buildings = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'buildings' + '=([^;]+)'))[2]);
     clickPower = Number(document.cookie.match(new RegExp('(^| )' + 'clickPower' + '=([^;]+)'))[2]);
     clicksPerSecond = Number(document.cookie.match(new RegExp('(^| )' + 'clicksPerSecond' + '=([^;]+)'))[2]);
-    for (let i = 0; i< buildings.length; i++){
-        document.getElementById(buildings[i]['name'].toLowerCase()).value = buildings[i]['current_price'];
-        document.getElementById(buildings[i]['name'].toLowerCase()).innerText = buildings[i]['name'] + ' '+ buildings[i]['current_price'] + ' brains';
-    }
+    buildings.forEach(building => {
+        document.getElementById(building['name']).addEventListener("click", buyBuilding, false);
+        document.getElementById(building['name']).name = building['name'];
+        document.getElementById(building['name']).cost = building['cost'];
+        document.getElementById(building['name']).cps = building['cps'];
+        document.getElementById(building['name']).innerText = building['name'] + ' ' + building['cost'] + ' brains';
+        }
+    );
+
 }
 
 function idle_loop() {
@@ -68,34 +116,6 @@ function buttonClick() {
     let zombieDelta = zombies - initialZombies;
     brains += zombieDelta;
     updateGame();
-}
-
-function buyElement(element, price, cps){
-    let element_name = element.charAt(0).toUpperCase() + element.slice(1)
-    if (price <= brains){
-        let new_price = Math.round(price * 1.5)
-        if (buildings.some(item => item.name === element_name)){
-            let index = buildings.findIndex(({ name }) => name === element_name);
-            buildings[index]['count'] += 1;
-            buildings[index]['current_price'] = new_price;
-        } else {
-            buildings[buildings.length] = {name:element_name, count:1, current_price:new_price};
-        }
-        brains -= price;
-        clicksPerSecond += cps;
-
-        document.getElementById(element).innerText = element_name + ' '+ new_price + ' brains';
-        document.getElementById(element).value = new_price;
-    }
-    updateGame();
-}
-
-function getBuildings(){
-    let text = ''
-    for (let i = 0; i< buildings.length; i++){
-        text += (buildings[i]['name'] +' '+ buildings[i]['count'] + '\n')
-        }
-    document.getElementById('buildings').innerText = text
 }
 
 function resetGame() {
