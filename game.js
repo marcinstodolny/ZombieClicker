@@ -104,9 +104,9 @@ function updateGame() {
 }
 function updateStatistics() {
     document.getElementById('clickPower').innerText = String(clickPower);
-    document.getElementById('clickPowerMultiplier').innerText = String(clickPowerMultiplier);
+    // document.getElementById('clickPowerMultiplier').innerText = String(clickPowerMultiplier);
     document.getElementById('clicksPerSecond').innerText = String(clicksPerSecond);
-    document.getElementById('clicksPerSecondMultiplier').innerText = String(clicksPerSecondMultiplier);
+    // document.getElementById('clicksPerSecondMultiplier').innerText = String(clicksPerSecondMultiplier);
 }
 
 function buttonClick() {

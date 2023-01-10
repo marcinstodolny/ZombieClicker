@@ -1,0 +1,20 @@
+.wrapper {
+    height: 80vh;
+    width: 90vw;
+    margin: 0 5vw 5vh 5vw;
+    position: relative;
+}
+
+.statistics-header {
+    border: #497174 0.2vw solid;
+    border-radius: 5px;
+    text-align: center;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+.main-content {
+    overflow: hidden;
+    display: inline-block;
+}
+

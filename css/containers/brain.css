@@ -1,0 +1,21 @@
+.brain-stats {
+    bottom: 10px;
+    margin-top: 12vh;
+}
+
+.brain {
+    border: #497174 0.2vw solid;
+    border-radius: 5px;
+    text-align: center;
+    margin: 2vh 2vw;
+}
+
+.brain-image {
+    width: 60%;
+    margin: 4vh 1vw;
+}
+
+.brains-counter {
+    font-weight: bold;
+    font-size: x-large;
+}
