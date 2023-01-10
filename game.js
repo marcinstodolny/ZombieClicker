@@ -8,7 +8,7 @@ let buildings = [];
 let totalPopulation = 8010096000;
 
 //import
-import {getBuildings, fetchBuildings, buyBuilding} from './buildings.js';
+import {updateBuildingCounts, fetchBuildings, buyBuilding} from './buildings.js';
 
 //exports
 export {buildings, brains, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond};
@@ -46,11 +46,16 @@ async function initBuildings() {
     )
     buildings.forEach(building => {
         document.getElementById(building['name']).addEventListener("click", buyBuilding, false);
-        document.getElementById(building['name']).name = building['name'];
-        document.getElementById(building['name']).cost = building['cost'];
-        document.getElementById(building['name']).cps = building['cps'];
-        document.getElementById(building['name']).innerText = building['name'] + ' ' + building['cost'] + ' brains';
+        setBuildingButtonValues(building['name'], building['cost'], building['cps']);
     });
+}
+
+function setBuildingButtonValues(name, cost, cps) {
+    let button = document.getElementById(name);
+    button.name = name;
+    button.cost = cost;
+    button.cps = cps;
+    button.innerText = name + ' ' + cost + ' brains';
 }
 
 function initResetButton() {
@@ -67,15 +72,15 @@ function readCookies(){
     buildings = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'buildings' + '=([^;]+)'))[2]);
     clickPower = Number(document.cookie.match(new RegExp('(^| )' + 'clickPower' + '=([^;]+)'))[2]);
     clicksPerSecond = Number(document.cookie.match(new RegExp('(^| )' + 'clicksPerSecond' + '=([^;]+)'))[2]);
-    buildings.forEach(building => {
-        document.getElementById(building['name']).addEventListener("click", buyBuilding, false);
-        document.getElementById(building['name']).name = building['name'];
-        document.getElementById(building['name']).cost = building['cost'];
-        document.getElementById(building['name']).cps = building['cps'];
-        document.getElementById(building['name']).innerText = building['name'] + ' ' + building['cost'] + ' brains';
-        }
-    );
+    buildings.forEach(building => setBuildingButtonValues(building['name'], building['cost'], building['cps']))
+}
 
+function saveCookies() {
+    document.cookie = 'brains=' + brains + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'zombies=' + zombies + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'buildings=' + JSON.stringify(buildings) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'clicksPerSecond=' + clicksPerSecond + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'clickPower=' + clickPower + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
 }
 
 function idle_loop() {
@@ -91,16 +96,12 @@ function updateGame() {
     document.getElementById('brains').innerText = brains + ' brains';
     document.getElementById('living').innerText = totalPopulation - zombies + ' living';
     document.getElementById('zombies').innerText = zombies + ' zombies';
-    document.cookie = 'brains=' + brains + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
-    document.cookie = 'zombies=' + zombies + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
-    document.cookie = 'buildings=' + JSON.stringify(buildings) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
-    document.cookie = 'clicksPerSecond=' + clicksPerSecond + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
-    document.cookie = 'clickPower=' + clickPower + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    saveCookies();
     updateStatistics();
     if (zombies === totalPopulation) {
         alert('You win!')
     }
-    getBuildings();
+    updateBuildingCounts();
 }
 function updateStatistics() {
     document.getElementById('clickPower').innerText = String(clickPower);

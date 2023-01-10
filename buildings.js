@@ -1,7 +1,7 @@
 import {buildings, brains, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond} from "./game.js";
 
 //exports
-export {getBuildings, fetchBuildings, buyBuilding};
+export {updateBuildingCounts, fetchBuildings, buyBuilding};
 
 async function fetchBuildings() {
     let response = await fetch('buildings.json')
@@ -11,7 +11,7 @@ async function fetchBuildings() {
     return json;
 }
 
-function getBuildings(){
+function updateBuildingCounts(){
     let text = ''
     for (let i = 0; i< buildings.length; i++){
         text += (buildings[i]['name'] +' '+ buildings[i]['count'] + '\n')
