@@ -15,7 +15,6 @@ function initGame() {
     // Your game can start here, but define separate functions, don't write everything in here :)
     updateGame();
     setInterval(idle_loop, 1000);
-    setInterval(updateGame, 100);
 
 
 }
@@ -106,4 +105,6 @@ function resetGame() {
     clicksPerSecond = 0;
     buildings = [];
     totalPopulation = 8010096000;
+    location.reload()
     updateGame()
+}
