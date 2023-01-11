@@ -27,8 +27,9 @@ async function initGame() {
     await updateItems();
     updateGame();
     setInterval(idle_loop, 1000);
-    initResetButton();
+    initResetWindow();
     initMainButton();
+    initNewGameButton();
 }
 
 function adjustBrains(delta) {
@@ -74,9 +75,6 @@ async function initBuildings() {
         setBuildingButtonValues(building['name'], building['cost'], building['cps']);
     });
 }
-
-
-
 async function updateItems() {
     let jsonItems = await fetchItems();
     let itemShopList = document.getElementById('itemShopList');
@@ -97,7 +95,8 @@ async function updateItems() {
         if (document.getElementById(item['name']) != null) {
             document.getElementById(item['name']).addEventListener("click", buyItem, false);
             setItemsButtonValues(item['name'], item['cost'], item['clickP'])
-        }})
+    }})
+
 }
 function setItemsButtonValues(name, cost, clickP) {
     let button = document.getElementById(name);
@@ -114,12 +113,26 @@ function setBuildingButtonValues(name, cost, cps) {
     button.cps = cps;
 }
 
-function initResetButton() {
-    document.getElementById('resetButton').addEventListener("click", resetGame);
+function initResetWindow() {
+    document.getElementById('resetButton').addEventListener("click", showResetWindow);
+    document.getElementById('resetGameConfirm').addEventListener("click", resetGame);
+    document.getElementById('resetGameCancel'). addEventListener("click", hideResetWindow)
+}
+
+function showResetWindow() {
+    document.getElementById('resetMessageBox').removeAttribute('hidden');
+}
+
+function hideResetWindow() {
+    document.getElementById('resetMessageBox').setAttribute('hidden', '');
 }
 
 function initMainButton() {
     document.getElementById('mainButton').addEventListener("click", buttonClick)
+}
+
+function initNewGameButton() {
+    document.getElementById('newGameButton').addEventListener("click", newGame)
 }
 
 function readCookies(){
@@ -129,8 +142,8 @@ function readCookies(){
     clickPower = Number(document.cookie.match(new RegExp('(^| )' + 'clickPower' + '=([^;]+)'))[2]);
     clicksPerSecond = Number(document.cookie.match(new RegExp('(^| )' + 'clicksPerSecond' + '=([^;]+)'))[2]);
     bought_items = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'bought_items' + '=([^;]+)'))[2]);
-    // buildings.forEach(building => setBuildingButtonValues(building['name'], building['cost'], building['cps']))
-
+    totalPopulation = Number(document.cookie.match(new RegExp('(^| )' + 'totalPopulation' + '=([^;]+)'))[2]);
+    buildings.forEach(building => setBuildingButtonValues(building['name'], building['cost'], building['cps']))
 }
 
 function saveCookies() {
@@ -140,6 +153,7 @@ function saveCookies() {
     document.cookie = 'clicksPerSecond=' + clicksPerSecond + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'clickPower=' + clickPower + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'bought_items=' + JSON.stringify(bought_items) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'totalPopulation=' + totalPopulation + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
 }
 
 function idle_loop() {
@@ -172,7 +186,7 @@ function updateProgressBar() {
 
 function checkWinCondition() {
     if (zombies === totalPopulation) {
-        alert('You win!')
+        document.getElementById('winMessageBox').removeAttribute('hidden')
     }
 }
 
@@ -204,3 +218,8 @@ function resetGame() {
     updateGame()
 }
 
+function newGame() {
+    totalPopulation = 1823470191283974123483475;
+    document.getElementById('winMessageBox').setAttribute('hidden', '');
+    updateGame()
+}

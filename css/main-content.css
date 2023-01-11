@@ -8,6 +8,7 @@ h1, h3 {
 }
 
 .brain-container {
+    background-color: white;
     margin-top: 1vh;
     border: #497174 0.2vw solid;
     border-radius: 5px;
@@ -18,6 +19,7 @@ h1, h3 {
 }
 
 .buildings {
+    background-color: white;
     margin: 1vh 1vw;
     border: #497174 0.2vw solid;
     border-radius: 5px;
