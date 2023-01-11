@@ -1,46 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <title>Javascript Game</title>-->
-<!--    <meta charset="UTF-8">-->
-<!--    &lt;!&ndash; http://proger.i-forge.net/The_smallest_transparent_pixel/ &ndash;&gt;-->
-<!--    <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">-->
-<!--    <script type="module" src="game.js" defer></script>-->
-<!--    <link rel="stylesheet" href="style.css">-->
-<!--</head>-->
-<!--<body>-->
-<!--<div id="main" class="container">-->
-<!--    <p id="zombies"></p>-->
-<!--    <p id="living"></p>-->
-<!--    <p id="brains"></p>-->
-<!--    <button id="mainButton">Eat brain</button>-->
-<!--</div>-->
-<!--<br><br>-->
-<!--<div id="shop" class="container">-->
-<!--    <h3><u>Shop:</u></h3>-->
-<!--    <ol id="shopList">-->
-<!--    </ol>-->
-<!--</div>-->
-<!--<br>-->
-<!--<div id="buildings" class="container">-->
-<!--    <h3><u>Buildings:</u></h3>-->
-<!--    <p id="buildingsList"></p>-->
-<!--</div>-->
-<!--<br>-->
-<!--<div id="statistics" class="container">-->
-<!--    <h3><u>Statistics:</u></h3>-->
-<!--    <p><span>Click Power: </span><span id="clickPower"></span></p>-->
-<!--    <p><span>Click Power Multiplier: </span><span id="clickPowerMultiplier"></span></p>-->
-<!--    <p><span>Clicks Per Second: </span><span id="clicksPerSecond"></span></p>-->
-<!--    <p><span>Clicks Per Second Multiplier: </span><span id="clicksPerSecondMultiplier"></span></p>-->
-<!--</div>-->
-<!--<br><br>-->
-<!--<div>-->
-<!--    <button id="resetButton">Reset game</button>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,12 +11,14 @@
     <link rel="stylesheet" href="css/containers/brain.css">
     <link rel="stylesheet" href="css/containers/buildings.css">
     <link rel="stylesheet" href="css/containers/sidebar-right.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="wrapper">
     <div class="main-content">
         <h1>Zombie Clicker</h1>
         <div class="statistics-header">
+            <div id="progessBar"></div>
             <span id="living" class="stats"></span>
             <span id="zombies" class="stats"></span>
         </div>
@@ -69,15 +28,14 @@
                 <p id="brains" class="brains-counter"></p>
                 <p><span>BPS (brains per second):</span><span id="clicksPerSecond"></span></p>
             </div>
-            <button id="mainButton" class="brain">
-                <img src="images/brain.png" alt="brain" class="brain-image">
-            </button>
+            <div id="mainButton" class="brain"><img src="images/brain.png" alt="brain" class="brain-image"></div>
             <p><span>Click Power: </span><span id="clickPower"></span></p>
         </div>
-
         <div id="buildings" class="buildings">
             <h3><u>Buildings:</u></h3>
                 <p id="buildingsList"></p>
+            <h3><u>Equipment:</u></h3>
+                <p id="itemList"></p>
         </div>
         <div class="sidebar-right">
             <div id="shop" class="shop">
@@ -85,7 +43,11 @@
                     <ol id="shopList">
                     </ol>
             </div>
-            <div class="placeholder2"></div>
+        </div>
+        <div id="shop2" class="shop">
+                <h3><u>Equipment:</u></h3>
+                <ol id="itemShopList">
+                </ol>
         </div>
     </div>
     <div>
