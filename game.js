@@ -3,7 +3,7 @@ let zombies = 0;
 let clickPower = 1;
 let clickPowerMultiplier = 1;
 let clicksPerSecond = 0;
-let clicksPerSecondMultiplier = 1;
+let clicksPerSecondMultiplier = 10000;
 let buildings = [];
 let items = [];
 let bought_items = [];
@@ -151,7 +151,7 @@ function updateProgressBar() {
 
 function checkWinCondition() {
     if (zombies === totalPopulation) {
-        alert('You win!')
+        document.getElementById('winMessageBox').removeAttribute('hidden')
     }
 }
 

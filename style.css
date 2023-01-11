@@ -5,3 +5,17 @@
     border-color: black;
     border-style: solid;
 }
+
+.win-message-box {
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left:50%;
+    border: #497174 0.2vw solid;
+    border-radius: 5px;
+    text-align: center;
+    margin: auto;
+    padding: 2vh;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translate(-50%,-50%);
+}
