@@ -29,6 +29,8 @@ function buyBuilding(evt) {
             let index = buildings.findIndex(({ name }) => name === element);
             buildings[index]['count'] += 1;
             buildings[index]['cost'] = new_price;
+            // document.getElementById("count"+buildings[index]['id']).innerText = buildings[index]['cost'] + "Brains";
+            // document.getElementById("cost"+buildings[index]['id']).innerText = new_price.toString();
         } else {
             console.log('here');
             buildings[buildings.length] = {name:element, count:1, cost:new_price, cps:cps};
@@ -36,7 +38,9 @@ function buyBuilding(evt) {
         adjustBrains(-price);
         adjustClicksPerSecond(cps);
         document.getElementById(element).cost = new_price;
-        document.getElementById(element).innerText = element + ' ' + new_price + ' brains';
+
+        // document.getElementById(element).innerText = element + ' ' + new_price + ' brains';
     }
+
     updateGame();
 }

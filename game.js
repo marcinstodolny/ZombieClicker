@@ -58,7 +58,7 @@ async function initBuildings() {
         }
     )
     buildings.forEach(building => {
-        document.getElementById().addEventListener("click", buyBuilding, false);
+        document.getElementById("building"+building['id']).addEventListener("click", buyBuilding, false);
         document.getElementById("buy"+building['id']).addEventListener("click", buyBuilding, false);
         document.getElementById("building"+building['id']).classList.add("building-info");
         document.getElementById("cost"+building['id']).classList.add("price");
@@ -67,8 +67,16 @@ async function initBuildings() {
         document.getElementById("name"+building['id']).classList.add("building-name");
         document.getElementById("buy"+building['id']).classList.add("buy");
         document.getElementById("name-and-price-container" + building['id']).classList.add("building-name-and-price");
+
+
+
+
+        setBuildingButtonValues("building"+building['id'], building['cost'], building['cps']);
     });
 }
+
+
+
 async function updateItems() {
     let jsonItems = await fetchItems();
     let itemShopList = document.getElementById('itemShopList');
@@ -89,8 +97,7 @@ async function updateItems() {
         if (document.getElementById(item['name']) != null) {
             document.getElementById(item['name']).addEventListener("click", buyItem, false);
             setItemsButtonValues(item['name'], item['cost'], item['clickP'])
-    }})
-
+        }})
 }
 function setItemsButtonValues(name, cost, clickP) {
     let button = document.getElementById(name);
@@ -101,11 +108,10 @@ function setItemsButtonValues(name, cost, clickP) {
 }
 
 function setBuildingButtonValues(name, cost, cps) {
-    let button = document.getElementById("building"+name);
+    let button = document.getElementById(name);
     button.name = name;
     button.cost = cost;
     button.cps = cps;
-    // button.innerText = name + ' ' + cost + ' brains';
 }
 
 function initResetButton() {
@@ -124,6 +130,7 @@ function readCookies(){
     clicksPerSecond = Number(document.cookie.match(new RegExp('(^| )' + 'clicksPerSecond' + '=([^;]+)'))[2]);
     bought_items = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'bought_items' + '=([^;]+)'))[2]);
     // buildings.forEach(building => setBuildingButtonValues(building['name'], building['cost'], building['cps']))
+
 }
 
 function saveCookies() {
@@ -155,6 +162,7 @@ function updateGame() {
     updateItemsOwned();
     checkWinCondition();
     updateProgressBar()
+    // updateBuildings()
 }
 
 function updateProgressBar() {
