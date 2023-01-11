@@ -26,7 +26,7 @@ async function initGame() {
     await updateItems();
     updateGame();
     setInterval(idle_loop, 1000);
-    initResetButton();
+    initResetWindow();
     initMainButton();
     initNewGameButton();
 }
@@ -96,8 +96,18 @@ function setBuildingButtonValues(name, cost, cps) {
     button.innerText = name + ' ' + cost + ' brains';
 }
 
-function initResetButton() {
-    document.getElementById('resetButton').addEventListener("click", resetGame);
+function initResetWindow() {
+    document.getElementById('resetButton').addEventListener("click", showResetWindow);
+    document.getElementById('resetGameConfirm').addEventListener("click", resetGame);
+    document.getElementById('resetGameCancel'). addEventListener("click", hideResetWindow)
+}
+
+function showResetWindow() {
+    document.getElementById('resetMessageBox').removeAttribute('hidden');
+}
+
+function hideResetWindow() {
+    document.getElementById('resetMessageBox').setAttribute('hidden', '');
 }
 
 function initMainButton() {

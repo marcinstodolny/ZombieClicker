@@ -6,7 +6,7 @@
     border-style: solid;
 }
 
-.win-message-box {
+.message-box {
     background-color: white;
     position: absolute;
     top: 50%;
