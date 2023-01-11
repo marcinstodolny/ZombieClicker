@@ -278,3 +278,16 @@ function nextWorld() {
     initNewGameButton();
     updateGame();
 }
+
+function test(){
+const target = document.getElementById('brainImage');
+target.addEventListener('mouseover', () => {
+    target.classList.toggle('brainResize')
+}, false);
+
+target.addEventListener('mouseleave', () => {
+   target.classList.toggle('brainResize')
+}, false);
+
+}
+test()
