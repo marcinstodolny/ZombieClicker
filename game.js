@@ -3,7 +3,7 @@ let zombies = 0;
 let clickPower = 1;
 let clickPowerMultiplier = 1;
 let clicksPerSecond = 0;
-let clicksPerSecondMultiplier = 10000;
+let clicksPerSecondMultiplier = 1;
 let buildings = [];
 let items = [];
 let bought_items = [];
@@ -28,6 +28,7 @@ async function initGame() {
     setInterval(idle_loop, 1000);
     initResetButton();
     initMainButton();
+    initNewGameButton();
 }
 
 function adjustBrains(delta) {
@@ -103,6 +104,10 @@ function initMainButton() {
     document.getElementById('mainButton').addEventListener("click", buttonClick)
 }
 
+function initNewGameButton() {
+    document.getElementById('newGameButton').addEventListener("click", newGame)
+}
+
 function readCookies(){
     zombies = Number(document.cookie.match(new RegExp('(^| )' + 'zombies' + '=([^;]+)'))[2]);
     brains = Number(document.cookie.match(new RegExp('(^| )' + 'brains' + '=([^;]+)'))[2]);
@@ -110,6 +115,7 @@ function readCookies(){
     clickPower = Number(document.cookie.match(new RegExp('(^| )' + 'clickPower' + '=([^;]+)'))[2]);
     clicksPerSecond = Number(document.cookie.match(new RegExp('(^| )' + 'clicksPerSecond' + '=([^;]+)'))[2]);
     bought_items = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'bought_items' + '=([^;]+)'))[2]);
+    totalPopulation = Number(document.cookie.match(new RegExp('(^| )' + 'totalPopulation' + '=([^;]+)'))[2]);
     buildings.forEach(building => setBuildingButtonValues(building['name'], building['cost'], building['cps']))
 }
 
@@ -120,6 +126,7 @@ function saveCookies() {
     document.cookie = 'clicksPerSecond=' + clicksPerSecond + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'clickPower=' + clickPower + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'bought_items=' + JSON.stringify(bought_items) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'totalPopulation=' + totalPopulation + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
 }
 
 function idle_loop() {
@@ -183,3 +190,8 @@ function resetGame() {
     updateGame()
 }
 
+function newGame() {
+    totalPopulation = 1823470191283974123483475;
+    document.getElementById('winMessageBox').setAttribute('hidden', '');
+    updateGame()
+}
