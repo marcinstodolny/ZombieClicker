@@ -8,11 +8,13 @@ let clicksPerSecondMultiplier = 1;
 let buildings = [];
 let items = [];
 let bought_items = [];
-let totalPopulation = 8010096000;
+let worlds = [];
+let currentWorld = 0;
 
 //import
 import {updateBuildingCounts, fetchBuildings, buyBuilding} from './buildings.js';
 import {getItems, fetchItems, buyItem, matchRequirements, updateItemsOwned} from './items.js';
+import {fetchWorlds} from './worlds.js';
 
 //exports
 export {buildings, brains, items, clickPower, bought_items, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond, adjustClickPower, adjustClickPowerMultiplier,adjustClicksPerSecondMultiplier, update_cps};
@@ -21,15 +23,16 @@ initGame();
 
 async function initGame() {
     await initBuildings();
+    initResetWindow();
+    initMainButton();
     if ((document.cookie.match(new RegExp('(^| )' + 'brains' + '=([^;]+)')) !== null)){
         readCookies()
     }
     await updateItems();
+    await initWorlds();
+    initNewGameButton();
     updateGame();
     setInterval(idle_loop, 1000);
-    initResetWindow();
-    initMainButton();
-    initNewGameButton();
 }
 
 function adjustBrains(delta) {
@@ -51,6 +54,10 @@ function adjustClicksPerSecondMultiplier(delta, building) {
     let building_cps = Number(buildings[index]['cps'])
     buildings[index]['multiplier'] += delta
     clicksPerSecond += Number(building_count * building_cps * delta);
+}
+
+async function initWorlds() {
+    worlds = await fetchWorlds();
 }
 
 async function initBuildings() {
@@ -135,18 +142,27 @@ function initMainButton() {
 }
 
 function initNewGameButton() {
-    document.getElementById('newGameButton').addEventListener("click", newGame)
+    document.getElementById('winningParagraph').innerText = 'Well done you have killed everyone ' + worlds['worlds'][currentWorld]['locationText'];
+    document.getElementById('newGameButton').removeEventListener('click', nextWorld);
+    document.getElementById('newGameButton').removeEventListener('click',resetGame);
+    if (worlds['worlds'].length !== currentWorld + 1) {
+        document.getElementById('newGameButton').innerText = 'Move on to ' + worlds['worlds'][currentWorld+1]['name'];
+        document.getElementById('newGameButton').addEventListener("click", nextWorld);
+    } else {
+        document.getElementById('newGameButton').innerText = 'New Game';
+        document.getElementById('newGameButton').addEventListener("click", resetGame);
+    }
 }
 
 function readCookies(){
     zombies = Number(document.cookie.match(new RegExp('(^| )' + 'zombies' + '=([^;]+)'))[2]);
+    currentWorld = Number(document.cookie.match(new RegExp('(^| )' + 'currentWorld' + '=([^;]+)'))[2]);
     brains = Number(document.cookie.match(new RegExp('(^| )' + 'brains' + '=([^;]+)'))[2]);
     buildings = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'buildings' + '=([^;]+)'))[2]);
     clickPower = Number(document.cookie.match(new RegExp('(^| )' + 'clickPower' + '=([^;]+)'))[2]);
     clickPowerMultiplier = Number(document.cookie.match(new RegExp('(^| )' + 'clickPowerMultiplier' + '=([^;]+)'))[2]);
     clicksPerSecond = Number(document.cookie.match(new RegExp('(^| )' + 'clicksPerSecond' + '=([^;]+)'))[2]);
     bought_items = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'bought_items' + '=([^;]+)'))[2]);
-    totalPopulation = Number(document.cookie.match(new RegExp('(^| )' + 'totalPopulation' + '=([^;]+)'))[2]);
     buildings.forEach(building => setBuildingButtonValues(building['name'], building['cost'], building['cps']))
 }
 
@@ -158,7 +174,7 @@ function saveCookies() {
     document.cookie = 'clickPower=' + clickPower + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'clickPowerMultiplier=' + clickPowerMultiplier + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'bought_items=' + JSON.stringify(bought_items) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
-    document.cookie = 'totalPopulation=' + totalPopulation + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'currentWorld=' + currentWorld + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
 }
 
 function update_cps(){
@@ -174,7 +190,7 @@ function update_cps(){
 function idle_loop() {
     let initialZombies = zombies;
     zombies += Math.round(clicksPerSecond);
-    zombies = Math.min(zombies, totalPopulation);
+    zombies = Math.min(zombies, worlds['worlds'][currentWorld]['population']);
     let zombieDelta = zombies - initialZombies;
     brains += zombieDelta;
     updateGame();
@@ -182,7 +198,7 @@ function idle_loop() {
 
 function updateGame() {
     document.getElementById('brains').innerText = brains + ' brains';
-    document.getElementById('living').innerText = totalPopulation - zombies + ' living';
+    document.getElementById('living').innerText = worlds['worlds'][currentWorld]['population'] - zombies + ' living';
     document.getElementById('zombies').innerText = zombies + ' zombies';
     saveCookies();
     updateStatistics();
@@ -195,11 +211,11 @@ function updateGame() {
 
 function updateProgressBar() {
     let bar = document.getElementById('progessBar');
-    bar.style.width=zombies / totalPopulation * 100 + '%';
+    bar.style.width=zombies / worlds['worlds'][currentWorld]['population'] * 100 + '%';
 }
 
 function checkWinCondition() {
-    if (zombies === totalPopulation) {
+    if (zombies === worlds['worlds'][currentWorld]['population']) {
         document.getElementById('winMessageBox').removeAttribute('hidden')
     }
 }
@@ -218,7 +234,7 @@ function updateStatistics() {
 function buttonClick() {
     let initialZombies = zombies;
     zombies += Math.round(clickPower * clickPowerMultiplier);
-    zombies = Math.min(zombies, totalPopulation);
+    zombies = Math.min(zombies, worlds['worlds'][currentWorld]['population']);
     let zombieDelta = zombies - initialZombies;
     brains += zombieDelta;
     updateGame();
@@ -230,7 +246,7 @@ function resetGame() {
     clickPower = 1;
     clicksPerSecond = 0;
     buildings = [];
-    totalPopulation = 8010096000;
+    currentWorld = 0;
     bought_items = [];
     clickPowerMultiplier = 1;
     location.reload()
@@ -255,8 +271,10 @@ target.addEventListener('mouseleave', () => {
 }, false);
 
 }
-function newGame() {
-    totalPopulation = Number. MAX_VALUE;
+
+function nextWorld() {
+    currentWorld++;
     document.getElementById('winMessageBox').setAttribute('hidden', '');
-    updateGame()
+    initNewGameButton();
+    updateGame();
 }
