@@ -13,6 +13,8 @@
 .brain-image {
     width: 60%;
     margin: 4vh 1vw;
+    -webkit-user-drag: none;
+    user-select: none;
 }
 
 .brains-counter {
