@@ -1,0 +1,58 @@
+.building-info {
+    margin: 0.2vh 0.2vw;
+    border: #497174 0.2vw solid;
+    border-radius: 5px;
+    width: 29.2vw;
+    height: 10vh;
+    float: left;
+    position: relative;
+}
+
+.buy {
+    float: left;
+    font-size: 3vh;
+    margin-left: 1vw;
+    margin-top: 0.5vh;
+}
+
+.building-name-and-price {
+    float: left;
+    height: 9.4vh;
+    width: 11vw;
+    margin-left: 4vw
+}
+
+.building-name {
+    text-align: center;
+    float: left;
+    margin: 1.8vh auto;
+    width: 11vw;
+    font-size: 3.5vh;
+}
+
+.price {
+    font-size: 2vh;
+    margin: 0 auto 1vh auto;
+    position: absolute;
+    bottom: 0;
+    width: 11vw;
+}
+
+.buy-icon {
+    height: 1em;
+}
+
+.buildings-amount {
+    text-align: center;
+    font-weight: bolder;
+    font-size: x-large;
+    float: right;
+    height: 9.4vh;
+    margin: 0 auto;
+    width: 9vw;
+}
+
+.buildings-amount p {
+    font-size: 3.7vh;
+    margin-top: 2.3vh;
+}
