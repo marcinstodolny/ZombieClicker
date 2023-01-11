@@ -50,28 +50,28 @@ async function initBuildings() {
             building['count'] = 0;
             buildings.push(building);
             shopList.innerHTML = shopList.innerHTML +
-                '<div id="building'+building['id']+'"><div id="buy'+building['id']+'">' +
-                '<p>BUY</p></div><div id="name-and-price-container'+building['id']+'">' +
-                '<p id="name'+building['id']+'">'+ building['name'] +'</p>' +
-                '<p id ="cost'+ building['id'] +'">'+ building['cost'] +' Brains</p></div>' +
-                '<div id="count'+building['id']+'"><p>'+ building['count'] +'</p></div></div><br>';
+                '<div id="'+building['name']+'"><div id="buy'+building['name']+'">' +
+                '<p>BUY</p></div><div id="name-and-price-container'+building['name']+'">' +
+                '<p id="name'+building['name']+'">'+ building['name'] +'</p>' +
+                '<p id ="cost'+ building['name'] +'">'+ building['cost'] +' Brains</p></div>' +
+                '<div id="count'+building['name']+'"><p>'+ building['count'] +'</p></div></div><br>';
         }
     )
     buildings.forEach(building => {
-        document.getElementById("building"+building['id']).addEventListener("click", buyBuilding, false);
-        document.getElementById("buy"+building['id']).addEventListener("click", buyBuilding, false);
-        document.getElementById("building"+building['id']).classList.add("building-info");
-        document.getElementById("cost"+building['id']).classList.add("price");
-        document.getElementById("count"+building['id']).classList.add("buildings-amount");
+        document.getElementById([building['name']]).addEventListener("click", buyBuilding, false);
+        document.getElementById("buy"+building['name']).addEventListener("click", buyBuilding, false);
+        document.getElementById(building['name']).classList.add("building-info");
+        document.getElementById("cost"+building['name']).classList.add("price");
+        document.getElementById("count"+building['name']).classList.add("buildings-amount");
         // document.getElementById("buy-icon").classList.add("buy-icon");
-        document.getElementById("name"+building['id']).classList.add("building-name");
-        document.getElementById("buy"+building['id']).classList.add("buy");
-        document.getElementById("name-and-price-container" + building['id']).classList.add("building-name-and-price");
+        document.getElementById("name"+building['name']).classList.add("building-name");
+        document.getElementById("buy"+building['name']).classList.add("buy");
+        document.getElementById("name-and-price-container" + building['name']).classList.add("building-name-and-price");
 
 
 
 
-        setBuildingButtonValues("building"+building['id'], building['cost'], building['cps']);
+        setBuildingButtonValues(building['name'], building['cost'], building['cps']);
     });
 }
 

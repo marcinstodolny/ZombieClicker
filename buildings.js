@@ -25,20 +25,23 @@ function buyBuilding(evt) {
     let cps = evt.currentTarget.cps;
     if (price <= brains){
         let new_price = Math.round(price * 1.5)
+        console.log(buildings)
         if (buildings.some(item => item.name === element)){
             let index = buildings.findIndex(({ name }) => name === element);
             buildings[index]['count'] += 1;
             buildings[index]['cost'] = new_price;
-            // document.getElementById("count"+buildings[index]['id']).innerText = buildings[index]['cost'] + "Brains";
+            console.log(index, buildings[index]['name'])
+            console.log(buildings[0]['id'])
             // document.getElementById("cost"+buildings[index]['id']).innerText = new_price.toString();
         } else {
-            console.log('here');
             buildings[buildings.length] = {name:element, count:1, cost:new_price, cps:cps};
         }
+        let index = buildings.findIndex(({ name }) => name === element);
         adjustBrains(-price);
         adjustClicksPerSecond(cps);
         document.getElementById(element).cost = new_price;
-
+        document.getElementById('cost'+buildings[index]['name']).innerText = buildings[index]['cost'] + "Brains";
+        document.getElementById('count'+buildings[index]['name']).innerText = buildings[index]['count'];
         // document.getElementById(element).innerText = element + ' ' + new_price + ' brains';
     }
 
