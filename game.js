@@ -98,7 +98,6 @@ async function updateItems() {
                 '<p id="'+ item['name'] +'-text" class="tooltip-text:before"></p>' +'<li><button id="' + item['name'] + '" value="10">' + item['name'] + ' ' + item['cost'] + ' brains</button></li></div>';
         }})
     items.forEach(item => {
-        console.log(hover)
         if (document.getElementById(item['name']) != null) {
             document.getElementById(item['name']).addEventListener("click", buyItem, false);
             info(item['name'], item['displayed-text'])
