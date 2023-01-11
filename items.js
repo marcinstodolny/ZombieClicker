@@ -52,5 +52,5 @@ function updateItemsOwned(){
     for (let i = 0; i< bought_items.length; i++){
         text += (bought_items[i] +' ' + '\n')
         }
-    document.getElementById('itemList').innerText = text
+    // document.getElementById('itemList').innerText = text
 }

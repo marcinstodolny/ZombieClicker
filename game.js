@@ -10,7 +10,8 @@ let bought_items = [];
 let totalPopulation = 8010096000;
 
 //import
-import {updateBuildingCounts, fetchBuildings, buyBuilding} from './buildings.js';
+// import {updateBuildingCounts} from './buildings.js';
+import {fetchBuildings, buyBuilding} from './buildings.js';
 import {getItems, fetchItems, buyItem, matchRequirements, updateItemsOwned} from './items.js';
 
 //exports
@@ -48,12 +49,24 @@ async function initBuildings() {
         building => {
             building['count'] = 0;
             buildings.push(building);
-            shopList.innerHTML = shopList.innerHTML + '<li><button id="' + building['name'] + '" value="10">' + building['name'] + ' ' + building['cost'] + ' brains</button></li>';
+            shopList.innerHTML = shopList.innerHTML +
+                '<div id="building'+building['id']+'"><div id="buy'+building['id']+'">' +
+                '<p>BUY</p></div><div id="name-and-price-container'+building['id']+'">' +
+                '<p id="name'+building['id']+'">'+ building['name'] +'</p>' +
+                '<p id ="cost'+ building['id'] +'">'+ building['cost'] +' Brains</p></div>' +
+                '<div id="count'+building['id']+'"><p>'+ building['count'] +'</p></div></div><br>';
         }
     )
     buildings.forEach(building => {
-        document.getElementById(building['name']).addEventListener("click", buyBuilding, false);
-        setBuildingButtonValues(building['name'], building['cost'], building['cps']);
+        document.getElementById().addEventListener("click", buyBuilding, false);
+        document.getElementById("buy"+building['id']).addEventListener("click", buyBuilding, false);
+        document.getElementById("building"+building['id']).classList.add("building-info");
+        document.getElementById("cost"+building['id']).classList.add("price");
+        document.getElementById("count"+building['id']).classList.add("buildings-amount");
+        // document.getElementById("buy-icon").classList.add("buy-icon");
+        document.getElementById("name"+building['id']).classList.add("building-name");
+        document.getElementById("buy"+building['id']).classList.add("buy");
+        document.getElementById("name-and-price-container" + building['id']).classList.add("building-name-and-price");
     });
 }
 async function updateItems() {
@@ -66,7 +79,7 @@ async function updateItems() {
                 items.push(item);
 
             }})}
-    itemShopList.innerHTML = ''
+    // itemShopList.innerHTML = ''
     jsonItems['items'].forEach(
         item => {
             if (!bought_items.some(element => element === item.name) && matchRequirements(item.name)){
@@ -88,11 +101,11 @@ function setItemsButtonValues(name, cost, clickP) {
 }
 
 function setBuildingButtonValues(name, cost, cps) {
-    let button = document.getElementById(name);
+    let button = document.getElementById("building"+name);
     button.name = name;
     button.cost = cost;
     button.cps = cps;
-    button.innerText = name + ' ' + cost + ' brains';
+    // button.innerText = name + ' ' + cost + ' brains';
 }
 
 function initResetButton() {
@@ -110,7 +123,7 @@ function readCookies(){
     clickPower = Number(document.cookie.match(new RegExp('(^| )' + 'clickPower' + '=([^;]+)'))[2]);
     clicksPerSecond = Number(document.cookie.match(new RegExp('(^| )' + 'clicksPerSecond' + '=([^;]+)'))[2]);
     bought_items = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'bought_items' + '=([^;]+)'))[2]);
-    buildings.forEach(building => setBuildingButtonValues(building['name'], building['cost'], building['cps']))
+    // buildings.forEach(building => setBuildingButtonValues(building['name'], building['cost'], building['cps']))
 }
 
 function saveCookies() {
@@ -132,12 +145,12 @@ function idle_loop() {
 }
 
 function updateGame() {
-    document.getElementById('brains').innerText = brains + ' brains';
-    document.getElementById('living').innerText = totalPopulation - zombies + ' living';
-    document.getElementById('zombies').innerText = zombies + ' zombies';
+    document.getElementById('brains').innerText = brains + ' BRAINS';
+    document.getElementById('living').innerText = 'Living population: ' + (totalPopulation - zombies).toString();
+    document.getElementById('zombies').innerText = 'Zombies: ' + zombies;
     saveCookies();
     updateStatistics();
-    updateBuildingCounts();
+    // updateBuildingCounts();
     updateItems();
     updateItemsOwned();
     checkWinCondition();
