@@ -35,8 +35,8 @@
   "buildingName": "grave",
   "requirement":1,
   "clickP": 0,
-  "ClickMultiplier": 0,
-  "buildingMultiplier": 1,
+  "ClickMultiplier": 10000,
+  "buildingMultiplier": 0,
   "cost":150,
   "displayed-text": "Shovel that help you dig more graves, +1 Click multiplier"
 }]

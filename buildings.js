@@ -3,6 +3,7 @@ import {buildings, brains, clicksPerSecond, updateGame, adjustBrains, adjustClic
 //exports
 export {updateBuildingCounts, fetchBuildings, buyBuilding};
 
+let priceMultiplier = 1.2
 async function fetchBuildings() {
     let response = await fetch('buildings.json')
     let json = await response.json();
@@ -24,13 +25,12 @@ function buyBuilding(evt) {
     let price = evt.currentTarget.cost;
     let cps = evt.currentTarget.cps;
     if (price <= brains){
-        let new_price = Math.round(price * 1.5)
+        let new_price = Math.round(price * priceMultiplier)
         if (buildings.some(item => item.name === element)){
             let index = buildings.findIndex(({ name }) => name === element);
             buildings[index]['count'] += 1;
             buildings[index]['cost'] = new_price;
         } else {
-            console.log('here');
             buildings[buildings.length] = {name:element, count:1, cost:new_price,multiplier:1, cps:cps};
         }
         adjustBrains(-price);

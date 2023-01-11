@@ -27,8 +27,9 @@ async function initGame() {
     await updateItems();
     updateGame();
     setInterval(idle_loop, 1000);
-    initResetButton();
+    initResetWindow();
     initMainButton();
+    initNewGameButton();
 }
 
 function adjustBrains(delta) {
@@ -58,6 +59,7 @@ async function initBuildings() {
     jsonBuildings['buildings'].forEach(
         building => {
             building['count'] = 0;
+            building['multiplier'] = 1;
             buildings.push(building);
             shopList.innerHTML = shopList.innerHTML +
                 '<div class="tooltip-container">' +
@@ -79,7 +81,6 @@ async function updateItems() {
         item => {
             if (!items.some(element => element === item.name)) {
                 items.push(item);
-
             }})}
     itemShopList.innerHTML = ''
     jsonItems['items'].forEach(
@@ -115,12 +116,26 @@ function setBuildingButtonValues(name, cost, cps) {
     button.innerText = name + ' ' + cost + ' brains';
 }
 
-function initResetButton() {
-    document.getElementById('resetButton').addEventListener("click", resetGame);
+function initResetWindow() {
+    document.getElementById('resetButton').addEventListener("click", showResetWindow);
+    document.getElementById('resetGameConfirm').addEventListener("click", resetGame);
+    document.getElementById('resetGameCancel'). addEventListener("click", hideResetWindow)
+}
+
+function showResetWindow() {
+    document.getElementById('resetMessageBox').removeAttribute('hidden');
+}
+
+function hideResetWindow() {
+    document.getElementById('resetMessageBox').setAttribute('hidden', '');
 }
 
 function initMainButton() {
     document.getElementById('mainButton').addEventListener("click", buttonClick)
+}
+
+function initNewGameButton() {
+    document.getElementById('newGameButton').addEventListener("click", newGame)
 }
 
 function readCookies(){
@@ -131,6 +146,7 @@ function readCookies(){
     clickPowerMultiplier = Number(document.cookie.match(new RegExp('(^| )' + 'clickPowerMultiplier' + '=([^;]+)'))[2]);
     clicksPerSecond = Number(document.cookie.match(new RegExp('(^| )' + 'clicksPerSecond' + '=([^;]+)'))[2]);
     bought_items = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'bought_items' + '=([^;]+)'))[2]);
+    totalPopulation = Number(document.cookie.match(new RegExp('(^| )' + 'totalPopulation' + '=([^;]+)'))[2]);
     buildings.forEach(building => setBuildingButtonValues(building['name'], building['cost'], building['cps']))
 }
 
@@ -142,13 +158,16 @@ function saveCookies() {
     document.cookie = 'clickPower=' + clickPower + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'clickPowerMultiplier=' + clickPowerMultiplier + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'bought_items=' + JSON.stringify(bought_items) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'totalPopulation=' + totalPopulation + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
 }
 
 function update_cps(){
+    console.log(buildings)
     let cps = 0
     for (let i = 0; i < buildings.length; i++){
-        cps += buildings[i]['cps'] * buildings[i]['multiplier'] * buildings[i]['count']
+        cps += Number(buildings[i]['cps'] * buildings[i]['multiplier'] * buildings[i]['count'])
     }
+    console.log(cps, buildings[0]['cps'], buildings[0]['multiplier'],  buildings[0]['count'])
     clicksPerSecond = cps
 }
 
@@ -172,7 +191,6 @@ function updateGame() {
     updateItemsOwned();
     checkWinCondition();
     updateProgressBar()
-    console.log(buildings)
 }
 
 function updateProgressBar() {
@@ -182,11 +200,10 @@ function updateProgressBar() {
 
 function checkWinCondition() {
     if (zombies === totalPopulation) {
-        alert('You win!')
+        document.getElementById('winMessageBox').removeAttribute('hidden')
     }
 }
 function updateClickPower(){
-    console.log(clickPower, clickPowerMultiplier)
     clickPowerMultiplied = clickPower * clickPowerMultiplier;
 }
 
@@ -237,4 +254,9 @@ target.addEventListener('mouseleave', () => {
       tooltip.classList.toggle('tooltip-text')
 }, false);
 
+}
+function newGame() {
+    totalPopulation = Number. MAX_VALUE;
+    document.getElementById('winMessageBox').setAttribute('hidden', '');
+    updateGame()
 }
