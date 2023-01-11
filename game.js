@@ -279,7 +279,7 @@ function nextWorld() {
     updateGame();
 }
 
-function test(){
+function AnimateBrain(){
 const target = document.getElementById('brainImage');
 target.addEventListener('mouseover', () => {
     target.classList.toggle('brainResize')
@@ -289,5 +289,10 @@ target.addEventListener('mouseleave', () => {
    target.classList.toggle('brainResize')
 }, false);
 
+target.addEventListener('click', () => {
+   target.classList.toggle('brainAnimation')
+    setTimeout(() => {target.classList.toggle('brainAnimation')}, 100)
+}, false);
+
 }
-test()
+AnimateBrain()
