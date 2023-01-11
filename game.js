@@ -11,6 +11,7 @@ let bought_items = [];
 let worlds = [];
 let currentWorld = 0;
 
+
 //import
 import {updateBuildingCounts, fetchBuildings, buyBuilding} from './buildings.js';
 import {getItems, fetchItems, buyItem, matchRequirements, updateItemsOwned} from './items.js';
@@ -97,12 +98,12 @@ async function updateItems() {
                 '<p id="'+ item['name'] +'-text" class="tooltip-text:before"></p>' +'<li><button id="' + item['name'] + '" value="10">' + item['name'] + ' ' + item['cost'] + ' brains</button></li></div>';
         }})
     items.forEach(item => {
+        console.log(hover)
         if (document.getElementById(item['name']) != null) {
             document.getElementById(item['name']).addEventListener("click", buyItem, false);
             info(item['name'], item['displayed-text'])
             setItemsButtonValues(item['name'], item['cost'], item['clickP'], item['buildingName'], item['ClickMultiplier'], item['buildingMultiplier'])
     }})
-
 }
 function setItemsButtonValues(name, cost, clickP, buildingName, clickMultiplier, buildingMultiplier) {
     let button = document.getElementById(name);
@@ -264,7 +265,7 @@ target.addEventListener('mouseover', () => {
 }, false);
 
 target.addEventListener('mouseleave', () => {
-    // tooltip.innerText = ''
+    tooltip.innerText = ''
       tooltip.style.display = 'none';
       tooltip.classList.toggle('tooltip-text:before')
       tooltip.classList.toggle('tooltip-text')
@@ -291,7 +292,7 @@ target.addEventListener('mouseleave', () => {
 
 target.addEventListener('click', () => {
    target.classList.toggle('brainAnimation')
-    setTimeout(() => {target.classList.toggle('brainAnimation')}, 100)
+    setTimeout(() => {target.classList.toggle('brainAnimation')}, 50)
 }, false);
 
 }
