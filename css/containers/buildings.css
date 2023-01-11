@@ -45,14 +45,18 @@
 .buildings-amount {
     text-align: center;
     font-weight: bolder;
-    font-size: x-large;
     float: right;
     height: 9.4vh;
-    margin: 0 auto;
+    padding-top: 3.4vh;
     width: 9vw;
+    font-size: 3.7vh;
 }
 
-.buildings-amount p {
+.buildings-amount-init {
+    text-align: center;
+    font-weight: bolder;
+    float: right;
+    height: 9.4vh;
+    width: 9vw;
     font-size: 3.7vh;
-    margin-top: 2.3vh;
 }

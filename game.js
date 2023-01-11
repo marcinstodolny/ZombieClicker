@@ -58,11 +58,11 @@ async function initBuildings() {
         }
     )
     buildings.forEach(building => {
-        document.getElementById([building['name']]).addEventListener("click", buyBuilding, false);
+        document.getElementById(building['name']).addEventListener("click", buyBuilding, false);
         document.getElementById("buy"+building['name']).addEventListener("click", buyBuilding, false);
         document.getElementById(building['name']).classList.add("building-info");
         document.getElementById("cost"+building['name']).classList.add("price");
-        document.getElementById("count"+building['name']).classList.add("buildings-amount");
+        document.getElementById("count"+building['name']).classList.add("buildings-amount-init");
         // document.getElementById("buy-icon").classList.add("buy-icon");
         document.getElementById("name"+building['name']).classList.add("building-name");
         document.getElementById("buy"+building['name']).classList.add("buy");
