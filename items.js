@@ -1,4 +1,4 @@
-import {buildings, brains, bought_items, items, updateGame, adjustBrains, adjustClickPower} from "./game.js";
+import {buildings, brains, bought_items, items, updateGame, adjustBrains, adjustClickPower, adjustClickPowerMultiplier, adjustClicksPerSecondMultiplier} from "./game.js";
 
 //exports
 export {getItems, fetchItems, buyItem, matchRequirements, updateItemsOwned};
@@ -23,10 +23,19 @@ function buyItem(evt){
     let element = evt.currentTarget.name;
     let price = evt.currentTarget.cost;
     let cp = evt.currentTarget.clickP;
+    let building = evt.currentTarget.buildingName;
+    let clickMultiplier = evt.currentTarget.clickMultiplier;
+    let buildingMultiplier = evt.currentTarget.buildingMultiplier;
      if (price <= brains && !bought_items.some(item => item === element)){
          bought_items.push(element)
          adjustBrains(-price);
-         adjustClickPower(cp);
+         if (cp !== 0){
+             adjustClickPower(cp);
+         } else if ( clickMultiplier !== 0){
+             adjustClickPowerMultiplier(clickMultiplier)
+         } else if (buildingMultiplier !== 0){
+            adjustClicksPerSecondMultiplier(buildingMultiplier, building)
+         }
          updateGame()
      }
 }

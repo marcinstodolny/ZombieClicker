@@ -5,20 +5,39 @@
   "buildingName": "grave",
   "requirement":5,
   "clickP": 1,
-  "cost":100
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 0,
+  "cost":100,
+  "displayed-text": "Shovel that help you dig more graves, +1 Click power"
 }, {
   "id": 1,
   "name": "Helpfully hand",
   "buildingName": "morgue",
   "requirement":5,
   "clickP": 10,
-  "cost":1000
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 0,
+  "cost":1000,
+  "displayed-text": "Shovel that help you dig more graves, +1 Click power"
 }, {
   "id": 2,
   "name": "Zombie dog",
   "buildingName": "cemetery",
   "requirement":5,
   "clickP": 100,
-  "cost":10000
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 0,
+  "cost":10000,
+  "displayed-text": "Shovel that help you dig more graves, +1 Click power"
+}, {
+  "id": 3,
+  "name": "test",
+  "buildingName": "grave",
+  "requirement":1,
+  "clickP": 0,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 1,
+  "cost":150,
+  "displayed-text": "Shovel that help you dig more graves, +1 Click multiplier"
 }]
 }

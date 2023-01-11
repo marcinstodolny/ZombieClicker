@@ -1,4 +1,4 @@
-import {buildings, brains, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond} from "./game.js";
+import {buildings, brains, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond, update_cps} from "./game.js";
 
 //exports
 export {updateBuildingCounts, fetchBuildings, buyBuilding};
@@ -31,12 +31,13 @@ function buyBuilding(evt) {
             buildings[index]['cost'] = new_price;
         } else {
             console.log('here');
-            buildings[buildings.length] = {name:element, count:1, cost:new_price, cps:cps};
+            buildings[buildings.length] = {name:element, count:1, cost:new_price,multiplier:1, cps:cps};
         }
         adjustBrains(-price);
         adjustClicksPerSecond(cps);
         document.getElementById(element).cost = new_price;
         document.getElementById(element).innerText = element + ' ' + new_price + ' brains';
+        update_cps()
     }
     updateGame();
 }

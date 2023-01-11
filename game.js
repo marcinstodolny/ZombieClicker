@@ -1,6 +1,7 @@
 let brains = 0;
 let zombies = 0;
 let clickPower = 1;
+let clickPowerMultiplied = 0;
 let clickPowerMultiplier = 1;
 let clicksPerSecond = 0;
 let clicksPerSecondMultiplier = 1;
@@ -14,7 +15,7 @@ import {updateBuildingCounts, fetchBuildings, buyBuilding} from './buildings.js'
 import {getItems, fetchItems, buyItem, matchRequirements, updateItemsOwned} from './items.js';
 
 //exports
-export {buildings, brains, items, clickPower, bought_items, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond, adjustClickPower};
+export {buildings, brains, items, clickPower, bought_items, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond, adjustClickPower, adjustClickPowerMultiplier,adjustClicksPerSecondMultiplier, update_cps};
 
 initGame();
 
@@ -40,6 +41,16 @@ function adjustClicksPerSecond(delta) {
 function adjustClickPower(delta) {
     clickPower += delta;
 }
+function adjustClickPowerMultiplier(delta) {
+    clickPowerMultiplier += delta;
+}
+function adjustClicksPerSecondMultiplier(delta, building) {
+    let index = buildings.findIndex(({ name }) => name === building);
+    let building_count = Number(buildings[index]['count'])
+    let building_cps = Number(buildings[index]['cps'])
+    buildings[index]['multiplier'] += delta
+    clicksPerSecond += Number(building_count * building_cps * delta);
+}
 
 async function initBuildings() {
     let jsonBuildings = await fetchBuildings();
@@ -48,11 +59,15 @@ async function initBuildings() {
         building => {
             building['count'] = 0;
             buildings.push(building);
-            shopList.innerHTML = shopList.innerHTML + '<li><button id="' + building['name'] + '" value="10">' + building['name'] + ' ' + building['cost'] + ' brains</button></li>';
+            shopList.innerHTML = shopList.innerHTML +
+                '<div class="tooltip-container">' +
+                '<p id="'+ building['name'] +'-text" class="tooltip-text:before"></p>' +
+                '<li><button id="' + building['name'] + '" value="10">' + building['name'] + ' ' + building['cost'] + ' brains</button></li></div>';
         }
     )
     buildings.forEach(building => {
         document.getElementById(building['name']).addEventListener("click", buyBuilding, false);
+        info(building['name'], building['displayed-text'])
         setBuildingButtonValues(building['name'], building['cost'], building['cps']);
     });
 }
@@ -70,20 +85,25 @@ async function updateItems() {
     jsonItems['items'].forEach(
         item => {
             if (!bought_items.some(element => element === item.name) && matchRequirements(item.name)){
-            itemShopList.innerHTML = itemShopList.innerHTML + '<li><button id="' + item['name'] + '" value="10">' + item['name'] + ' ' + item['cost'] + ' brains</button></li>';
+            itemShopList.innerHTML = itemShopList.innerHTML +'<div class="tooltip-container">' +
+                '<p id="'+ item['name'] +'-text" class="tooltip-text:before"></p>' +'<li><button id="' + item['name'] + '" value="10">' + item['name'] + ' ' + item['cost'] + ' brains</button></li></div>';
         }})
     items.forEach(item => {
         if (document.getElementById(item['name']) != null) {
             document.getElementById(item['name']).addEventListener("click", buyItem, false);
-            setItemsButtonValues(item['name'], item['cost'], item['clickP'])
+            info(item['name'], item['displayed-text'])
+            setItemsButtonValues(item['name'], item['cost'], item['clickP'], item['buildingName'], item['ClickMultiplier'], item['buildingMultiplier'])
     }})
 
 }
-function setItemsButtonValues(name, cost, clickP) {
+function setItemsButtonValues(name, cost, clickP, buildingName, clickMultiplier, buildingMultiplier) {
     let button = document.getElementById(name);
     button.name = name;
     button.cost = cost;
     button.clickP = clickP;
+    button.buildingName = buildingName
+    button.clickMultiplier = clickMultiplier;
+    button.buildingMultiplier = buildingMultiplier;
     button.innerText = name + ' ' + cost + ' brains';
 }
 
@@ -108,6 +128,7 @@ function readCookies(){
     brains = Number(document.cookie.match(new RegExp('(^| )' + 'brains' + '=([^;]+)'))[2]);
     buildings = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'buildings' + '=([^;]+)'))[2]);
     clickPower = Number(document.cookie.match(new RegExp('(^| )' + 'clickPower' + '=([^;]+)'))[2]);
+    clickPowerMultiplier = Number(document.cookie.match(new RegExp('(^| )' + 'clickPowerMultiplier' + '=([^;]+)'))[2]);
     clicksPerSecond = Number(document.cookie.match(new RegExp('(^| )' + 'clicksPerSecond' + '=([^;]+)'))[2]);
     bought_items = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'bought_items' + '=([^;]+)'))[2]);
     buildings.forEach(building => setBuildingButtonValues(building['name'], building['cost'], building['cps']))
@@ -119,12 +140,21 @@ function saveCookies() {
     document.cookie = 'buildings=' + JSON.stringify(buildings) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'clicksPerSecond=' + clicksPerSecond + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'clickPower=' + clickPower + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'clickPowerMultiplier=' + clickPowerMultiplier + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'bought_items=' + JSON.stringify(bought_items) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+}
+
+function update_cps(){
+    let cps = 0
+    for (let i = 0; i < buildings.length; i++){
+        cps += buildings[i]['cps'] * buildings[i]['multiplier'] * buildings[i]['count']
+    }
+    clicksPerSecond = cps
 }
 
 function idle_loop() {
     let initialZombies = zombies;
-    zombies += Math.round(clicksPerSecond *clicksPerSecondMultiplier);
+    zombies += Math.round(clicksPerSecond);
     zombies = Math.min(zombies, totalPopulation);
     let zombieDelta = zombies - initialZombies;
     brains += zombieDelta;
@@ -142,6 +172,7 @@ function updateGame() {
     updateItemsOwned();
     checkWinCondition();
     updateProgressBar()
+    console.log(buildings)
 }
 
 function updateProgressBar() {
@@ -154,9 +185,14 @@ function checkWinCondition() {
         alert('You win!')
     }
 }
+function updateClickPower(){
+    console.log(clickPower, clickPowerMultiplier)
+    clickPowerMultiplied = clickPower * clickPowerMultiplier;
+}
 
 function updateStatistics() {
-    document.getElementById('clickPower').innerText = String(clickPower);
+    updateClickPower()
+    document.getElementById('clickPower').innerText = String(clickPowerMultiplied);
     // document.getElementById('clickPowerMultiplier').innerText = String(clickPowerMultiplier);
     document.getElementById('clicksPerSecond').innerText = String(clicksPerSecond);
     // document.getElementById('clicksPerSecondMultiplier').innerText = String(clicksPerSecondMultiplier);
@@ -179,7 +215,26 @@ function resetGame() {
     buildings = [];
     totalPopulation = 8010096000;
     bought_items = [];
+    clickPowerMultiplier = 1;
     location.reload()
     updateGame()
 }
 
+function info(elementId, text){
+const target = document.getElementById(elementId);
+const tooltip = document.getElementById(elementId + "-text");
+target.addEventListener('mouseover', () => {
+    tooltip.innerText = text
+      tooltip.style.display = 'block';
+    tooltip.classList.toggle('tooltip-text:before')
+      tooltip.classList.toggle('tooltip-text')
+}, false);
+
+target.addEventListener('mouseleave', () => {
+    // tooltip.innerText = ''
+      tooltip.style.display = 'none';
+      tooltip.classList.toggle('tooltip-text:before')
+      tooltip.classList.toggle('tooltip-text')
+}, false);
+
+}
