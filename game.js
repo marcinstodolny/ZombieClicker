@@ -111,7 +111,7 @@ async function updateItems() {
                 '<div class="buy-item">BUY</div>' +
                 '<div class="item-name-and-price">' +
                 '<div class="item-name">'+ item['name'] +'</div>' +
-                '<div class="item-price">'+ item['cost'] +'</div></div></div>';
+                '<div class="item-price">'+ item['cost'] +' Brains</div></div></div>';
         }})
     items.forEach(item => {
         if (document.getElementById(item['name']) != null) {
