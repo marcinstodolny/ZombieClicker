@@ -231,7 +231,7 @@ function updateGame() {
 }
 
 function updateProgressBar() {
-    let bar = document.getElementById('progessBar');
+    let bar = document.getElementById('progressBar');
     bar.style.width=zombies / worlds['worlds'][currentWorld]['population'] * 100 + '%';
 }
 
@@ -247,7 +247,7 @@ function updateClickPower(){
 function updateStatistics() {
     updateClickPower()
     document.getElementById('clickPower').innerText = String(clickPowerMultiplied);
-    document.getElementById('clickPower').innerText = String(clickPower);
+    document.getElementById('clicksPerSecond').innerText = String(clicksPerSecond);
 }
 
 function buttonClick() {

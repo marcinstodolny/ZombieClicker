@@ -32,7 +32,6 @@ function buyBuilding(evt) {
         document.getElementById('cost'+buildings[index]['name']).innerText = buildings[index]['cost'] + " Brains";
         document.getElementById('count'+buildings[index]['name']).innerText = buildings[index]['count'];
         document.getElementById('count'+buildings[index]['name']).classList.add("buildings-amount");
-        document.getElementById(element).innerText = element + ' ' + new_price + ' brains';
         update_cps()
     }
 
