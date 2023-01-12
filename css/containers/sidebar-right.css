@@ -98,6 +98,7 @@
     width: 30vw;
     height: 32vh;
     position: relative;
+    overflow-y: auto;
 }
 
 
