@@ -17,7 +17,7 @@ import {getItems, fetchItems, buyItem, matchRequirements, updateItemsOwned} from
 import {fetchWorlds} from './worlds.js';
 
 //exports
-export {buildings, brains, items, clickPower, bought_items, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond, adjustClickPower, adjustClickPowerMultiplier,adjustClicksPerSecondMultiplier, update_cps};
+export {buildings, brains, items, clickPower, bought_items, clicksPerSecond, updateGame, adjustBrains, updateItems, adjustClicksPerSecond, adjustClickPower, adjustClickPowerMultiplier,adjustClicksPerSecondMultiplier, update_cps};
 
 initGame();
 
@@ -224,10 +224,9 @@ function updateGame() {
     document.getElementById('living').innerText = 'Living population: ' + (worlds['worlds'][currentWorld]['population'] - zombies).toString();
     saveCookies();
     updateStatistics();
-    updateItems();
     updateItemsOwned();
     checkWinCondition();
-    updateProgressBar()
+    updateProgressBar();
 }
 
 function updateProgressBar() {

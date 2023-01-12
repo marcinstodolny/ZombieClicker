@@ -1,4 +1,4 @@
-import {buildings, brains, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond, update_cps} from "./game.js";
+import {buildings, brains, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond, update_cps, updateItems} from "./game.js";
 
 
 export {fetchBuildings, buyBuilding};
@@ -33,6 +33,7 @@ function buyBuilding(evt) {
         document.getElementById('count'+buildings[index]['name']).innerText = buildings[index]['count'];
         document.getElementById('count'+buildings[index]['name']).classList.add("buildings-amount");
         update_cps()
+        updateItems()
     }
 
     updateGame();
