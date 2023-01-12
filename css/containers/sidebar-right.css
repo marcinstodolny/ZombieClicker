@@ -7,7 +7,11 @@
     width: 30vw;
     height: 35vh;
     position: relative;
-    overflow-y: scroll;
+}
+
+.shop-list {
+    height: 80%;
+    overflow-y: auto;
 }
 
 .item-container {
