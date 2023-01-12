@@ -3,6 +3,54 @@ body {
     font-family: 'Avara', sans-serif;
 }
 
+button {
+    appearance: none;
+    backface-visibility: hidden;
+    background-color: #3b9a60;
+    border-radius: 8px;
+    border-style: none;
+    box-shadow: rgba(39, 174, 96, .15) 0 4px 9px;
+    box-sizing: border-box;
+    color: #121F23;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'imfeenrm29c';
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: normal;
+    line-height: 1.5;
+    outline: none;
+    overflow: hidden;
+    padding: 1.3vh 2.0vw;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transform: translate3d(0, 0, 0);
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: top;
+    white-space: nowrap;
+}
+
+button:hover {
+  background-color: #1e8449;
+    color: #FFFFF3;
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: .35s;
+}
+
+button:active {
+  transform: translateY(2px);
+  transition-duration: .35s;
+}
+
+button:hover {
+  box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+}
+
 h1, h2, h3 {
     font-family: 'imfeenrm29c';
     text-align: center;
@@ -10,8 +58,8 @@ h1, h2, h3 {
 
 h1 {
     color: #0D313D;
-    font-size: 8vh;
-    margin: 2vh 0;
+    font-size: 7vh;
+    margin: 1.5vh 0;
 }
 
 h2 {
@@ -36,4 +84,13 @@ h3 {
     display: inline-block;
 }
 
+.reset {
+    position: relative;
+    width: 100%;
+}
 
+.reset button {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}

@@ -58,3 +58,17 @@
 .shopping-list {
     overflow-y: auto;
 }
+
+.shopping-list::-webkit-scrollbar {
+  width: 16px;
+}
+
+.shopping-list::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  border-radius: 100px;
+}
+
+.shopping-list::-webkit-scrollbar-thumb {
+  background-color: #add2a7;
+  border-radius: 100px;
+}
