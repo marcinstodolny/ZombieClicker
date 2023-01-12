@@ -7,37 +7,58 @@
   "clickP": 1,
   "ClickMultiplier": 0,
   "buildingMultiplier": 0,
-  "cost":100,
-  "displayed-text": "Shovel that help you dig more graves, +1 Click power"
+  "cost":50,
+  "displayed-text": "Dig up graves more efficiently, +1 Click power"
 }, {
   "id": 1,
-  "name": "Helpfully hand",
+  "name": "Helpful hand",
   "buildingName": "morgue",
   "requirement":5,
   "clickP": 10,
   "ClickMultiplier": 0,
   "buildingMultiplier": 0,
   "cost":1000,
-  "displayed-text": "Shovel that help you dig more graves, +1 Click power"
+  "displayed-text": "A helpful hand in the morgue, +10 Click power"
 }, {
   "id": 2,
   "name": "Zombie dog",
   "buildingName": "cemetery",
   "requirement":5,
+  "clickP": 0,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 5,
+  "cost":10000,
+  "displayed-text": "Good boy helps you sniff up more corpses, 5x for cemetery"
+}, {
+  "id": 3,
+  "name": "Second Shovel",
+  "buildingName": "grave",
+  "requirement":10,
+  "clickP": 0,
+  "ClickMultiplier": 2,
+  "buildingMultiplier": 0,
+  "cost":250,
+  "displayed-text": "Now you can dual wield, +2 Click multiplier"
+}, {
+  "id": 4,
+  "name": "Excavator",
+  "buildingName": "cemetery",
+  "requirement":20,
+  "clickP": 0,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 20,
+  "cost":13000,
+  "displayed-text": "First a dog, now a CAT, 20x for cemetery"
+}
+, {
+  "id": 5,
+  "name": "Resurrection Orb",
+  "buildingName": "cemetery",
+  "requirement":40,
   "clickP": 100,
   "ClickMultiplier": 0,
   "buildingMultiplier": 0,
-  "cost":10000,
-  "displayed-text": "Shovel that help you dig more graves, +1 Click power"
-}, {
-  "id": 3,
-  "name": "test",
-  "buildingName": "grave",
-  "requirement":1,
-  "clickP": 0,
-  "ClickMultiplier": 10000,
-  "buildingMultiplier": 0,
-  "cost":150,
-  "displayed-text": "Shovel that help you dig more graves, +1 Click multiplier"
+  "cost":20000,
+  "displayed-text": "Raise some skelly bois, +100 Click Power"
 }]
 }

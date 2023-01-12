@@ -10,12 +10,18 @@
     "name": "morgue",
     "cps": 10,
     "cost": 100,
-    "displayed-text": "Dig a grave, +1 BPS"
+    "displayed-text": "Reclaim the dead, +10 BPS"
   }, {
     "id": 2,
     "name": "cemetery",
     "cps": 100,
     "cost": 1000,
-    "displayed-text": "Dig a grave, +1 BPS"
+    "displayed-text": "Raid a cemetery, +100 BPS"
+  },{
+    "id": 3,
+    "name": "mausoleum",
+    "cps": 1000,
+    "cost": 10000,
+    "displayed-text": "Break down the walls, +1000 BPS"
   }]
 }
