@@ -1,4 +1,4 @@
-import {buildings, brains, bought_items, items, updateGame, adjustBrains, adjustClickPower, adjustClickPowerMultiplier, adjustClicksPerSecondMultiplier} from "./game.js";
+import {buildings, brains, bought_items, items, updateGame, adjustBrains, adjustClickPower, adjustClickPowerMultiplier, adjustClicksPerSecondMultiplier, updateItems} from "./game.js";
 
 //exports
 export {getItems, fetchItems, buyItem, matchRequirements, updateItemsOwned};
@@ -37,6 +37,7 @@ function buyItem(evt){
             adjustClicksPerSecondMultiplier(buildingMultiplier, building)
          }
          updateGame()
+         updateItems()
      }
 }
 

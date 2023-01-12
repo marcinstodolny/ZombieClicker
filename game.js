@@ -17,12 +17,11 @@ import {getItems, fetchItems, buyItem, matchRequirements, updateItemsOwned} from
 import {fetchWorlds} from './worlds.js';
 
 //exports
-export {buildings, brains, items, clickPower, bought_items, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond, adjustClickPower, adjustClickPowerMultiplier,adjustClicksPerSecondMultiplier, update_cps};
+export {buildings, brains, items, clickPower, bought_items, clicksPerSecond, updateGame, adjustBrains, updateItems, adjustClicksPerSecond, adjustClickPower, adjustClickPowerMultiplier,adjustClicksPerSecondMultiplier, update_cps};
 
 initGame();
 
 async function initGame() {
-    await initBuildings();
     initResetWindow();
     initMainButton();
     if ((document.cookie.match(new RegExp('(^| )' + 'brains' + '=([^;]+)')) !== null)){
@@ -30,6 +29,7 @@ async function initGame() {
     }
     await updateItems();
     await initWorlds();
+    await updateBuildings();
     initNewGameButton();
     updateGame();
     AnimateBrain();
@@ -61,14 +61,20 @@ async function initWorlds() {
     worlds = await fetchWorlds();
 }
 
-async function initBuildings() {
+async function updateBuildings() {
     let jsonBuildings = await fetchBuildings();
     let shopList = document.getElementById('shopList');
-    jsonBuildings['buildings'].forEach(
+    if (buildings.length === 0){
+        jsonBuildings['buildings'].forEach(
         building => {
-            building['count'] = 0;
-            building['multiplier'] = 1;
-            buildings.push(building);
+            if (!items.some(element => element === building.name)) {
+                building['count'] = 0;
+                building['multiplier'] = 1;
+                buildings.push(building);
+            }})}
+    shopList.innerHTML = ''
+    buildings.forEach(
+        building => {
             shopList.innerHTML = shopList.innerHTML +
                 '<div id="'+building['name']+'" class="building-info">' +
                 '<span class="tooltiptext">'+building["displayed-text"]+'</span>' +
@@ -108,7 +114,6 @@ async function updateItems() {
     items.forEach(item => {
         if (document.getElementById(item['name']) != null) {
             document.getElementById(item['name']).addEventListener("click", buyItem, false);
-            setItemsButtonValues(item['name'], item['cost'], item['clickP']);
             setItemsButtonValues(item['name'], item['cost'], item['clickP'], item['buildingName'], item['ClickMultiplier'], item['buildingMultiplier']);
     }})
 }
@@ -169,7 +174,7 @@ function readCookies(){
     clickPowerMultiplier = Number(document.cookie.match(new RegExp('(^| )' + 'clickPowerMultiplier' + '=([^;]+)'))[2]);
     clicksPerSecond = Number(document.cookie.match(new RegExp('(^| )' + 'clicksPerSecond' + '=([^;]+)'))[2]);
     bought_items = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'bought_items' + '=([^;]+)'))[2]);
-    buildings.forEach(building => setBuildingButtonValues(building['name'], building['cost'], building['cps']))
+    // buildings.forEach(building => setBuildingButtonValues(building['name'], building['cost'], building['cps']))
 }
 
 function saveCookies() {
@@ -208,10 +213,9 @@ function updateGame() {
     document.getElementById('living').innerText = 'Living population: ' + (worlds['worlds'][currentWorld]['population'] - zombies).toString();
     saveCookies();
     updateStatistics();
-    updateItems();
     updateItemsOwned();
     checkWinCondition();
-    updateProgressBar()
+    updateProgressBar();
 }
 
 function updateProgressBar() {
