@@ -60,5 +60,15 @@
   "buildingMultiplier": 0,
   "cost":20000,
   "displayed-text": "Raise some skelly bois, +100 Click Power"
+}, {
+  "id": 6,
+  "name": "Win game",
+  "buildingName": "grave",
+  "requirement":1,
+  "clickP": 100000000000000,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 0,
+  "cost":1,
+  "displayed-text": "OP OP"
 }]
 }
