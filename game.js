@@ -70,8 +70,8 @@ async function initBuildings() {
             building['multiplier'] = 1;
             buildings.push(building);
             shopList.innerHTML = shopList.innerHTML +
-                '<div class="tooltip-container">' +
-                '<p id="'+ building['name'] +'-text" class="tooltip-text:before"></p>' +
+                // '<div class="tooltip-container">' +
+                // '<p id="'+ building['name'] +'-text" class="tooltip-text:before"></p>' +
                 '<div id="'+building['name']+'"><div id="buy'+building['name']+'">' +
                 '<p>BUY</p></div><div id="name-and-price-container'+building['name']+'">' +
                 '<p id="name'+building['name']+'">'+ building['name'] +'</p>' +
@@ -106,8 +106,8 @@ async function updateItems() {
         item => {
             if (!bought_items.some(element => element === item.name) && matchRequirements(item.name)){
             itemShopList.innerHTML = itemShopList.innerHTML  +
-                '<div class="tooltip-container">' +
-                '<p id="'+ item['name'] +'-text" class="tooltip-text:before"></p>' +
+                // '<div class="tooltip-container">' +
+                // '<p id="'+ item['name'] +'-text" class="tooltip-text:before"></p>' +
                 '<div id="'+item['name']+'">' +
                 '<div id="buy-item'+item['name']+'">BUY</div>' +
                 '<div id="item-name-and-price'+item['name']+'">' +
