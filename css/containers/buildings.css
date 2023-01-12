@@ -1,25 +1,39 @@
 .building-info {
-    margin: 0.2vh 0.2vw;
+    margin: 1vh auto;
     border: #497174 0.2vw solid;
     border-radius: 5px;
-    width: 35.2vw;
+    width: 95%;
     height: 10vh;
-    float: left;
     position: relative;
+    background-color: #9eb27c;
+    color: #2C3D2C
+}
 
+.building-info:hover {
+    width: 96%;
+    height: 10.3vh;
+    cursor: pointer;
+    background-color: #becea6;
+    color: #3E563E;
+}
+
+.building-info:hover .buy {
+    font-size: 3.5vh;
+    margin-top: 0.2vh;
+    margin-left: 2vw;
 }
 
 .buy {
     float: left;
     font-size: 3vh;
     margin-left: 1vw;
-    margin-top: 0.5vh;
+    margin-top: 0.4vh;
 }
 
 .building-name-and-price {
     float: left;
     height: 9.4vh;
-    width: 18vw;
+    width: 12vw;
     margin-left: 4vw;
     text-align: center;
 }
@@ -28,7 +42,7 @@
     text-align: center;
     float: left;
     margin: 1.8vh auto;
-    width: 19vw;
+    width: 12vw;
     font-size: 3.3vh;
 }
 
@@ -37,7 +51,7 @@
     margin: 0 auto 1vh auto;
     position: absolute;
     bottom: 0;
-    width: 19vw;
+    width: 12vw;
 }
 
 .buy-icon {
@@ -49,7 +63,7 @@
     font-weight: bolder;
     float: right;
     height: 9.4vh;
-    padding-top: 3.4vh;
+    padding-top: 3.3vh;
     width: 9vw;
     font-size: 3.7vh;
 }
