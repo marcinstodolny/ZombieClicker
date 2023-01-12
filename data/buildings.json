@@ -23,5 +23,12 @@
     "cps": 1000,
     "cost": 10000,
     "displayed-text": "Break down the walls, +1000 BPS"
+  },
+  {
+    "id": 4,
+    "name": "necropolis",
+    "cps": 10000,
+    "cost": 100000,
+    "displayed-text": "It's getting crowded, +10000 BPS"
   }]
 }

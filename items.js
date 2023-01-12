@@ -4,7 +4,7 @@ import {buildings, brains, bought_items, items, updateGame, adjustBrains, adjust
 export {getItems, fetchItems, buyItem, matchRequirements, updateItemsOwned};
 
 async function fetchItems() {
-    let response = await fetch('items.json')
+    let response = await fetch('./data/items.json')
     let json = await response.json();
     json = JSON.stringify(json);
     json = JSON.parse(json);

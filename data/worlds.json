@@ -1,0 +1,22 @@
+{
+  "worlds": [
+      {
+        "id": 0,
+        "name": "Poland",
+        "locationText": "in Poland",
+        "population":  37742434
+    },
+    {
+      "id": 1,
+      "name": "Europe",
+      "locationText": "in Europe",
+      "population":  748786791
+    },
+    {
+      "id": 2,
+      "name": "Earth",
+      "locationText": "on Earth",
+      "population": 8010096000
+    }
+  ]
+}

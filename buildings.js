@@ -5,7 +5,7 @@ export {fetchBuildings, buyBuilding};
 
 let priceMultiplier = 1.2
 async function fetchBuildings() {
-    let response = await fetch('buildings.json')
+    let response = await fetch('./data/buildings.json')
     let json = await response.json();
     json = JSON.stringify(json);
     json = JSON.parse(json);

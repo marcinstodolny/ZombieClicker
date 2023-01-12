@@ -70,25 +70,17 @@ async function initBuildings() {
             building['multiplier'] = 1;
             buildings.push(building);
             shopList.innerHTML = shopList.innerHTML +
-                '<div class="tooltip-container">' +
-                '<p id="'+ building['name'] +'-text" class="tooltip-text:before"></p>' +
-                '<div id="'+building['name']+'"><div id="buy'+building['name']+'">' +
-                '<p>BUY</p></div><div id="name-and-price-container'+building['name']+'">' +
-                '<p id="name'+building['name']+'">'+ building['name'] +'</p>' +
-                '<p id ="cost'+ building['name'] +'">'+ building['cost'] +' Brains</p></div>' +
-                '<div id="count'+building['name']+'"><p>'+ building['count'] +'</p></div></div></div><br>';
+                '<div id="'+building['name']+'" class="building-info">' +
+                '<span class="tooltiptext"></span>' +
+                '<div class="buy"><p>BUY</p></div>' +
+                '<div class="building-name-and-price">' +
+                '<p class="building-name">'+ building['name'] +'</p>' +
+                '<p id="cost'+building['name']+'" class="price">'+ building['cost'] +' Brains</p></div>' +
+                '<div id="count'+building['name']+'" class="buildings-amount-init"><p>'+ building['count'] +'</p></div></div></div><br>';
         }
     )
     buildings.forEach(building => {
         document.getElementById(building['name']).addEventListener("click", buyBuilding, false);
-        document.getElementById(building['name']).classList.add("building-info");
-        document.getElementById("cost"+building['name']).classList.add("price");
-        document.getElementById("count"+building['name']).classList.add("buildings-amount-init");
-        // document.getElementById("buy-icon").classList.add("buy-icon");
-        document.getElementById("name"+building['name']).classList.add("building-name");
-        document.getElementById("buy"+building['name']).classList.add("buy");
-        document.getElementById("name-and-price-container" + building['name']).classList.add("building-name-and-price");
-        info(building['name'], building['displayed-text'])
         setBuildingButtonValues(building['name'], building['cost'], building['cps']);
     });
 }
@@ -106,26 +98,18 @@ async function updateItems() {
         item => {
             if (!bought_items.some(element => element === item.name) && matchRequirements(item.name)){
             itemShopList.innerHTML = itemShopList.innerHTML  +
-                '<div class="tooltip-container">' +
-                '<p id="'+ item['name'] +'-text" class="tooltip-text:before"></p>' +
-                '<div id="'+item['name']+'">' +
-                '<div id="buy-item'+item['name']+'">BUY</div>' +
-                '<div id="item-name-and-price'+item['name']+'">' +
-                '<div id="item-name'+item['name']+'">'+ item['name'] +'</div>' +
-                '<div id="item-price'+item['name']+'">'+ item['cost'] +'</div></div></div></div>';
+                '<div id="'+item['name']+'" class="item-container">' +
+                '<span class="tooltiptext">'+item["displayed-text"]+'</span>' +
+                '<div class="buy-item">BUY</div>' +
+                '<div class="item-name-and-price">' +
+                '<div class="item-name">'+ item['name'] +'</div>' +
+                '<div class="item-price">'+ item['cost'] +'</div></div></div>';
         }})
     items.forEach(item => {
         if (document.getElementById(item['name']) != null) {
             document.getElementById(item['name']).addEventListener("click", buyItem, false);
-            document.getElementById(item['name']).classList.add("item-container");
-            document.getElementById("buy-item"+item['name']).classList.add("buy-item");
-            document.getElementById("item-name-and-price"+item['name']).classList.add("item-name-and-price");
-            // document.getElementById("buy-icon").classList.add("buy-icon");
-            document.getElementById("item-name"+item['name']).classList.add("item-name");
-            document.getElementById("item-price"+item['name']).classList.add("item-price");
-            setItemsButtonValues(item['name'], item['cost'], item['clickP'])
-            info(item['name'], item['displayed-text'])
-            setItemsButtonValues(item['name'], item['cost'], item['clickP'], item['buildingName'], item['ClickMultiplier'], item['buildingMultiplier'])
+            setItemsButtonValues(item['name'], item['cost'], item['clickP']);
+            setItemsButtonValues(item['name'], item['cost'], item['clickP'], item['buildingName'], item['ClickMultiplier'], item['buildingMultiplier']);
     }})
 }
 function setItemsButtonValues(name, cost, clickP, buildingName, clickMultiplier, buildingMultiplier) {
@@ -269,25 +253,6 @@ function resetGame() {
     clickPowerMultiplier = 1;
     location.reload()
     updateGame()
-}
-
-function info(elementId, text){
-const target = document.getElementById(elementId);
-const tooltip = document.getElementById(elementId + "-text");
-target.addEventListener('mouseover', () => {
-    tooltip.innerText = text
-      tooltip.style.display = 'block';
-    tooltip.classList.toggle('tooltip-text:before')
-      tooltip.classList.toggle('tooltip-text')
-}, false);
-
-target.addEventListener('mouseleave', () => {
-    tooltip.innerText = ''
-      tooltip.style.display = 'none';
-      tooltip.classList.toggle('tooltip-text:before')
-      tooltip.classList.toggle('tooltip-text')
-}, false);
-
 }
 
 function nextWorld() {

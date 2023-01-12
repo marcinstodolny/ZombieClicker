@@ -1,6 +1,7 @@
 .shop {
     background-color: white;
-    margin: 1vh 0;
+    padding-bottom: 1vh;
+    margin-top: 1vh;
     border: #497174 0.2vw solid;
     border-radius: 5px;
     text-align: center;
@@ -9,21 +10,27 @@
     position: relative;
 }
 
+.shop-list {
+    height: 70%;
+    overflow-y: auto;
+}
+
 .item-container {
-    margin: 0.2vh 0.2vw;
+    margin: 1vh auto;
     border: #497174 0.2vw solid;
     border-radius: 5px;
-    width: 29.2vw;
+    width: 95%;
     height: 10vh;
-    float: left;
     position: relative;
+    background-color: #9eb27c;
+    color: #2C3D2C
 }
 
 .item-name-and-price {
     display: inline-block;
     float: left;
     height: 9.4vh;
-    width: 11vw;
+    width: 12.5vw;
     margin-left: 4vw;
 }
 
@@ -31,8 +38,8 @@
     text-align: center;
     float: left;
     margin: 1.8vh auto;
-    width: 11vw;
-    font-size: 3.5vh;
+    width: 12.5vw;
+    font-size: 3.3vh;
 }
 
 .item-price {
@@ -40,7 +47,7 @@
     margin: 0 auto 1vh auto;
     position: absolute;
     bottom: 0;
-    width: 11vw;
+    width: 12.5vw;
 }
 
 
@@ -54,6 +61,33 @@
     height:7vh;
 }
 
+.item-container:hover {
+    height: 10.3vh;
+    float: inside;
+    cursor: pointer;
+    width: 96%;
+    background-color: #becea6;
+    color: #3E563E;
+}
+
+.item-container:hover .buy-item {
+    font-size: 3.5vh;
+    margin-top: 0.2vh;
+    margin-left: 2vw;
+}
+
+.item-container:hover .item-name-and-price {
+    width: 10.5vw;
+}
+
+.item-container:hover .item-name {
+    width: 10.5vw;
+}
+
+.item-container:hover .item-price {
+    width: 10.5vw;
+}
+
 .inventory {
     background-color: white;
     margin: 1vh 0;
@@ -61,7 +95,7 @@
     border-radius: 5px;
     text-align: center;
     width: 30vw;
-    height: 33vh;
+    height: 32vh;
     position: relative;
 }
 
