@@ -9,8 +9,6 @@ let items = [];
 let bought_items = [];
 let totalPopulation = 8010096000;
 
-//import
-// import {updateBuildingCounts} from './buildings.js';
 import {fetchBuildings, buyBuilding} from './buildings.js';
 import {getItems, fetchItems, buyItem, matchRequirements, updateItemsOwned} from './items.js';
 
@@ -24,7 +22,7 @@ async function initGame() {
     if ((document.cookie.match(new RegExp('(^| )' + 'brains' + '=([^;]+)')) !== null)){
         readCookies()
     }
-    await updateItems();
+    // await updateItems();
     updateGame();
     setInterval(idle_loop, 1000);
     initResetWindow();
@@ -68,10 +66,6 @@ async function initBuildings() {
         document.getElementById("name"+building['name']).classList.add("building-name");
         document.getElementById("buy"+building['name']).classList.add("buy");
         document.getElementById("name-and-price-container" + building['name']).classList.add("building-name-and-price");
-
-
-
-
         setBuildingButtonValues(building['name'], building['cost'], building['cps']);
     });
 }
@@ -83,20 +77,20 @@ async function updateItems() {
         item => {
             if (!items.some(element => element === item.name)) {
                 items.push(item);
-
             }})}
-    // itemShopList.innerHTML = ''
+    itemShopList.innerHTML = ''
     jsonItems['items'].forEach(
         item => {
             if (!bought_items.some(element => element === item.name) && matchRequirements(item.name)){
-            itemShopList.innerHTML = itemShopList.innerHTML + '<li><button id="' + item['name'] + '" value="10">' + item['name'] + ' ' + item['cost'] + ' brains</button></li>';
+            itemShopList.innerHTML = itemShopList.innerHTML +
+
+                '<li><button id="' + item['name'] + '" value="10">' + item['name'] + ' ' + item['cost'] + ' brains</button></li>';
         }})
     items.forEach(item => {
         if (document.getElementById(item['name']) != null) {
             document.getElementById(item['name']).addEventListener("click", buyItem, false);
             setItemsButtonValues(item['name'], item['cost'], item['clickP'])
     }})
-
 }
 function setItemsButtonValues(name, cost, clickP) {
     let button = document.getElementById(name);
@@ -171,12 +165,10 @@ function updateGame() {
     document.getElementById('zombies').innerText = 'Zombies: ' + zombies;
     saveCookies();
     updateStatistics();
-    // updateBuildingCounts();
     updateItems();
     updateItemsOwned();
     checkWinCondition();
     updateProgressBar()
-    // updateBuildings()
 }
 
 function updateProgressBar() {
@@ -192,9 +184,7 @@ function checkWinCondition() {
 
 function updateStatistics() {
     document.getElementById('clickPower').innerText = String(clickPower);
-    // document.getElementById('clickPowerMultiplier').innerText = String(clickPowerMultiplier);
     document.getElementById('clicksPerSecond').innerText = String(clicksPerSecond);
-    // document.getElementById('clicksPerSecondMultiplier').innerText = String(clicksPerSecondMultiplier);
 }
 
 function buttonClick() {

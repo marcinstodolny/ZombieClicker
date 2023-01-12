@@ -11,8 +11,18 @@
     "cost": 100
   }, {
     "id": 2,
-    "name": "cemetery",
+    "name": "graveyard",
     "cps": 100,
     "cost": 1000
+  }, {
+    "id": 3,
+    "name": "cemetery",
+    "cps": 1000,
+    "cost": 10000
+  }, {
+    "id": 4,
+    "name": "Poland",
+    "cps": 10000,
+    "cost": 100000
   }]
 }

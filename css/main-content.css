@@ -32,3 +32,7 @@ h1, h3 {
 .sidebar-right {
     float: left;
 }
+
+h1 {
+    color: #fdfaf1;
+}
