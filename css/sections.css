@@ -46,6 +46,7 @@
     height: 70vh;
     float: left;
     padding: 0;
+    overflow-y: auto;
 }
 
 .sidebar-right {

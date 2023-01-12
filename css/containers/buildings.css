@@ -74,18 +74,16 @@
     text-align: center;
     font-weight: bolder;
     float: right;
-    height: 9.4vh;
-    padding-top: 3.3vh;
-    width: 9vw;
-    font-size: 3.7vh;
+    font-size: 3.6vh;
+    margin-right: 3vw;
+    margin-top: 1.5vw;
 }
 
 .buildings-amount-init {
     text-align: center;
     font-weight: bolder;
     float: right;
-    height: 9.4vh;
-    width: 9vw;
-    font-size: 3.7vh;
+    font-size: 3.6vh;
+    margin-right: 3vw;
 }
 
