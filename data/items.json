@@ -75,7 +75,7 @@
   "id": 6,
   "name": "The Other Hand",
   "buildingName": "morgue",
-  "requirement":20,
+  "requirement": 15,
   "clickP": 100,
   "ClickMultiplier": 0,
   "buildingMultiplier": 0,
