@@ -58,7 +58,6 @@ async function initBuildings() {
     )
     buildings.forEach(building => {
         document.getElementById(building['name']).addEventListener("click", buyBuilding, false);
-        document.getElementById("buy"+building['name']).addEventListener("click", buyBuilding, false);
         document.getElementById(building['name']).classList.add("building-info");
         document.getElementById("cost"+building['name']).classList.add("price");
         document.getElementById("count"+building['name']).classList.add("buildings-amount-init");
@@ -83,12 +82,21 @@ async function updateItems() {
         item => {
             if (!bought_items.some(element => element === item.name) && matchRequirements(item.name)){
             itemShopList.innerHTML = itemShopList.innerHTML +
-
-                '<li><button id="' + item['name'] + '" value="10">' + item['name'] + ' ' + item['cost'] + ' brains</button></li>';
+                '<div id="'+item['name']+'">' +
+                '<div id="buy-item'+item['name']+'">BUY</div>' +
+                '<div id="item-name-and-price'+item['name']+'">' +
+                '<div id="item-name'+item['name']+'">'+ item['name'] +'</div>' +
+                '<div id="item-price'+item['name']+'">'+ item['cost'] +'</div></div></div>';
         }})
     items.forEach(item => {
         if (document.getElementById(item['name']) != null) {
             document.getElementById(item['name']).addEventListener("click", buyItem, false);
+            document.getElementById(item['name']).classList.add("item-container");
+            document.getElementById("buy-item"+item['name']).classList.add("buy-item");
+            document.getElementById("item-name-and-price"+item['name']).classList.add("item-name-and-price");
+            // document.getElementById("buy-icon").classList.add("buy-icon");
+            document.getElementById("item-name"+item['name']).classList.add("item-name");
+            document.getElementById("item-price"+item['name']).classList.add("item-price");
             setItemsButtonValues(item['name'], item['cost'], item['clickP'])
     }})
 }
@@ -97,7 +105,6 @@ function setItemsButtonValues(name, cost, clickP) {
     button.name = name;
     button.cost = cost;
     button.clickP = clickP;
-    button.innerText = name + ' ' + cost + ' brains';
 }
 
 function setBuildingButtonValues(name, cost, cps) {
@@ -136,7 +143,7 @@ function readCookies(){
     clickPower = Number(document.cookie.match(new RegExp('(^| )' + 'clickPower' + '=([^;]+)'))[2]);
     clicksPerSecond = Number(document.cookie.match(new RegExp('(^| )' + 'clicksPerSecond' + '=([^;]+)'))[2]);
     bought_items = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'bought_items' + '=([^;]+)'))[2]);
-    totalPopulation = Number(document.cookie.match(new RegExp('(^| )' + 'totalPopulation' + '=([^;]+)'))[2]);
+    // totalPopulation = Number(document.cookie.match(new RegExp('(^| )' + 'totalPopulation' + '=([^;]+)'))[2]);
     buildings.forEach(building => setBuildingButtonValues(building['name'], building['cost'], building['cps']))
 }
 
