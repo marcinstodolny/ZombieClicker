@@ -11,7 +11,7 @@
 }
 
 .shop-list {
-    height: 80%;
+    height: 70%;
     overflow-y: auto;
 }
 
@@ -30,7 +30,7 @@
     display: inline-block;
     float: left;
     height: 9.4vh;
-    width: 15vw;
+    width: 12.5vw;
     margin-left: 4vw;
 }
 
@@ -38,7 +38,7 @@
     text-align: center;
     float: left;
     margin: 1.8vh auto;
-    width: 14vw;
+    width: 12.5vw;
     font-size: 3.3vh;
 }
 
@@ -47,7 +47,7 @@
     margin: 0 auto 1vh auto;
     position: absolute;
     bottom: 0;
-    width: 14vw;
+    width: 12.5vw;
 }
 
 
@@ -76,6 +76,17 @@
     margin-left: 2vw;
 }
 
+.item-container:hover .item-name-and-price {
+    width: 10.5vw;
+}
+
+.item-container:hover .item-name {
+    width: 10.5vw;
+}
+
+.item-container:hover .item-price {
+    width: 10.5vw;
+}
 
 .inventory {
     background-color: white;

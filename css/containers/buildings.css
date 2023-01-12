@@ -33,16 +33,28 @@
 .building-name-and-price {
     float: left;
     height: 9.4vh;
-    width: 12vw;
+    width: 17vw;
     margin-left: 4vw;
     text-align: center;
+}
+
+.building-info:hover .building-name-and-price {
+    width: 15vw;
+}
+
+.building-info:hover .building-name {
+    width: 15vw;
+}
+
+.building-info:hover .price {
+    width: 15vw;
 }
 
 .building-name {
     text-align: center;
     float: left;
     margin: 1.8vh auto;
-    width: 12vw;
+    width: 17vw;
     font-size: 3.3vh;
 }
 
@@ -51,7 +63,7 @@
     margin: 0 auto 1vh auto;
     position: absolute;
     bottom: 0;
-    width: 12vw;
+    width: 17vw;
 }
 
 .buy-icon {
