@@ -2,7 +2,7 @@
     margin: 0.2vh 0.2vw;
     border: #497174 0.2vw solid;
     border-radius: 5px;
-    width: 29.2vw;
+    width: 35.2vw;
     height: 10vh;
     float: left;
     position: relative;
@@ -28,7 +28,7 @@
     float: left;
     margin: 1.8vh auto;
     width: 11vw;
-    font-size: 3.5vh;
+    font-size: 3.3vh;
 }
 
 .price {
@@ -61,3 +61,4 @@
     width: 9vw;
     font-size: 3.7vh;
 }
+
