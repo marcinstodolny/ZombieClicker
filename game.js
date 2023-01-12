@@ -12,8 +12,7 @@ let worlds = [];
 let currentWorld = 0;
 
 
-//import
-import {updateBuildingCounts, fetchBuildings, buyBuilding} from './buildings.js';
+import {fetchBuildings, buyBuilding} from './buildings.js';
 import {getItems, fetchItems, buyItem, matchRequirements, updateItemsOwned} from './items.js';
 import {fetchWorlds} from './worlds.js';
 
@@ -73,11 +72,22 @@ async function initBuildings() {
             shopList.innerHTML = shopList.innerHTML +
                 '<div class="tooltip-container">' +
                 '<p id="'+ building['name'] +'-text" class="tooltip-text:before"></p>' +
-                '<li><button id="' + building['name'] + '" value="10">' + building['name'] + ' ' + building['cost'] + ' brains</button></li></div>';
+                '<div id="'+building['name']+'"><div id="buy'+building['name']+'">' +
+                '<p>BUY</p></div><div id="name-and-price-container'+building['name']+'">' +
+                '<p id="name'+building['name']+'">'+ building['name'] +'</p>' +
+                '<p id ="cost'+ building['name'] +'">'+ building['cost'] +' Brains</p></div>' +
+                '<div id="count'+building['name']+'"><p>'+ building['count'] +'</p></div></div></div><br>';
         }
     )
     buildings.forEach(building => {
         document.getElementById(building['name']).addEventListener("click", buyBuilding, false);
+        document.getElementById(building['name']).classList.add("building-info");
+        document.getElementById("cost"+building['name']).classList.add("price");
+        document.getElementById("count"+building['name']).classList.add("buildings-amount-init");
+        // document.getElementById("buy-icon").classList.add("buy-icon");
+        document.getElementById("name"+building['name']).classList.add("building-name");
+        document.getElementById("buy"+building['name']).classList.add("buy");
+        document.getElementById("name-and-price-container" + building['name']).classList.add("building-name-and-price");
         info(building['name'], building['displayed-text'])
         setBuildingButtonValues(building['name'], building['cost'], building['cps']);
     });
@@ -95,12 +105,25 @@ async function updateItems() {
     jsonItems['items'].forEach(
         item => {
             if (!bought_items.some(element => element === item.name) && matchRequirements(item.name)){
-            itemShopList.innerHTML = itemShopList.innerHTML +'<div class="tooltip-container">' +
-                '<p id="'+ item['name'] +'-text" class="tooltip-text:before"></p>' +'<li><button id="' + item['name'] + '" value="10">' + item['name'] + ' ' + item['cost'] + ' brains</button></li></div>';
+            itemShopList.innerHTML = itemShopList.innerHTML  +
+                '<div class="tooltip-container">' +
+                '<p id="'+ item['name'] +'-text" class="tooltip-text:before"></p>' +
+                '<div id="'+item['name']+'">' +
+                '<div id="buy-item'+item['name']+'">BUY</div>' +
+                '<div id="item-name-and-price'+item['name']+'">' +
+                '<div id="item-name'+item['name']+'">'+ item['name'] +'</div>' +
+                '<div id="item-price'+item['name']+'">'+ item['cost'] +'</div></div></div></div>';
         }})
     items.forEach(item => {
         if (document.getElementById(item['name']) != null) {
             document.getElementById(item['name']).addEventListener("click", buyItem, false);
+            document.getElementById(item['name']).classList.add("item-container");
+            document.getElementById("buy-item"+item['name']).classList.add("buy-item");
+            document.getElementById("item-name-and-price"+item['name']).classList.add("item-name-and-price");
+            // document.getElementById("buy-icon").classList.add("buy-icon");
+            document.getElementById("item-name"+item['name']).classList.add("item-name");
+            document.getElementById("item-price"+item['name']).classList.add("item-price");
+            setItemsButtonValues(item['name'], item['cost'], item['clickP'])
             info(item['name'], item['displayed-text'])
             setItemsButtonValues(item['name'], item['cost'], item['clickP'], item['buildingName'], item['ClickMultiplier'], item['buildingMultiplier'])
     }})
@@ -113,7 +136,6 @@ function setItemsButtonValues(name, cost, clickP, buildingName, clickMultiplier,
     button.buildingName = buildingName
     button.clickMultiplier = clickMultiplier;
     button.buildingMultiplier = buildingMultiplier;
-    button.innerText = name + ' ' + cost + ' brains';
 }
 
 function setBuildingButtonValues(name, cost, cps) {
@@ -121,7 +143,6 @@ function setBuildingButtonValues(name, cost, cps) {
     button.name = name;
     button.cost = cost;
     button.cps = cps;
-    button.innerText = name + ' ' + cost + ' brains';
 }
 
 function initResetWindow() {
@@ -198,12 +219,11 @@ function idle_loop() {
 }
 
 function updateGame() {
-    document.getElementById('brains').innerText = brains + ' brains';
-    document.getElementById('living').innerText = worlds['worlds'][currentWorld]['population'] - zombies + ' living';
-    document.getElementById('zombies').innerText = zombies + ' zombies';
+    document.getElementById('brains').innerText = brains + ' BRAINS';
+    document.getElementById('zombies').innerText = 'Zombies: ' + zombies;
+    document.getElementById('living').innerText = 'Living population: ' + (worlds['worlds'][currentWorld]['population'] - zombies).toString();
     saveCookies();
     updateStatistics();
-    updateBuildingCounts();
     updateItems();
     updateItemsOwned();
     checkWinCondition();
@@ -211,7 +231,7 @@ function updateGame() {
 }
 
 function updateProgressBar() {
-    let bar = document.getElementById('progessBar');
+    let bar = document.getElementById('progressBar');
     bar.style.width=zombies / worlds['worlds'][currentWorld]['population'] * 100 + '%';
 }
 
@@ -227,9 +247,7 @@ function updateClickPower(){
 function updateStatistics() {
     updateClickPower()
     document.getElementById('clickPower').innerText = String(clickPowerMultiplied);
-    // document.getElementById('clickPowerMultiplier').innerText = String(clickPowerMultiplier);
     document.getElementById('clicksPerSecond').innerText = String(clicksPerSecond);
-    // document.getElementById('clicksPerSecondMultiplier').innerText = String(clicksPerSecondMultiplier);
 }
 
 function buttonClick() {

@@ -1,7 +1,7 @@
 import {buildings, brains, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond, update_cps} from "./game.js";
 
-//exports
-export {updateBuildingCounts, fetchBuildings, buyBuilding};
+
+export {fetchBuildings, buyBuilding};
 
 let priceMultiplier = 1.2
 async function fetchBuildings() {
@@ -10,14 +10,6 @@ async function fetchBuildings() {
     json = JSON.stringify(json);
     json = JSON.parse(json);
     return json;
-}
-
-function updateBuildingCounts(){
-    let text = ''
-    for (let i = 0; i< buildings.length; i++){
-        text += (buildings[i]['name'] +' '+ buildings[i]['count'] + '\n')
-        }
-    document.getElementById('buildingsList').innerText = text
 }
 
 function buyBuilding(evt) {
@@ -33,11 +25,15 @@ function buyBuilding(evt) {
         } else {
             buildings[buildings.length] = {name:element, count:1, cost:new_price,multiplier:1, cps:cps};
         }
+        let index = buildings.findIndex(({ name }) => name === element);
         adjustBrains(-price);
         adjustClicksPerSecond(cps);
         document.getElementById(element).cost = new_price;
-        document.getElementById(element).innerText = element + ' ' + new_price + ' brains';
+        document.getElementById('cost'+buildings[index]['name']).innerText = buildings[index]['cost'] + " Brains";
+        document.getElementById('count'+buildings[index]['name']).innerText = buildings[index]['count'];
+        document.getElementById('count'+buildings[index]['name']).classList.add("buildings-amount");
         update_cps()
     }
+
     updateGame();
 }

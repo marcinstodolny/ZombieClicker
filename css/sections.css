@@ -3,10 +3,12 @@
     width: 90vw;
     margin: 0 5vw 5vh 5vw;
     position: relative;
+    -webkit-user-drag: none;
+    user-select: none;
 }
 
 .statistics-header {
-    background-color: green;
+    background-color: darkseagreen;
     border: #497174 0.2vw solid;
     border-radius: 5px;
     text-align: center;
@@ -14,10 +16,11 @@
     padding-bottom: 1vh;
     position: relative;
     z-index: 0;
+    color: #fdfaf1
 }
 
 .statistics-header>div {
-    background-color: mediumpurple;
+    background-color: darkolivegreen;
     height: 100%;
     position: absolute;
     top: 0;

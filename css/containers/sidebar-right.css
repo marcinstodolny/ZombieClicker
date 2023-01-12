@@ -1,19 +1,69 @@
 .shop {
     background-color: white;
-    margin-top: 1vh;
-    border: #497174 0.2vw solid;
-    border-radius: 5px;
-    width: 36.8vw;
-    height: 30vh;
-    display: inline-block;
-}
-
-.placeholder2 {
-    margin-top: 1vh;
+    margin: 1vh 0;
     border: #497174 0.2vw solid;
     border-radius: 5px;
     text-align: center;
-    width: 36.8vw;
-    height: 38vh;
+    width: 30vw;
+    height: 35vh;
     position: relative;
 }
+
+.item-container {
+    margin: 0.2vh 0.2vw;
+    border: #497174 0.2vw solid;
+    border-radius: 5px;
+    width: 29.2vw;
+    height: 10vh;
+    float: left;
+    position: relative;
+}
+
+.item-name-and-price {
+    display: inline-block;
+    float: left;
+    height: 9.4vh;
+    width: 11vw;
+    margin-left: 4vw;
+}
+
+.item-name {
+    text-align: center;
+    float: left;
+    margin: 1.8vh auto;
+    width: 11vw;
+    font-size: 3.5vh;
+}
+
+.item-price {
+    font-size: 2vh;
+    margin: 0 auto 1vh auto;
+    position: absolute;
+    bottom: 0;
+    width: 11vw;
+}
+
+
+.buy-item {
+    float: left;
+    text-align: center;
+    padding-top: 3vh;
+    font-size: 3vh;
+    margin-left: 1vw;
+    margin-top: 0.5vh;
+    height:7vh;
+}
+
+.inventory {
+    background-color: white;
+    margin: 1vh 0;
+    border: #497174 0.2vw solid;
+    border-radius: 5px;
+    text-align: center;
+    width: 30vw;
+    height: 33vh;
+    position: relative;
+}
+
+
+
