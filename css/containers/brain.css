@@ -24,3 +24,19 @@
     font-weight: bold;
     font-size: larger;
 }
+
+.brainResize {
+    width: 50%;
+    transform:translate(0) scale(1.2);
+}
+.brainAnimation {
+    animation: brainAnimation 0.05s;
+}
+
+@keyframes brainAnimation {
+ from {
+   transform:translate(0) scale(1.2);
+ }
+ to {
+   transform:translate(0) scale(1.1);
+ }}
