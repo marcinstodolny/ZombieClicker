@@ -149,7 +149,7 @@ function hideResetWindow() {
 }
 
 function initMainButton() {
-    document.getElementById('mainButton').addEventListener("click", buttonClick)
+    document.getElementById('brainImage').addEventListener("click", buttonClick)
 }
 
 function initNewGameButton() {
