@@ -18,16 +18,16 @@
 }
 
 .building-info:hover .buy {
-    font-size: 3.5vh;
-    margin-top: 0;
+    font-size: 3vh;
+    margin-top: 0.7vh;
     margin-left: 2vw;
 }
 
 .buy {
     float: left;
-    font-size: 3vh;
+    font-size: 2.5vh;
     margin-left: 1vw;
-    margin-top: 0.4vh;
+    margin-top: 1.3vh;
 }
 
 .building-name-and-price {
@@ -55,7 +55,7 @@
     float: left;
     margin: 1.8vh auto;
     width: 16vw;
-    font-size: 3.3vh;
+    font-size: 2.6vh;
 }
 
 .price {
@@ -66,15 +66,11 @@
     width: 16vw;
 }
 
-.buy-icon {
-    height: 1em;
-}
-
 .buildings-amount {
     text-align: center;
     font-weight: bolder;
     float: right;
-    font-size: 3.6vh;
+    font-size: 3vh;
     margin-right: 3vw;
     margin-top: 1.5vw;
 }

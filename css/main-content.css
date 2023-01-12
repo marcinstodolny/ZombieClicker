@@ -1,13 +1,17 @@
 body {
     background-color: #9eb27c;
+    font-family: 'Avara', sans-serif;
 }
 
-h1, h3 {
+h1, h2, h3 {
+    font-family: 'imfeenrm29c';
     text-align: center;
 }
 
 h1 {
     color: #0D313D;
+    font-size: 8vh;
+    margin: 2vh 0;
 }
 
 h2 {

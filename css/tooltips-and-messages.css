@@ -12,6 +12,7 @@
     left: 71%;
     opacity: 0;
     transition: opacity 0.3s;
+    font-size: smaller;
 }
 
 .tooltip-items {
@@ -38,6 +39,8 @@
     left: 5%;
     opacity: 0;
     transition: opacity 0.3s;
+    font-size: smaller;
+
 }
 
 .tooltip-items .tooltiptext-equipment::after {

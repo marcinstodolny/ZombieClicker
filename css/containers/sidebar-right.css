@@ -35,7 +35,7 @@
     float: left;
     margin: 1.8vh auto;
     width: 12.5vw;
-    font-size: 3.3vh;
+    font-size: 2.6vh;
 }
 
 .item-price {
@@ -50,8 +50,8 @@
 .buy-item {
     float: left;
     text-align: center;
-    padding-top: 3vh;
-    font-size: 3vh;
+    padding-top: 3.3vh;
+    font-size: 2.5vh;
     margin-left: 1vw;
     margin-top: 0.5vh;
     height:7vh;
@@ -61,14 +61,14 @@
     height: 10.3vh;
     float: inside;
     cursor: pointer;
-    width: 96%;
+    width: 98%;
     background-color: #becea6;
     color: #3E563E;
 }
 
 .item-container:hover .buy-item {
-    font-size: 3.5vh;
-    margin-top: 0.2vh;
+    font-size: 3vh;
+    margin-top: 0.5vh;
     margin-left: 2vw;
 }
 
@@ -78,6 +78,7 @@
 
 .item-container:hover .item-name {
     width: 10.5vw;
+
 }
 
 .item-container:hover .item-price {
