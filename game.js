@@ -33,6 +33,7 @@ async function initGame() {
     await initWorlds();
     initNewGameButton();
     updateGame();
+    AnimateBrain();
     setInterval(idle_loop, 1000);
 }
 
@@ -295,4 +296,3 @@ target.addEventListener('click', () => {
 }, false);
 
 }
-AnimateBrain()
