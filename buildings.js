@@ -1,7 +1,18 @@
-import {buildings, brains, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond, update_cps, updateItems} from "./game.js";
+import {
+    buildings,
+    brains,
+    clicksPerSecond,
+    updateGame,
+    adjustBrains,
+    adjustClicksPerSecond,
+    update_cps,
+    updateItems,
+    updateBuildings,
+    bought_items, items
+} from "./game.js";
 
 
-export {fetchBuildings, buyBuilding};
+export {fetchBuildings, buyBuilding, buildingMatchRequirements};
 
 let priceMultiplier = 1.2
 async function fetchBuildings() {
@@ -34,7 +45,17 @@ function buyBuilding(evt) {
         document.getElementById('count'+buildings[index]['name']).classList.add("buildings-amount");
         update_cps()
         updateItems()
+        updateBuildings()
     }
 
     updateGame();
+}
+function buildingMatchRequirements(buildingToCheck){
+    let index = buildings.findIndex(({ name }) => name === buildingToCheck['buildingRequirement']);
+    if (index === -1){
+        return true
+    }
+    return buildingToCheck['buildingRequirement'] === buildings[index]['name']
+        && buildings[index]['count'] >= 1;
+
 }

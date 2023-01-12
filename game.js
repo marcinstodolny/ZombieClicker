@@ -12,12 +12,12 @@ let worlds = [];
 let currentWorld = 0;
 
 
-import {fetchBuildings, buyBuilding} from './buildings.js';
+import {fetchBuildings, buyBuilding, buildingMatchRequirements} from './buildings.js';
 import {getItems, fetchItems, buyItem, matchRequirements, updateItemsOwned} from './items.js';
 import {fetchWorlds} from './worlds.js';
 
 //exports
-export {buildings, brains, items, clickPower, bought_items, clicksPerSecond, updateGame, adjustBrains, updateItems, adjustClicksPerSecond, adjustClickPower, adjustClickPowerMultiplier,adjustClicksPerSecondMultiplier, update_cps};
+export {buildings, brains, items, clickPower, bought_items, clicksPerSecond, updateGame, adjustBrains, updateItems,updateBuildings, adjustClicksPerSecond, adjustClickPower, adjustClickPowerMultiplier,adjustClicksPerSecondMultiplier, update_cps};
 
 initGame();
 
@@ -75,6 +75,7 @@ async function updateBuildings() {
     shopList.innerHTML = ''
     buildings.forEach(
         building => {
+            if (buildingMatchRequirements(building)){
             shopList.innerHTML = shopList.innerHTML +
                 '<div id="'+building['name']+'" class="building-info">' +
                 '<span class="tooltiptext">'+building["displayed-text"]+'</span>' +
@@ -83,12 +84,13 @@ async function updateBuildings() {
                 '<p class="building-name">'+ building['name'] +'</p>' +
                 '<p id="cost'+building['name']+'" class="price">'+ building['cost'] +' Brains</p></div>' +
                 '<div id="count'+building['name']+'" class="buildings-amount-init"><p>'+ building['count'] +'</p></div></div></div><br>';
-        }
+        }}
     )
     buildings.forEach(building => {
+        if (buildingMatchRequirements(building)){
         document.getElementById(building['name']).addEventListener("click", buyBuilding, false);
         setBuildingButtonValues(building['name'], building['cost'], building['cps']);
-    });
+    }});
 }
 async function updateItems() {
     let jsonItems = await fetchItems();
@@ -109,7 +111,7 @@ async function updateItems() {
                 '<div class="buy-item">BUY</div>' +
                 '<div class="item-name-and-price">' +
                 '<div class="item-name">'+ item['name'] +'</div>' +
-                '<div class="item-price">'+ item['cost'] +'</div></div></div>';
+                '<div class="item-price">'+ item['cost'] +' Brains</div></div></div>';
         }})
     items.forEach(item => {
         if (document.getElementById(item['name']) != null) {
@@ -149,7 +151,7 @@ function hideResetWindow() {
 }
 
 function initMainButton() {
-    document.getElementById('mainButton').addEventListener("click", buttonClick)
+    document.getElementById('brainImage').addEventListener("click", buttonClick)
 }
 
 function initNewGameButton() {
