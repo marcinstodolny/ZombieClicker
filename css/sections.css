@@ -7,17 +7,16 @@
     padding-bottom: 1vh;
     position: relative;
     z-index: 0;
-    color: #383A3D
+    color: #315154
 }
 
 .statistics-header>div {
-    background-color: darkolivegreen;
+    background-color: #839a59;
     height: 98%;
     position: absolute;
     top: 0.1vh;
     z-index: -1;
     border-radius: 5px;
-    color: #D4F0AA;
 }
 
 .stats {
@@ -46,10 +45,16 @@
     height: 70vh;
     float: left;
     padding: 0;
-    overflow-y: auto;
+}
+
+.buildings .shopping-list {
+    height: 59vh;
 }
 
 .sidebar-right {
     float: left;
 }
 
+.shopping-list {
+    overflow-y: auto;
+}

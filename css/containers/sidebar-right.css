@@ -8,14 +8,17 @@
     width: 30vw;
     height: 35vh;
     position: relative;
-    overflow-y: auto;
+}
+
+.shop .shopping-list {
+    height: 24vh;
 }
 
 .item-container {
     margin: 1vh auto;
     border: #497174 0.2vw solid;
     border-radius: 5px;
-    width: 95%;
+    width: 92%;
     height: 10vh;
     position: relative;
     background-color: #9eb27c;
@@ -61,7 +64,7 @@
     height: 10.3vh;
     float: inside;
     cursor: pointer;
-    width: 98%;
+    width: 95%;
     background-color: #becea6;
     color: #3E563E;
 }
@@ -94,7 +97,10 @@
     width: 30vw;
     height: 32vh;
     position: relative;
-    overflow-y: auto;
+}
+
+.inventory .shopping-list {
+    height: 21vh;
 }
 
 
