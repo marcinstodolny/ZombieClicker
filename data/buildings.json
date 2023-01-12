@@ -10,25 +10,29 @@
     "name": "morgue",
     "cps": 10,
     "cost": 100,
-    "displayed-text": "Reclaim the dead, +10 BPS"
+    "displayed-text": "Reclaim the dead, +10 BPS",
+    "buildingRequirement": "grave"
   }, {
     "id": 2,
     "name": "cemetery",
     "cps": 100,
     "cost": 1000,
-    "displayed-text": "Raid a cemetery, +100 BPS"
+    "displayed-text": "Raid a cemetery, +100 BPS",
+    "buildingRequirement": "morgue"
   },{
     "id": 3,
     "name": "mausoleum",
     "cps": 1000,
     "cost": 10000,
-    "displayed-text": "Break down the walls, +1000 BPS"
+    "displayed-text": "Break down the walls, +1000 BPS",
+    "buildingRequirement": "cemetery"
   },
   {
     "id": 4,
     "name": "necropolis",
     "cps": 10000,
     "cost": 100000,
-    "displayed-text": "It's getting crowded, +10000 BPS"
+    "displayed-text": "It's getting crowded, +10000 BPS",
+    "buildingRequirement": "mausoleum"
   }]
 }
