@@ -81,5 +81,26 @@
   "buildingMultiplier": 0,
   "cost":5000,
   "displayed-text": "Oh hey, the other hand, +100 Click Power"
+}
+,{
+  "id": 7,
+  "name": "Body bags",
+  "buildingName": "morgue",
+  "requirement": 10,
+  "clickP": 0,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 1,
+  "cost":5000,
+  "displayed-text": "Stuff em, +1 morgue multiplier"
+},{
+  "id": 8,
+  "name": "Grave Map",
+  "buildingName": "grave",
+  "requirement": 50,
+  "clickP": 0,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 9,
+  "cost":10000,
+  "displayed-text": "Now you know the way, +9 Grave Multiplier"
 }]
 }
