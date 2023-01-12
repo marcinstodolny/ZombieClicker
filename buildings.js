@@ -56,6 +56,6 @@ function buildingMatchRequirements(buildingToCheck){
         return true
     }
     return buildingToCheck['buildingRequirement'] === buildings[index]['name']
-        && buildings[index]['count'] === 1;
+        && buildings[index]['count'] >= 1;
 
 }
