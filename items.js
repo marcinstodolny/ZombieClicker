@@ -50,10 +50,15 @@ function matchRequirements(itemToCheck){
 }
 
 function updateItemsOwned(){
-    let text = ''
+    let text = '';
+    let displayed_text;
     for (let i = 0; i< bought_items.length; i++){
-        // text += (bought_items[i] +' ' + '\n')
-        text += '<div><p class="tooltip-items">' + bought_items[i] + '<span class="tooltiptext-equipment">' + items[i]['displayed-text'] + '</span></p></div>'
-        }
-    document.getElementById('itemList').innerHTML = text
+        items.forEach(item => {
+            if (bought_items[i] === item['name']) {
+                displayed_text = item['displayed-text'];
+                text += '<div><p class="tooltip-items">' + item['name'] + '<span class="tooltiptext-equipment">' + displayed_text + '</span></p></div>';
+            }
+        })
+    }
+    document.getElementById('itemList').innerHTML = text;
 }
