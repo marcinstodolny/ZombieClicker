@@ -11,11 +11,6 @@
     overflow-y: auto;
 }
 
-.shop-list {
-    height: 70%;
-    /*overflow-y: auto;*/
-}
-
 .item-container {
     margin: 1vh auto;
     border: #497174 0.2vw solid;
