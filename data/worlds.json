@@ -2,15 +2,21 @@
   "worlds": [
       {
         "id": 0,
-        "name": "Earth",
-        "locationText": "on Earth",
-        "population": 8010096000
+        "name": "Poland",
+        "locationText": "in Poland",
+        "population":  37742434
     },
     {
       "id": 1,
-      "name": "Space",
-      "locationText": "in Space",
-      "population": 8021358907342510945004953793245
+      "name": "Europe",
+      "locationText": "in Europe",
+      "population":  748786791
+    },
+    {
+      "id": 2,
+      "name": "Earth",
+      "locationText": "on Earth",
+      "population": 8010096000
     }
   ]
 }
