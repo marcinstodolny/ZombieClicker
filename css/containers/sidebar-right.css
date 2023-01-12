@@ -1,18 +1,19 @@
 .shop {
     background-color: white;
-    padding-bottom: 1vh;
     margin-top: 1vh;
+    margin-bottom: 2vh;
     border: #497174 0.2vw solid;
     border-radius: 5px;
     text-align: center;
     width: 30vw;
     height: 35vh;
     position: relative;
+    overflow-y: auto;
 }
 
 .shop-list {
     height: 70%;
-    overflow-y: auto;
+    /*overflow-y: auto;*/
 }
 
 .item-container {

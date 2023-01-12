@@ -83,7 +83,7 @@ async function updateBuildings() {
                 '<div class="building-name-and-price">' +
                 '<p class="building-name">'+ building['name'] +'</p>' +
                 '<p id="cost'+building['name']+'" class="price">'+ building['cost'] +' Brains</p></div>' +
-                '<div id="count'+building['name']+'" class="buildings-amount-init"><p>'+ building['count'] +'</p></div></div></div><br>';
+                '<div id="count'+building['name']+'" class="buildings-amount-init"><p>'+ building['count'] +'</p></div></div></div>';
         }}
     )
     buildings.forEach(building => {
