@@ -7,13 +7,14 @@
     width: 30vw;
     height: 35vh;
     position: relative;
+    overflow-y: scroll;
 }
 
 .item-container {
     margin: 0.2vh 0.2vw;
     border: #497174 0.2vw solid;
     border-radius: 5px;
-    width: 29.2vw;
+    width: 95%;
     height: 10vh;
     float: left;
     position: relative;
