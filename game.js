@@ -75,6 +75,7 @@ async function updateBuildings() {
     shopList.innerHTML = ''
     buildings.forEach(
         building => {
+            // if (building['id'] === 0 || buildings[building['id']-1]['count'] > 0) {
             shopList.innerHTML = shopList.innerHTML +
                 '<div id="'+building['name']+'" class="building-info">' +
                 '<span class="tooltiptext">'+building["displayed-text"]+'</span>' +
@@ -83,6 +84,7 @@ async function updateBuildings() {
                 '<p class="building-name">'+ building['name'] +'</p>' +
                 '<p id="cost'+building['name']+'" class="price">'+ building['cost'] +' Brains</p></div>' +
                 '<div id="count'+building['name']+'" class="buildings-amount-init"><p>'+ building['count'] +'</p></div></div></div><br>';
+            // }
         }
     )
     buildings.forEach(building => {
