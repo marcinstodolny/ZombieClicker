@@ -1,7 +1,7 @@
 import {buildings, brains, bought_items, items, updateGame, adjustBrains, adjustClickPower, adjustClickPowerMultiplier, adjustClicksPerSecondMultiplier, updateItems} from "./game.js";
 
 //exports
-export {getItems, fetchItems, buyItem, matchRequirements, updateItemsOwned};
+export {fetchItems, buyItem, matchRequirements, updateItemsOwned};
 
 async function fetchItems() {
     let response = await fetch('./data/items.json')
@@ -9,14 +9,6 @@ async function fetchItems() {
     json = JSON.stringify(json);
     json = JSON.parse(json);
     return json;
-}
-
-function getItems(){
-    let text = ''
-    for (let i = 0; i< buildings.length; i++){
-        text += (buildings[i]['name'] +' '+ buildings[i]['count'] + '\n')
-        }
-    document.getElementById('buildingsList').innerText = text
 }
 
 function buyItem(evt){
@@ -60,7 +52,8 @@ function matchRequirements(itemToCheck){
 function updateItemsOwned(){
     let text = ''
     for (let i = 0; i< bought_items.length; i++){
-        text += (bought_items[i] +' ' + '\n')
+        // text += (bought_items[i] +' ' + '\n')
+        text += '<div><p class="tooltip-items">' + bought_items[i] + '<span class="tooltiptext-equipment">' + items[i]['displayed-text'] + '</span></p></div>'
         }
-    document.getElementById('itemList').innerText = text
+    document.getElementById('itemList').innerHTML = text
 }

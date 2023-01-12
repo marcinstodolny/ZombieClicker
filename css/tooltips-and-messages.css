@@ -14,9 +14,46 @@
     transition: opacity 0.3s;
 }
 
-.building-info:hover .tooltiptext, .item-container:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
+.tooltip-items {
+    display: block;
+    position: relative;
+}
+
+.tooltip-items p {
+    margin: 1vh 0 1vh 0;
+    padding: 0 0 0 0;
+}
+
+.tooltiptext-equipment {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    /*border-radius: 6px;*/
+    padding: 5px 0;
+    position: absolute;
+    z-index: 5;
+    bottom: 0;
+    left: 5%;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip-items .tooltiptext-equipment::after {
+    content: " ";
+    position: absolute;
+    top: 75%;
+    left: 100%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent black;
+    opacity: 0.65;
+}
+
+.building-info:hover .tooltiptext, .item-container:hover .tooltiptext, .tooltip-items:hover .tooltiptext-equipment {
+    visibility: visible;
+    opacity: 1;
 }
 
 .message-box {

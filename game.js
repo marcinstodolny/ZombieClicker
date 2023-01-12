@@ -13,7 +13,7 @@ let currentWorld = 0;
 
 
 import {fetchBuildings, buyBuilding, buildingMatchRequirements} from './buildings.js';
-import {getItems, fetchItems, buyItem, matchRequirements, updateItemsOwned} from './items.js';
+import {fetchItems, buyItem, matchRequirements, updateItemsOwned} from './items.js';
 import {fetchWorlds} from './worlds.js';
 
 //exports
@@ -118,6 +118,7 @@ async function updateItems() {
             document.getElementById(item['name']).addEventListener("click", buyItem, false);
             setItemsButtonValues(item['name'], item['cost'], item['clickP'], item['buildingName'], item['ClickMultiplier'], item['buildingMultiplier']);
     }})
+    updateItemsOwned();
 }
 function setItemsButtonValues(name, cost, clickP, buildingName, clickMultiplier, buildingMultiplier) {
     let button = document.getElementById(name);
@@ -215,7 +216,6 @@ function updateGame() {
     document.getElementById('living').innerText = 'Living population: ' + (worlds['worlds'][currentWorld]['population'] - zombies).toString();
     saveCookies();
     updateStatistics();
-    updateItemsOwned();
     checkWinCondition();
     updateProgressBar();
 }
