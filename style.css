@@ -6,6 +6,43 @@
     border-style: solid;
 }
 
+.tooltip-container {
+    position: relative;
+    /*display: flex;*/
+    place-content: center;
+}
+
+.tooltip-text {
+    display: none;
+    position: absolute;
+    top: -60px;
+    z-index: 1;
+    background: #00732c;
+    padding: 8px;
+    font-size: 1rem;
+    color: #fff;
+    border-radius: 2px;
+    animation: fadeIn 0.6s;
+}
+
+.tooltip-text:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -8px;
+  border: 8px solid transparent;
+  border-top: 8px solid #00732c;
+}
+
+@keyframes fadeIn {
+ from {
+   opacity: 0;
+ }
+ to {
+   opacity: 1;
+ }}
+
 .message-box {
     background-color: white;
     position: absolute;
@@ -19,3 +56,19 @@
     -ms-transform: translateX(-50%) translateY(-50%);
     transform: translate(-50%,-50%);
 }
+
+.brainResize {
+    width: 50%;
+    transform:translate(0) scale(1.2);
+}
+.brainAnimation {
+    animation: brainAnimation 0.05s;
+}
+
+@keyframes brainAnimation {
+ from {
+   transform:translate(0) scale(1.2);
+ }
+ to {
+   transform:translate(0) scale(1.1);
+ }}

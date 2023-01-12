@@ -1,33 +1,39 @@
 let brains = 0;
 let zombies = 0;
 let clickPower = 1;
+let clickPowerMultiplied = 0;
 let clickPowerMultiplier = 1;
 let clicksPerSecond = 0;
 let clicksPerSecondMultiplier = 1;
 let buildings = [];
 let items = [];
 let bought_items = [];
-let totalPopulation = 8010096000;
+let worlds = [];
+let currentWorld = 0;
+
 
 import {fetchBuildings, buyBuilding} from './buildings.js';
 import {getItems, fetchItems, buyItem, matchRequirements, updateItemsOwned} from './items.js';
+import {fetchWorlds} from './worlds.js';
 
 //exports
-export {buildings, brains, items, clickPower, bought_items, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond, adjustClickPower};
+export {buildings, brains, items, clickPower, bought_items, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond, adjustClickPower, adjustClickPowerMultiplier,adjustClicksPerSecondMultiplier, update_cps};
 
 initGame();
 
 async function initGame() {
     await initBuildings();
+    initResetWindow();
+    initMainButton();
     if ((document.cookie.match(new RegExp('(^| )' + 'brains' + '=([^;]+)')) !== null)){
         readCookies()
     }
-    // await updateItems();
-    updateGame();
-    setInterval(idle_loop, 1000);
-    initResetWindow();
-    initMainButton();
+    await updateItems();
+    await initWorlds();
     initNewGameButton();
+    updateGame();
+    AnimateBrain();
+    setInterval(idle_loop, 1000);
 }
 
 function adjustBrains(delta) {
@@ -40,6 +46,20 @@ function adjustClicksPerSecond(delta) {
 function adjustClickPower(delta) {
     clickPower += delta;
 }
+function adjustClickPowerMultiplier(delta) {
+    clickPowerMultiplier += delta;
+}
+function adjustClicksPerSecondMultiplier(delta, building) {
+    let index = buildings.findIndex(({ name }) => name === building);
+    let building_count = Number(buildings[index]['count'])
+    let building_cps = Number(buildings[index]['cps'])
+    buildings[index]['multiplier'] += delta
+    clicksPerSecond += Number(building_count * building_cps * delta);
+}
+
+async function initWorlds() {
+    worlds = await fetchWorlds();
+}
 
 async function initBuildings() {
     let jsonBuildings = await fetchBuildings();
@@ -47,8 +67,11 @@ async function initBuildings() {
     jsonBuildings['buildings'].forEach(
         building => {
             building['count'] = 0;
+            building['multiplier'] = 1;
             buildings.push(building);
             shopList.innerHTML = shopList.innerHTML +
+                '<div class="tooltip-container">' +
+                '<p id="'+ building['name'] +'-text" class="tooltip-text:before"></p>' +
                 '<div id="'+building['name']+'"><div id="buy'+building['name']+'">' +
                 '<p>BUY</p></div><div id="name-and-price-container'+building['name']+'">' +
                 '<p id="name'+building['name']+'">'+ building['name'] +'</p>' +
@@ -65,6 +88,7 @@ async function initBuildings() {
         document.getElementById("name"+building['name']).classList.add("building-name");
         document.getElementById("buy"+building['name']).classList.add("buy");
         document.getElementById("name-and-price-container" + building['name']).classList.add("building-name-and-price");
+        info(building['name'], building['displayed-text'])
         setBuildingButtonValues(building['name'], building['cost'], building['cps']);
     });
 }
@@ -81,7 +105,9 @@ async function updateItems() {
     jsonItems['items'].forEach(
         item => {
             if (!bought_items.some(element => element === item.name) && matchRequirements(item.name)){
-            itemShopList.innerHTML = itemShopList.innerHTML +
+            itemShopList.innerHTML = itemShopList.innerHTML  +
+                '<div class="tooltip-container">' +
+                '<p id="'+ item['name'] +'-text" class="tooltip-text:before"></p>' +
                 '<div id="'+item['name']+'">' +
                 '<div id="buy-item'+item['name']+'">BUY</div>' +
                 '<div id="item-name-and-price'+item['name']+'">' +
@@ -98,13 +124,18 @@ async function updateItems() {
             document.getElementById("item-name"+item['name']).classList.add("item-name");
             document.getElementById("item-price"+item['name']).classList.add("item-price");
             setItemsButtonValues(item['name'], item['cost'], item['clickP'])
+            info(item['name'], item['displayed-text'])
+            setItemsButtonValues(item['name'], item['cost'], item['clickP'], item['buildingName'], item['ClickMultiplier'], item['buildingMultiplier'])
     }})
 }
-function setItemsButtonValues(name, cost, clickP) {
+function setItemsButtonValues(name, cost, clickP, buildingName, clickMultiplier, buildingMultiplier) {
     let button = document.getElementById(name);
     button.name = name;
     button.cost = cost;
     button.clickP = clickP;
+    button.buildingName = buildingName
+    button.clickMultiplier = clickMultiplier;
+    button.buildingMultiplier = buildingMultiplier;
 }
 
 function setBuildingButtonValues(name, cost, cps) {
@@ -133,17 +164,27 @@ function initMainButton() {
 }
 
 function initNewGameButton() {
-    document.getElementById('newGameButton').addEventListener("click", newGame)
+    document.getElementById('winningParagraph').innerText = 'Well done you have killed everyone ' + worlds['worlds'][currentWorld]['locationText'];
+    document.getElementById('newGameButton').removeEventListener('click', nextWorld);
+    document.getElementById('newGameButton').removeEventListener('click',resetGame);
+    if (worlds['worlds'].length !== currentWorld + 1) {
+        document.getElementById('newGameButton').innerText = 'Move on to ' + worlds['worlds'][currentWorld+1]['name'];
+        document.getElementById('newGameButton').addEventListener("click", nextWorld);
+    } else {
+        document.getElementById('newGameButton').innerText = 'New Game';
+        document.getElementById('newGameButton').addEventListener("click", resetGame);
+    }
 }
 
 function readCookies(){
     zombies = Number(document.cookie.match(new RegExp('(^| )' + 'zombies' + '=([^;]+)'))[2]);
+    currentWorld = Number(document.cookie.match(new RegExp('(^| )' + 'currentWorld' + '=([^;]+)'))[2]);
     brains = Number(document.cookie.match(new RegExp('(^| )' + 'brains' + '=([^;]+)'))[2]);
     buildings = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'buildings' + '=([^;]+)'))[2]);
     clickPower = Number(document.cookie.match(new RegExp('(^| )' + 'clickPower' + '=([^;]+)'))[2]);
+    clickPowerMultiplier = Number(document.cookie.match(new RegExp('(^| )' + 'clickPowerMultiplier' + '=([^;]+)'))[2]);
     clicksPerSecond = Number(document.cookie.match(new RegExp('(^| )' + 'clicksPerSecond' + '=([^;]+)'))[2]);
     bought_items = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'bought_items' + '=([^;]+)'))[2]);
-    // totalPopulation = Number(document.cookie.match(new RegExp('(^| )' + 'totalPopulation' + '=([^;]+)'))[2]);
     buildings.forEach(building => setBuildingButtonValues(building['name'], building['cost'], building['cps']))
 }
 
@@ -153,14 +194,25 @@ function saveCookies() {
     document.cookie = 'buildings=' + JSON.stringify(buildings) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'clicksPerSecond=' + clicksPerSecond + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'clickPower=' + clickPower + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'clickPowerMultiplier=' + clickPowerMultiplier + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'bought_items=' + JSON.stringify(bought_items) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
-    document.cookie = 'totalPopulation=' + totalPopulation + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'currentWorld=' + currentWorld + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+}
+
+function update_cps(){
+    console.log(buildings)
+    let cps = 0
+    for (let i = 0; i < buildings.length; i++){
+        cps += Number(buildings[i]['cps'] * buildings[i]['multiplier'] * buildings[i]['count'])
+    }
+    console.log(cps, buildings[0]['cps'], buildings[0]['multiplier'],  buildings[0]['count'])
+    clicksPerSecond = cps
 }
 
 function idle_loop() {
     let initialZombies = zombies;
-    zombies += Math.round(clicksPerSecond *clicksPerSecondMultiplier);
-    zombies = Math.min(zombies, totalPopulation);
+    zombies += Math.round(clicksPerSecond);
+    zombies = Math.min(zombies, worlds['worlds'][currentWorld]['population']);
     let zombieDelta = zombies - initialZombies;
     brains += zombieDelta;
     updateGame();
@@ -168,8 +220,8 @@ function idle_loop() {
 
 function updateGame() {
     document.getElementById('brains').innerText = brains + ' BRAINS';
-    document.getElementById('living').innerText = 'Living population: ' + (totalPopulation - zombies).toString();
     document.getElementById('zombies').innerText = 'Zombies: ' + zombies;
+    document.getElementById('living').innerText = 'Living population: ' + (worlds['worlds'][currentWorld]['population'] - zombies).toString();
     saveCookies();
     updateStatistics();
     updateItems();
@@ -180,24 +232,28 @@ function updateGame() {
 
 function updateProgressBar() {
     let bar = document.getElementById('progessBar');
-    bar.style.width=zombies / totalPopulation * 100 + '%';
+    bar.style.width=zombies / worlds['worlds'][currentWorld]['population'] * 100 + '%';
 }
 
 function checkWinCondition() {
-    if (zombies === totalPopulation) {
+    if (zombies === worlds['worlds'][currentWorld]['population']) {
         document.getElementById('winMessageBox').removeAttribute('hidden')
     }
 }
+function updateClickPower(){
+    clickPowerMultiplied = clickPower * clickPowerMultiplier;
+}
 
 function updateStatistics() {
+    updateClickPower()
+    document.getElementById('clickPower').innerText = String(clickPowerMultiplied);
     document.getElementById('clickPower').innerText = String(clickPower);
-    document.getElementById('clicksPerSecond').innerText = String(clicksPerSecond);
 }
 
 function buttonClick() {
     let initialZombies = zombies;
     zombies += Math.round(clickPower * clickPowerMultiplier);
-    zombies = Math.min(zombies, totalPopulation);
+    zombies = Math.min(zombies, worlds['worlds'][currentWorld]['population']);
     let zombieDelta = zombies - initialZombies;
     brains += zombieDelta;
     updateGame();
@@ -209,14 +265,52 @@ function resetGame() {
     clickPower = 1;
     clicksPerSecond = 0;
     buildings = [];
-    totalPopulation = 8010096000;
+    currentWorld = 0;
     bought_items = [];
+    clickPowerMultiplier = 1;
     location.reload()
     updateGame()
 }
 
-function newGame() {
-    totalPopulation = 1823470191283974123483475;
+function info(elementId, text){
+const target = document.getElementById(elementId);
+const tooltip = document.getElementById(elementId + "-text");
+target.addEventListener('mouseover', () => {
+    tooltip.innerText = text
+      tooltip.style.display = 'block';
+    tooltip.classList.toggle('tooltip-text:before')
+      tooltip.classList.toggle('tooltip-text')
+}, false);
+
+target.addEventListener('mouseleave', () => {
+    tooltip.innerText = ''
+      tooltip.style.display = 'none';
+      tooltip.classList.toggle('tooltip-text:before')
+      tooltip.classList.toggle('tooltip-text')
+}, false);
+
+}
+
+function nextWorld() {
+    currentWorld++;
     document.getElementById('winMessageBox').setAttribute('hidden', '');
-    updateGame()
+    initNewGameButton();
+    updateGame();
+}
+
+function AnimateBrain(){
+const target = document.getElementById('brainImage');
+target.addEventListener('mouseover', () => {
+    target.classList.toggle('brainResize')
+}, false);
+
+target.addEventListener('mouseleave', () => {
+   target.classList.toggle('brainResize')
+}, false);
+
+target.addEventListener('click', () => {
+   target.classList.toggle('brainAnimation')
+    setTimeout(() => {target.classList.toggle('brainAnimation')}, 50)
+}, false);
+
 }

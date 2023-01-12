@@ -1,6 +1,9 @@
-import {buildings, brains, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond} from "./game.js";
+import {buildings, brains, clicksPerSecond, updateGame, adjustBrains, adjustClicksPerSecond, update_cps} from "./game.js";
+
 
 export {fetchBuildings, buyBuilding};
+
+let priceMultiplier = 1.2
 async function fetchBuildings() {
     let response = await fetch('buildings.json')
     let json = await response.json();
@@ -14,14 +17,13 @@ function buyBuilding(evt) {
     let price = evt.currentTarget.cost;
     let cps = evt.currentTarget.cps;
     if (price <= brains){
-        let new_price = Math.round(price * 1.5)
-        console.log(buildings)
+        let new_price = Math.round(price * priceMultiplier)
         if (buildings.some(item => item.name === element)){
             let index = buildings.findIndex(({ name }) => name === element);
             buildings[index]['count'] += 1;
             buildings[index]['cost'] = new_price;
         } else {
-            buildings[buildings.length] = {name:element, count:1, cost:new_price, cps:cps};
+            buildings[buildings.length] = {name:element, count:1, cost:new_price,multiplier:1, cps:cps};
         }
         let index = buildings.findIndex(({ name }) => name === element);
         adjustBrains(-price);
@@ -30,6 +32,8 @@ function buyBuilding(evt) {
         document.getElementById('cost'+buildings[index]['name']).innerText = buildings[index]['cost'] + " Brains";
         document.getElementById('count'+buildings[index]['name']).innerText = buildings[index]['count'];
         document.getElementById('count'+buildings[index]['name']).classList.add("buildings-amount");
+        document.getElementById(element).innerText = element + ' ' + new_price + ' brains';
+        update_cps()
     }
 
     updateGame();

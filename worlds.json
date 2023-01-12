@@ -1,0 +1,16 @@
+{
+  "worlds": [
+      {
+        "id": 0,
+        "name": "Earth",
+        "locationText": "on Earth",
+        "population": 8010096000
+    },
+    {
+      "id": 1,
+      "name": "Space",
+      "locationText": "in Space",
+      "population": 8021358907342510945004953793245
+    }
+  ]
+}

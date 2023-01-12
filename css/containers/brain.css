@@ -8,11 +8,13 @@
     border-radius: 5px;
     text-align: center;
     margin: 2vh 2vw;
+    cursor: pointer;
+    background-position:center;
     background-color: darkseagreen;
 }
 
 .brain-image {
-    width: 60%;
+    width: 50%;
     margin: 4vh 1vw;
     -webkit-user-drag: none;
     user-select: none;

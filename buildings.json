@@ -3,12 +3,14 @@
     "id": 0,
     "name": "grave",
     "cps": 1,
-    "cost": 10
+    "cost": 10,
+    "displayed-text": "Dig a grave, +1 BPS"
   }, {
     "id": 1,
     "name": "morgue",
     "cps": 10,
-    "cost": 100
+    "cost": 100,
+    "displayed-text": "Dig a grave, +1 BPS"
   }, {
     "id": 2,
     "name": "graveyard",
@@ -23,6 +25,7 @@
     "id": 4,
     "name": "Poland",
     "cps": 10000,
-    "cost": 100000
+    "cost": 100000,
+    "displayed-text": "Dig a grave, +1 BPS"
   }]
 }
