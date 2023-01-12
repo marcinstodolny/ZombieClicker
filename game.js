@@ -71,7 +71,7 @@ async function initBuildings() {
             buildings.push(building);
             shopList.innerHTML = shopList.innerHTML +
                 '<div id="'+building['name']+'" class="building-info">' +
-                '<span class="tooltiptext"></span>' +
+                '<span class="tooltiptext">'+building["displayed-text"]+'</span>' +
                 '<div class="buy"><p>BUY</p></div>' +
                 '<div class="building-name-and-price">' +
                 '<p class="building-name">'+ building['name'] +'</p>' +

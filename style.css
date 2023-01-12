@@ -23,7 +23,7 @@
     transition: opacity 0.3s;
 }
 
-.tooltip .tooltiptext::after {
+.building-info .tooltiptext::after, .item-container .tooltiptext::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -34,7 +34,7 @@
   border-color: #555 transparent transparent transparent;
 }
 
-.tooltip:hover .tooltiptext {
+.building-info:hover .tooltiptext, .item-container:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
 }
