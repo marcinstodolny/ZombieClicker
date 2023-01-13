@@ -4,31 +4,31 @@
   "id": 0,
   "name": "Shovel",
   "buildingName": "GRAVE",
-  "requirement":5,
+  "requirement":10,
   "clickP": 1,
   "ClickMultiplier": 0,
   "buildingMultiplier": 0,
-  "cost":50,
+  "cost":150,
   "displayed-text": "Dig up graves more efficiently, +1 Click power"
 }, {
   "id": 1,
   "name": "Helpful hand",
   "buildingName": "MORGUE",
-  "requirement":5,
+  "requirement":10,
   "clickP": 10,
   "ClickMultiplier": 0,
   "buildingMultiplier": 0,
-  "cost":1000,
+  "cost":2000,
   "displayed-text": "A helpful hand in the morgue, +10 Click power"
 }, {
   "id": 2,
   "name": "Zombie dog",
   "buildingName": "CEMETERY",
-  "requirement":5,
+  "requirement":15,
   "clickP": 0,
   "ClickMultiplier": 0,
   "buildingMultiplier": 5,
-  "cost":10000,
+  "cost":20000,
   "displayed-text": "Good boy helps you sniff up more corpses, 5x for cemetery"
 }, {
   "id": 3,
@@ -38,7 +38,7 @@
   "clickP": 0,
   "ClickMultiplier": 2,
   "buildingMultiplier": 0,
-  "cost":250,
+  "cost":1000,
   "displayed-text": "Now you can dual wield, +2 Click multiplier"
 }, {
   "id": 4,
@@ -47,29 +47,29 @@
   "requirement":20,
   "clickP": 0,
   "ClickMultiplier": 0,
-  "buildingMultiplier": 20,
-  "cost":13000,
-  "displayed-text": "First a dog, now a CAT, 20x for cemetery"
+  "buildingMultiplier": 15,
+  "cost":75000,
+  "displayed-text": "First a dog, now a CAT, 15x for cemetery"
 }
 , {
   "id": 5,
   "name": "Resurrection Orb",
   "buildingName": "CATACOMBS",
-  "requirement":40,
+  "requirement":35,
   "clickP": 100,
   "ClickMultiplier": 0,
   "buildingMultiplier": 0,
-  "cost":20000,
-  "displayed-text": "Raise some skelly bois, +100 Click Power"
+  "cost":25000,
+  "displayed-text": "Raise some skelly bois, +100 Base Click Power"
 },{
   "id": 6,
   "name": "The Other Hand",
   "buildingName": "MORGUE",
-  "requirement": 15,
+  "requirement": 20,
   "clickP": 100,
   "ClickMultiplier": 0,
   "buildingMultiplier": 0,
-  "cost":5000,
+  "cost":15000,
   "displayed-text": "Oh hey, the other hand, +100 Base Click Power"
 }
 ,{
@@ -89,18 +89,18 @@
   "requirement": 50,
   "clickP": 0,
   "ClickMultiplier": 0,
-  "buildingMultiplier": 9,
+  "buildingMultiplier": 10,
   "cost":7500,
-  "displayed-text": "Now you know the way, +9 Grave Multiplier"
+  "displayed-text": "Now you know the way, +10 Grave Multiplier"
 },{
   "id": 9,
   "name": "Internet Troll",
   "buildingName": "COMMENT SECTION",
-  "requirement": 5,
+  "requirement": 10,
   "clickP": 1000,
   "ClickMultiplier": 0,
   "buildingMultiplier": 0,
-  "cost":10000,
+  "cost":100000,
   "displayed-text": "Let's argue!, +1000 Base Click Power"
   },{
   "id": 10,
@@ -110,7 +110,7 @@
   "clickP": 0,
   "ClickMultiplier": 4,
   "buildingMultiplier": 0,
-  "cost":2500,
+  "cost":50000,
   "displayed-text": "He lives!, +4 Click Multiplier"
   },{
   "id": 11,
@@ -120,7 +120,7 @@
   "clickP": 10000,
   "ClickMultiplier": 0,
   "buildingMultiplier": 0,
-  "cost":15000,
+  "cost":150000,
   "displayed-text": "They'll do it when they're dead, +10000 Base Click Power"
   },{
   "id": 12,
@@ -130,17 +130,27 @@
   "clickP": 0,
   "ClickMultiplier": 0,
   "buildingMultiplier": 12,
-  "cost":1000,
+  "cost":100000,
   "displayed-text": "\"The British were here...\", +12 Pyramid Multiplier"
   },{
   "id": 13,
   "name": "Microsoft Excel",
   "buildingName": "LIFELESS JOB",
-  "requirement": 20,
+  "requirement": 50,
   "clickP": 0,
   "ClickMultiplier": 0,
-  "buildingMultiplier": 20,
-  "cost":7000,
-  "displayed-text": "These columns and rows are cool, +20 Lifeless Job Multiplier"
+  "buildingMultiplier": 25,
+  "cost":170000,
+  "displayed-text": "These columns and rows are cool, +25 Lifeless Job Multiplier"
+  },{
+  "id": 14,
+  "name": "Headset",
+  "buildingName": "LIFELESS JOB",
+  "requirement": 1,
+  "clickP": 0,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 1,
+  "cost":150,
+  "displayed-text": "Not dead enough? Try customer service job, +1 Lifeless Job Multiplier"
   }]
 }

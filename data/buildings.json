@@ -8,79 +8,79 @@
   }, {
     "id": 1,
     "name": "GRAVE",
-    "cps": 5,
-    "cost": 50,
-    "displayed-text": "Dig a grave, +5 BPS",
+    "cps": 3,
+    "cost": 100,
+    "displayed-text": "Dig a grave, +3 BPS",
     "buildingRequirement": "LIFELESS JOB"
   }, {
     "id": 2,
     "name": "MORGUE",
-    "cps": 10,
-    "cost": 100,
-    "displayed-text": "Reclaim the dead, +10 BPS",
+    "cps": 5,
+    "cost": 200,
+    "displayed-text": "Reclaim the dead, +5 BPS",
     "buildingRequirement": "GRAVE"
   },{
     "id": 3,
     "name": "GRAVEYARD",
-    "cps": 50,
-    "cost": 250,
-    "displayed-text": "Rob a few poor graves, +50 BPS",
+    "cps": 10,
+    "cost": 750,
+    "displayed-text": "Rob a few poor graves, +10 BPS",
     "buildingRequirement": "MORGUE"
   },
   {
     "id": 4,
     "name": "CEMETERY",
-    "cps": 100,
-    "cost": 500,
-    "displayed-text": "Raid a cemetery, +100 BPS",
+    "cps": 20,
+    "cost": 1500,
+    "displayed-text": "Raid a cemetery, +20 BPS",
     "buildingRequirement": "GRAVEYARD"
   },
   {
     "id": 5,
     "name": "MAUSOLEUM",
-    "cps": 500,
-    "cost": 2000,
-    "displayed-text": "Visit Lich's Memorial Hall, +500 BPS",
+    "cps": 50,
+    "cost": 5000,
+    "displayed-text": "Visit Lich's Memorial Hall, +50 BPS",
     "buildingRequirement": "CEMETERY"
   },
   {
     "id": 6,
     "name": "PYRAMID",
-    "cps": 1000,
-    "cost": 5000,
-    "displayed-text": "\"The British were here\", +1000 BPS",
+    "cps": 100,
+    "cost": 10000,
+    "displayed-text": "\"The British were here\", +100 BPS",
     "buildingRequirement": "MAUSOLEUM"
   },
   {
     "id": 7,
     "name": "CATACOMBS",
-    "cps": 2500,
-    "cost": 7500,
-    "displayed-text": "Time for Urban Exploration!, +2500 BPS",
+    "cps": 250,
+    "cost": 25000,
+    "displayed-text": "Time for Urban Exploration!, +250 BPS",
     "buildingRequirement": "PYRAMID"
   },
   {
     "id": 8,
     "name": "NECROPOLIS",
-    "cps": 5000,
-    "cost": 15000,
-    "displayed-text": "It's getting crowded, +5000 BPS",
+    "cps": 500,
+    "cost": 55000,
+    "displayed-text": "It's getting crowded, +500 BPS",
     "buildingRequirement": "CATACOMBS"
   },
   {
     "id": 9,
     "name": "COMMENT SECTION",
-    "cps": 10000,
-    "cost": 40000,
-    "displayed-text": "The darkest place in the Internet, +10000 BPS",
+    "cps": 1000,
+    "cost": 140000,
+    "displayed-text": "The darkest place in the Internet, +1000 BPS",
     "buildingRequirement": "NECROPOLIS"
   },
   {
     "id": 10,
     "name": "THE INTERNET",
-    "cps": 50000,
-    "cost": 150000,
-    "displayed-text": "The Last Circle of Hell, +50000 BPS",
+    "cps": 5000,
+    "cost": 1150000,
+    "displayed-text": "The Last Circle of Hell, +5000 BPS",
     "buildingRequirement": "COMMENT SECTION"
   }
   ]
