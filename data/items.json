@@ -100,7 +100,7 @@
   "ClickMultiplier": 0,
   "buildingMultiplier": 5,
   "cost":60000,
-  "displayed-text": "Good boy helps you sniff up more corpses (5 Cemetery Multiplier)"
+  "displayed-text": "Good boy helps you sniff up more corpses (+5 Cemetery Multiplier)"
 },{
   "id": 10,
   "name": "Excavator",
@@ -140,7 +140,7 @@
   "ClickMultiplier": 0,
   "buildingMultiplier": 7,
   "cost":300000,
-  "displayed-text": "Unfortunately, the British already stolen the deceased... (+10 Pyramid Multiplier)"
+  "displayed-text": "Unfortunately, the British had already stolen the deceased... (+10 Pyramid Multiplier)"
   },{
   "id": 14,
   "name": "Cat Mummy",
