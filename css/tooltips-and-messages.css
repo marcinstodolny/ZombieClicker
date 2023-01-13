@@ -47,7 +47,7 @@
 .tooltip-items .tooltiptext-equipment::after {
     content: " ";
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 100%;
     border-width: 1vh;
     border-style: solid;
