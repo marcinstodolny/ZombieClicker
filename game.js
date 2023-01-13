@@ -4,7 +4,6 @@ let clickPower = 1;
 let clickPowerMultiplied = 0;
 let clickPowerMultiplier = 1;
 let clicksPerSecond = 0;
-let clicksPerSecondMultiplier = 1;
 let buildings = [];
 let items = [];
 let bought_items = [];
@@ -78,7 +77,7 @@ async function updateBuildings() {
             if (buildingMatchRequirements(building)){
             shopList.innerHTML = shopList.innerHTML +
                 '<div id="'+building['name']+'" class="building-info">' +
-                '<span class="tooltiptext">'+building["displayed-text"]+'</span>' +
+                '<span class="tooltiptext">'+building["displayed-text"] + '\n(+' + building['cps']*building['multiplier'] + ' BPS per purchase)</span>' +
                 '<div class="buy"><p>BUY</p></div>' +
                 '<div class="building-name-and-price">' +
                 '<p class="building-name">'+ building['name'] +'</p>' +
@@ -156,7 +155,7 @@ function initMainButton() {
 }
 
 function initNewGameButton() {
-    document.getElementById('winningParagraph').innerText = 'Well done you have killed everyone ' + worlds['worlds'][currentWorld]['locationText'];
+    document.getElementById('winningParagraph').innerText = 'Well done, you have killed everyone ' + worlds['worlds'][currentWorld]['locationText'];
     document.getElementById('newGameButton').removeEventListener('click', nextWorld);
     document.getElementById('newGameButton').removeEventListener('click',resetGame);
     if (worlds['worlds'].length !== currentWorld + 1) {

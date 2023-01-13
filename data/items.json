@@ -1,156 +1,225 @@
 {
 "items":[
-{
+  {
   "id": 0,
+  "name": "Headset",
+  "buildingName": "LIFELESS JOB",
+  "requirement": 1,
+  "clickP": 0,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 2,
+  "cost":450,
+  "displayed-text": "Not dead enough? Try working in a Call Center (+2 Lifeless Job Multiplier)"
+  },{
+  "id": 1,
+  "name": "Microsoft Excel",
+  "buildingName": "LIFELESS JOB",
+  "requirement": 40,
+  "clickP": 0,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 35,
+  "cost":510000,
+  "displayed-text": "These columns and rows are cool (+35 Lifeless Job Multiplier)"
+  },{
+  "id": 2,
   "name": "Shovel",
   "buildingName": "GRAVE",
   "requirement":10,
-  "clickP": 1,
+  "clickP": 2,
   "ClickMultiplier": 0,
   "buildingMultiplier": 0,
-  "cost":150,
-  "displayed-text": "Dig up graves more efficiently, +1 Click power"
-}, {
-  "id": 1,
+  "cost":450,
+  "displayed-text": "Dig up graves more efficiently (+2 Base Click Power)"
+},{
+  "id": 3,
+  "name": "Turbo Casket 3.0",
+  "buildingName": "GRAVE",
+  "requirement": 25,
+  "clickP": 0,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 25,
+  "cost":150000,
+  "displayed-text": "You'll sleep like you're dead (+25 Grave Multiplier)"
+  },{
+  "id": 4,
   "name": "Helpful hand",
   "buildingName": "MORGUE",
   "requirement":10,
   "clickP": 10,
   "ClickMultiplier": 0,
   "buildingMultiplier": 0,
-  "cost":2000,
-  "displayed-text": "A helpful hand in the morgue, +10 Click power"
-}, {
-  "id": 2,
-  "name": "Zombie dog",
-  "buildingName": "CEMETERY",
-  "requirement":15,
-  "clickP": 0,
-  "ClickMultiplier": 0,
-  "buildingMultiplier": 5,
-  "cost":20000,
-  "displayed-text": "Good boy helps you sniff up more corpses, 5x for cemetery"
-}, {
-  "id": 3,
-  "name": "Second Shovel",
-  "buildingName": "GRAVEYARD",
-  "requirement":10,
-  "clickP": 0,
-  "ClickMultiplier": 2,
-  "buildingMultiplier": 0,
-  "cost":1000,
-  "displayed-text": "Now you can dual wield, +2 Click multiplier"
-}, {
-  "id": 4,
-  "name": "Excavator",
-  "buildingName": "CEMETERY",
-  "requirement":20,
-  "clickP": 0,
-  "ClickMultiplier": 0,
-  "buildingMultiplier": 15,
-  "cost":75000,
-  "displayed-text": "First a dog, now a CAT, 15x for cemetery"
-}
-, {
-  "id": 5,
-  "name": "Resurrection Orb",
-  "buildingName": "CATACOMBS",
-  "requirement":35,
-  "clickP": 100,
-  "ClickMultiplier": 0,
-  "buildingMultiplier": 0,
-  "cost":25000,
-  "displayed-text": "Raise some skelly bois, +100 Base Click Power"
+  "cost":6000,
+  "displayed-text": "A helpful hand in the morgue (+10 Base Click Power)"
 },{
-  "id": 6,
+  "id": 5,
   "name": "The Other Hand",
   "buildingName": "MORGUE",
   "requirement": 20,
   "clickP": 100,
   "ClickMultiplier": 0,
   "buildingMultiplier": 0,
-  "cost":15000,
-  "displayed-text": "Oh hey, the other hand, +100 Base Click Power"
+  "cost":45000,
+  "displayed-text": "Oh hey, the other hand (+100 Base Click Power)"
 }
 ,{
-  "id": 7,
+  "id": 6,
   "name": "Body bags",
   "buildingName": "MORGUE",
-  "requirement": 10,
+  "requirement": 30,
   "clickP": 0,
   "ClickMultiplier": 0,
-  "buildingMultiplier": 1,
-  "cost":5000,
-  "displayed-text": "Stuff em, +1 Morgue multiplier"
+  "buildingMultiplier": 22,
+  "cost":30000,
+  "displayed-text": "Stuff em (+22 Morgue Multiplier)"
 },{
-  "id": 8,
+  "id": 7,
   "name": "Grave Map",
   "buildingName": "GRAVEYARD",
-  "requirement": 50,
+  "requirement": 35,
   "clickP": 0,
   "ClickMultiplier": 0,
-  "buildingMultiplier": 10,
-  "cost":7500,
-  "displayed-text": "Now you know the way, +10 Grave Multiplier"
+  "buildingMultiplier": 20,
+  "cost":75000,
+  "displayed-text": "Now you know the way (+20 Graveyard Multiplier)"
+},{
+  "id": 8,
+  "name": "Second Shovel",
+  "buildingName": "GRAVEYARD",
+  "requirement":10,
+  "clickP": 0,
+  "ClickMultiplier": 2,
+  "buildingMultiplier": 0,
+  "cost":3000,
+  "displayed-text": "Now you can dual wield (+2 Click Multiplier)"
 },{
   "id": 9,
-  "name": "Internet Troll",
-  "buildingName": "COMMENT SECTION",
-  "requirement": 10,
-  "clickP": 1000,
+  "name": "Zombie dog",
+  "buildingName": "CEMETERY",
+  "requirement":15,
+  "clickP": 0,
   "ClickMultiplier": 0,
-  "buildingMultiplier": 0,
-  "cost":100000,
-  "displayed-text": "Let's argue!, +1000 Base Click Power"
-  },{
+  "buildingMultiplier": 5,
+  "cost":60000,
+  "displayed-text": "Good boy helps you sniff up more corpses (5 Cemetery Multiplier)"
+},{
   "id": 10,
+  "name": "Excavator",
+  "buildingName": "CEMETERY",
+  "requirement":20,
+  "clickP": 0,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 15,
+  "cost":225000,
+  "displayed-text": "First a dog, now a CAT! (+15 Cemetery Multiplier)"
+},{
+  "id": 11,
   "name": "Soviet Dictator",
   "buildingName": "MAUSOLEUM",
   "requirement": 1,
   "clickP": 0,
   "ClickMultiplier": 4,
   "buildingMultiplier": 0,
-  "cost":50000,
-  "displayed-text": "He lives!, +4 Click Multiplier"
+  "cost":150000,
+  "displayed-text": "He lives! (+4 Click Multiplier)"
   },{
-  "id": 11,
+  "id": 12,
+  "name": "The Lich King",
+  "buildingName": "MAUSOLEUM",
+  "requirement": 40,
+  "clickP": 0,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 25,
+  "cost":1150000,
+  "displayed-text": "\"THIS CITY HAS TO BE PURGED\" (+25 Mausoleum Multiplier)"
+  },{
+  "id": 13,
+  "name": "Empty Casket",
+  "buildingName": "PYRAMID",
+  "requirement": 10,
+  "clickP": 0,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 7,
+  "cost":300000,
+  "displayed-text": "Unfortunately, the British already stolen the deceased... (+10 Pyramid Multiplier)"
+  },{
+  "id": 14,
+  "name": "Cat Mummy",
+  "buildingName": "PYRAMID",
+  "requirement": 25,
+  "clickP": 0,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 8,
+  "cost":500000,
+  "displayed-text": "Fortunately, the Brits didn't find him (+9 Pyramid Multiplier)"
+  },{
+  "id": 15,
+  "name": "Resurrection Orb",
+  "buildingName": "CATACOMBS",
+  "requirement":35,
+  "clickP": 100,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 0,
+  "cost":75000,
+  "displayed-text": "Raise some skelly bois (+100 Base Click Power)"
+},{
+  "id": 16,
+  "name": "Old Skull",
+  "buildingName": "CATACOMBS",
+  "requirement": 40,
+  "clickP": 0,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 20,
+  "cost":1750000,
+  "displayed-text": "Alas, poor Yorick! I knew him, Horatio (+20 Catacombs Multiplier)"
+},{
+  "id": 17,
+  "name": "Cloak of the Undead King",
+  "buildingName": "NECROPOLIS",
+  "requirement": 40,
+  "clickP": 0,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 15,
+  "cost":2000000,
+  "displayed-text": "\"Property of Sandro the Great\" (+15 Necropolis Multiplier)"
+  },{
+  "id": 18,
+  "name": "Internet Troll",
+  "buildingName": "COMMENT SECTION",
+  "requirement": 10,
+  "clickP": 1000,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 0,
+  "cost":300000,
+  "displayed-text": "Let's argue! (+1000 Base Click Power)"
+  },{
+  "id": 19,
+  "name": "Facebook Group",
+  "buildingName": "COMMENT SECTION",
+  "requirement": 35,
+  "clickP": 0,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 13,
+  "cost": 5000000,
+  "displayed-text": "These people don't need their brains anyway (+13 Comment Section Multiplier)"
+  },{
+  "id": 20,
   "name": "Procrastination",
   "buildingName": "THE INTERNET",
   "requirement": 10,
   "clickP": 10000,
   "ClickMultiplier": 0,
   "buildingMultiplier": 0,
-  "cost":150000,
-  "displayed-text": "They'll do it when they're dead, +10000 Base Click Power"
+  "cost":450000,
+  "displayed-text": "They'll do it when they're dead (+10000 Base Click Power)"
   },{
-  "id": 12,
-  "name": "Empty Tomb",
-  "buildingName": "PYRAMID",
-  "requirement": 10,
+  "id": 21,
+  "name": "YouTube Premium",
+  "buildingName": "THE INTERNET",
+  "requirement": 25,
   "clickP": 0,
   "ClickMultiplier": 0,
-  "buildingMultiplier": 12,
-  "cost":100000,
-  "displayed-text": "\"The British were here...\", +12 Pyramid Multiplier"
-  },{
-  "id": 13,
-  "name": "Microsoft Excel",
-  "buildingName": "LIFELESS JOB",
-  "requirement": 50,
-  "clickP": 0,
-  "ClickMultiplier": 0,
-  "buildingMultiplier": 25,
-  "cost":170000,
-  "displayed-text": "These columns and rows are cool, +25 Lifeless Job Multiplier"
-  },{
-  "id": 14,
-  "name": "Headset",
-  "buildingName": "LIFELESS JOB",
-  "requirement": 1,
-  "clickP": 0,
-  "ClickMultiplier": 0,
-  "buildingMultiplier": 1,
-  "cost":150,
-  "displayed-text": "Not dead enough? Try customer service job, +1 Lifeless Job Multiplier"
+  "buildingMultiplier": 10,
+  "cost": 10000000,
+  "displayed-text": "You can pay for it?! Finally! (+10 The Internet Multiplier)"
   }]
 }

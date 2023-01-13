@@ -12,9 +12,10 @@
 
 .statistics-header>div {
     background-color: #839a59;
-    height: 98%;
+    height: 100%;
     position: absolute;
-    top: 0.1vh;
+    top: 0;
+    left: -0.02vw;
     z-index: -1;
     border-radius: 5px;
 }

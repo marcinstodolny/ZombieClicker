@@ -39,10 +39,12 @@
 
 .building-info:hover .building-name-and-price {
     width: 15vw;
+    margin-left: 2vw;
 }
 
 .building-info:hover .building-name {
     width: 15vw;
+    font-size: 2.1vh;
 }
 
 .building-info:hover .price {
@@ -54,7 +56,7 @@
     float: left;
     margin: 1.8vh auto;
     width: 16vw;
-    font-size: 2.6vh;
+    font-size: 2.3vh;
 }
 
 .price {

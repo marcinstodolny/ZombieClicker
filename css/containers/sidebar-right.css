@@ -29,7 +29,7 @@
     display: inline-block;
     float: left;
     height: 9.4vh;
-    width: 12.5vw;
+    width: 13vw;
     margin-left: 4vw;
 }
 
@@ -37,8 +37,8 @@
     text-align: center;
     float: left;
     margin: 1.8vh auto;
-    width: 12.5vw;
-    font-size: 2.6vh;
+    width: 13vw;
+    font-size: 2.1vh;
 }
 
 .item-price {
@@ -46,7 +46,7 @@
     margin: 0 auto 1vh auto;
     position: absolute;
     bottom: 0;
-    width: 12.5vw;
+    width: 13vw;
 }
 
 
@@ -71,20 +71,22 @@
 
 .item-container:hover .buy-item {
     margin-top: 0.5vh;
-    margin-left: 2vw;
+    margin-left: 1vw;
 }
 
 .item-container:hover .item-name-and-price {
-    width: 10.5vw;
+    width: 12vw;
+    margin-left: 1vw;
 }
 
 .item-container:hover .item-name {
-    width: 10.5vw;
+    width: 12vw;
+    font-size: 2vh;
 
 }
 
 .item-container:hover .item-price {
-    width: 10.5vw;
+    width: 12vw;
 }
 
 .inventory {
