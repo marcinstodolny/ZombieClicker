@@ -94,7 +94,7 @@
   "displayed-text": "Now you know the way, +9 Grave Multiplier"
 },{
   "id": 9,
-  "name": "The Internet Troll",
+  "name": "Internet Troll",
   "buildingName": "COMMENT SECTION",
   "requirement": 5,
   "clickP": 1000,
@@ -124,7 +124,7 @@
   "displayed-text": "They'll do it when they're dead, +10000 Base Click Power"
   },{
   "id": 12,
-  "name": "Empty Sarcophagus",
+  "name": "Empty Tomb",
   "buildingName": "PYRAMID",
   "requirement": 10,
   "clickP": 0,

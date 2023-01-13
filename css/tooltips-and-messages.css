@@ -8,11 +8,11 @@
     padding: 1vh 0.5vw;
     position: absolute;
     z-index: 1;
-    bottom: 10%;
+    bottom: 5%;
     left: 71%;
     opacity: 0;
     transition: opacity 0.3s;
-    font-size: 1.8vh;
+    font-size: 1.5vh;
 }
 
 .tooltip-items {
