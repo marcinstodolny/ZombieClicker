@@ -30,6 +30,7 @@ function buyItem(evt){
          }
          updateGame()
          updateItems()
+         updateBuildings()
      }
 }
 

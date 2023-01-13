@@ -2,7 +2,7 @@
     background-color: darkseagreen;
     border: #497174 0.2vw solid;
     border-radius: 5px;
-    text-align: center;
+
     padding-top: 1vh;
     padding-bottom: 1vh;
     position: relative;
@@ -21,8 +21,11 @@
 }
 
 .stats {
-    padding: 1vh 8vw;
+    display: inline-block;
     white-space: nowrap;
+    padding-left: 20vw;
+    width: 18vw;
+    text-align: left;
 }
 
 .brain-container {

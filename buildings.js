@@ -1,11 +1,11 @@
 import {
     buildings,
     brains,
-    clicksPerSecond,
+    brainsPerSecond,
     updateGame,
     adjustBrains,
     adjustClicksPerSecond,
-    update_cps,
+    updateBrainsPerSecond,
     updateItems,
     updateBuildings,
     bought_items, items
@@ -43,7 +43,7 @@ function buyBuilding(evt) {
         document.getElementById('cost'+buildings[index]['name']).innerText = buildings[index]['cost'] + " Brains";
         document.getElementById('count'+buildings[index]['name']).innerText = buildings[index]['count'];
         document.getElementById('count'+buildings[index]['name']).classList.add("buildings-amount");
-        update_cps()
+        updateBrainsPerSecond()
         updateItems()
         updateBuildings()
     }

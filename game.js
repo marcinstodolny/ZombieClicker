@@ -3,7 +3,7 @@ let zombies = 0;
 let clickPower = 1;
 let clickPowerMultiplied = 0;
 let clickPowerMultiplier = 1;
-let clicksPerSecond = 0;
+let brainsPerSecond = 0;
 let buildings = [];
 let items = [];
 let bought_items = [];
@@ -16,7 +16,7 @@ import {fetchItems, buyItem, matchRequirements, updateItemsOwned} from './items.
 import {fetchWorlds} from './worlds.js';
 
 //exports
-export {buildings, brains, items, clickPower, bought_items, clicksPerSecond, updateGame, adjustBrains, updateItems,updateBuildings, adjustClicksPerSecond, adjustClickPower, adjustClickPowerMultiplier,adjustClicksPerSecondMultiplier, update_cps};
+export {buildings, brains, items, clickPower, bought_items, brainsPerSecond, updateGame, adjustBrains, updateItems,updateBuildings, adjustClicksPerSecond, adjustClickPower, adjustClickPowerMultiplier,adjustClicksPerSecondMultiplier, updateBrainsPerSecond};
 
 initGame();
 
@@ -32,7 +32,7 @@ async function initGame() {
     initNewGameButton();
     updateGame();
     AnimateBrain();
-    setInterval(idle_loop, 1000);
+    setInterval(idle_loop, 100);
 }
 
 function adjustBrains(delta) {
@@ -40,7 +40,7 @@ function adjustBrains(delta) {
 }
 
 function adjustClicksPerSecond(delta) {
-    clicksPerSecond += delta;
+    brainsPerSecond += delta;
 }
 function adjustClickPower(delta) {
     clickPower += delta;
@@ -53,7 +53,7 @@ function adjustClicksPerSecondMultiplier(delta, building) {
     let building_count = Number(buildings[index]['count'])
     let building_cps = Number(buildings[index]['cps'])
     buildings[index]['multiplier'] += delta
-    clicksPerSecond += Number(building_count * building_cps * delta);
+    brainsPerSecond += Number(building_count * building_cps * delta);
 }
 
 async function initWorlds() {
@@ -118,6 +118,7 @@ async function updateItems() {
             setItemsButtonValues(item['name'], item['cost'], item['clickP'], item['buildingName'], item['ClickMultiplier'], item['buildingMultiplier']);
     }})
     updateItemsOwned();
+    updateBuildings();
 }
 function setItemsButtonValues(name, cost, clickP, buildingName, clickMultiplier, buildingMultiplier) {
     let button = document.getElementById(name);
@@ -174,7 +175,7 @@ function readCookies(){
     buildings = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'buildings' + '=([^;]+)'))[2]);
     clickPower = Number(document.cookie.match(new RegExp('(^| )' + 'clickPower' + '=([^;]+)'))[2]);
     clickPowerMultiplier = Number(document.cookie.match(new RegExp('(^| )' + 'clickPowerMultiplier' + '=([^;]+)'))[2]);
-    clicksPerSecond = Number(document.cookie.match(new RegExp('(^| )' + 'clicksPerSecond' + '=([^;]+)'))[2]);
+    brainsPerSecond = Number(document.cookie.match(new RegExp('(^| )' + 'clicksPerSecond' + '=([^;]+)'))[2]);
     bought_items = JSON.parse(document.cookie.match(new RegExp('(^| )' + 'bought_items' + '=([^;]+)'))[2]);
     // buildings.forEach(building => setBuildingButtonValues(building['name'], building['cost'], building['cps']))
 }
@@ -183,26 +184,26 @@ function saveCookies() {
     document.cookie = 'brains=' + brains + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'zombies=' + zombies + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'buildings=' + JSON.stringify(buildings) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
-    document.cookie = 'clicksPerSecond=' + clicksPerSecond + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
+    document.cookie = 'clicksPerSecond=' + brainsPerSecond + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'clickPower=' + clickPower + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'clickPowerMultiplier=' + clickPowerMultiplier + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'bought_items=' + JSON.stringify(bought_items) + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
     document.cookie = 'currentWorld=' + currentWorld + '; expires=Thu, 18 Dec 2033 12:00:00 UTC"';
 }
 
-function update_cps(){
+function updateBrainsPerSecond(){
     console.log(buildings)
-    let cps = 0
+    let brains_per_second = 0
     for (let i = 0; i < buildings.length; i++){
-        cps += Number(buildings[i]['cps'] * buildings[i]['multiplier'] * buildings[i]['count'])
+        brains_per_second += Number(buildings[i]['cps'] * buildings[i]['multiplier'] * buildings[i]['count'])
     }
-    console.log(cps, buildings[0]['cps'], buildings[0]['multiplier'],  buildings[0]['count'])
-    clicksPerSecond = cps
+    console.log(brains_per_second, buildings[0]['cps'], buildings[0]['multiplier'],  buildings[0]['count'])
+    brainsPerSecond = brains_per_second
 }
 
 function idle_loop() {
     let initialZombies = zombies;
-    zombies += Math.round(clicksPerSecond);
+    zombies += brainsPerSecond / 10;
     zombies = Math.min(zombies, worlds['worlds'][currentWorld]['population']);
     let zombieDelta = zombies - initialZombies;
     brains += zombieDelta;
@@ -210,9 +211,9 @@ function idle_loop() {
 }
 
 function updateGame() {
-    document.getElementById('brains').innerText = brains + ' BRAINS';
-    document.getElementById('zombies').innerText = 'Zombies: ' + zombies;
-    document.getElementById('living').innerText = 'Living population: ' + (worlds['worlds'][currentWorld]['population'] - zombies).toString();
+    document.getElementById('brains').innerText = Math.round(brains) + ' BRAINS';
+    document.getElementById('zombies').innerText = 'Zombies: ' + Math.round(zombies);
+    document.getElementById('living').innerText = 'Living population: ' + (Math.round(worlds['worlds'][currentWorld]['population'] - zombies)).toString();
     saveCookies();
     updateStatistics();
     checkWinCondition();
@@ -236,7 +237,7 @@ function updateClickPower(){
 function updateStatistics() {
     updateClickPower()
     document.getElementById('clickPower').innerText = String(clickPowerMultiplied);
-    document.getElementById('clicksPerSecond').innerText = String(clicksPerSecond);
+    document.getElementById('clicksPerSecond').innerText = String(brainsPerSecond);
 }
 
 function buttonClick() {
@@ -252,7 +253,7 @@ function resetGame() {
     brains = 0;
     zombies = 0;
     clickPower = 1;
-    clicksPerSecond = 0;
+    brainsPerSecond = 0;
     buildings = [];
     currentWorld = 0;
     bought_items = [];
