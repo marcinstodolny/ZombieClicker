@@ -56,7 +56,7 @@ function updateItemsOwned(){
         items.forEach(item => {
             if (bought_items[i] === item['name']) {
                 displayed_text = item['displayed-text'];
-                text += '<div><p class="tooltip-items">' + item['name'] + '<span class="tooltiptext-equipment">' + displayed_text + '</span></p></div>';
+                text += '<div class="tooltip-items"><p>' + item['name'] + '</p><span class="tooltiptext-equipment">' + displayed_text + '</span></div>';
             }
         })
     }

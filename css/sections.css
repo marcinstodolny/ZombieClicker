@@ -57,10 +57,11 @@
 
 .shopping-list {
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .shopping-list::-webkit-scrollbar {
-  width: 16px;
+  width: 1vw;
 }
 
 .shopping-list::-webkit-scrollbar-track {
