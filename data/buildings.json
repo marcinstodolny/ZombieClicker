@@ -1,38 +1,87 @@
 {
   "buildings": [ {
     "id": 0,
-    "name": "grave",
+    "name": "LIFELESS JOB",
     "cps": 1,
     "cost": 10,
-    "displayed-text": "Dig a grave, +1 BPS"
+    "displayed-text": "Become the Living Dead and get paid, +1 BPS"
   }, {
     "id": 1,
-    "name": "morgue",
+    "name": "GRAVE",
+    "cps": 5,
+    "cost": 50,
+    "displayed-text": "Dig a grave, +5 BPS",
+    "buildingRequirement": "LIFELESS JOB"
+  }, {
+    "id": 2,
+    "name": "MORGUE",
     "cps": 10,
     "cost": 100,
     "displayed-text": "Reclaim the dead, +10 BPS",
-    "buildingRequirement": "grave"
-  }, {
-    "id": 2,
-    "name": "cemetery",
-    "cps": 100,
-    "cost": 1000,
-    "displayed-text": "Raid a cemetery, +100 BPS",
-    "buildingRequirement": "morgue"
+    "buildingRequirement": "GRAVE"
   },{
     "id": 3,
-    "name": "mausoleum",
-    "cps": 1000,
-    "cost": 10000,
-    "displayed-text": "Break down the walls, +1000 BPS",
-    "buildingRequirement": "cemetery"
+    "name": "GRAVEYARD",
+    "cps": 50,
+    "cost": 250,
+    "displayed-text": "Rob a few poor graves, +50 BPS",
+    "buildingRequirement": "MORGUE"
   },
   {
     "id": 4,
-    "name": "necropolis",
+    "name": "CEMETERY",
+    "cps": 100,
+    "cost": 500,
+    "displayed-text": "Raid a cemetery, +100 BPS",
+    "buildingRequirement": "GRAVEYARD"
+  },
+  {
+    "id": 5,
+    "name": "MAUSOLEUM",
+    "cps": 500,
+    "cost": 2000,
+    "displayed-text": "Visit Lich's Memorial Hall, +500 BPS",
+    "buildingRequirement": "CEMETERY"
+  },
+  {
+    "id": 6,
+    "name": "PYRAMID",
+    "cps": 1000,
+    "cost": 5000,
+    "displayed-text": "\"The British were here\", +1000 BPS",
+    "buildingRequirement": "MAUSOLEUM"
+  },
+  {
+    "id": 7,
+    "name": "CATACOMBS",
+    "cps": 2500,
+    "cost": 7500,
+    "displayed-text": "Time for Urban Exploration!, +2500 BPS",
+    "buildingRequirement": "PYRAMID"
+  },
+  {
+    "id": 8,
+    "name": "NECROPOLIS",
+    "cps": 5000,
+    "cost": 15000,
+    "displayed-text": "It's getting crowded, +5000 BPS",
+    "buildingRequirement": "CATACOMBS"
+  },
+  {
+    "id": 9,
+    "name": "COMMENT SECTION",
     "cps": 10000,
-    "cost": 100000,
-    "displayed-text": "It's getting crowded, +10000 BPS",
-    "buildingRequirement": "mausoleum"
-  }]
+    "cost": 40000,
+    "displayed-text": "The darkest place in the Internet, +10000 BPS",
+    "buildingRequirement": "NECROPOLIS"
+  },
+  {
+    "id": 10,
+    "name": "THE INTERNET",
+    "cps": 50000,
+    "cost": 150000,
+    "displayed-text": "The Last Circle of Hell, +50000 BPS",
+    "buildingRequirement": "COMMENT SECTION"
+  }
+  ]
 }

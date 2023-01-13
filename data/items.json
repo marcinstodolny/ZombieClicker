@@ -1,19 +1,9 @@
 {
 "items":[
-   {
-  "id": -1,
-  "name": "Win game",
-  "buildingName": "grave",
-  "requirement":1,
-  "clickP": 100000000000000,
-  "ClickMultiplier": 0,
-  "buildingMultiplier": 0,
-  "cost":1,
-  "displayed-text": "For testing purposes"
-},{
+{
   "id": 0,
   "name": "Shovel",
-  "buildingName": "grave",
+  "buildingName": "GRAVE",
   "requirement":5,
   "clickP": 1,
   "ClickMultiplier": 0,
@@ -23,7 +13,7 @@
 }, {
   "id": 1,
   "name": "Helpful hand",
-  "buildingName": "morgue",
+  "buildingName": "MORGUE",
   "requirement":5,
   "clickP": 10,
   "ClickMultiplier": 0,
@@ -33,7 +23,7 @@
 }, {
   "id": 2,
   "name": "Zombie dog",
-  "buildingName": "cemetery",
+  "buildingName": "CEMETERY",
   "requirement":5,
   "clickP": 0,
   "ClickMultiplier": 0,
@@ -43,7 +33,7 @@
 }, {
   "id": 3,
   "name": "Second Shovel",
-  "buildingName": "grave",
+  "buildingName": "GRAVEYARD",
   "requirement":10,
   "clickP": 0,
   "ClickMultiplier": 2,
@@ -53,7 +43,7 @@
 }, {
   "id": 4,
   "name": "Excavator",
-  "buildingName": "cemetery",
+  "buildingName": "CEMETERY",
   "requirement":20,
   "clickP": 0,
   "ClickMultiplier": 0,
@@ -64,7 +54,7 @@
 , {
   "id": 5,
   "name": "Resurrection Orb",
-  "buildingName": "cemetery",
+  "buildingName": "CATACOMBS",
   "requirement":40,
   "clickP": 100,
   "ClickMultiplier": 0,
@@ -74,33 +64,83 @@
 },{
   "id": 6,
   "name": "The Other Hand",
-  "buildingName": "morgue",
+  "buildingName": "MORGUE",
   "requirement": 15,
   "clickP": 100,
   "ClickMultiplier": 0,
   "buildingMultiplier": 0,
   "cost":5000,
-  "displayed-text": "Oh hey, the other hand, +100 Click Power"
+  "displayed-text": "Oh hey, the other hand, +100 Base Click Power"
 }
 ,{
   "id": 7,
   "name": "Body bags",
-  "buildingName": "morgue",
+  "buildingName": "MORGUE",
   "requirement": 10,
   "clickP": 0,
   "ClickMultiplier": 0,
   "buildingMultiplier": 1,
   "cost":5000,
-  "displayed-text": "Stuff em, +1 morgue multiplier"
+  "displayed-text": "Stuff em, +1 Morgue multiplier"
 },{
   "id": 8,
   "name": "Grave Map",
-  "buildingName": "grave",
+  "buildingName": "GRAVEYARD",
   "requirement": 50,
   "clickP": 0,
   "ClickMultiplier": 0,
   "buildingMultiplier": 9,
-  "cost":10000,
+  "cost":7500,
   "displayed-text": "Now you know the way, +9 Grave Multiplier"
-}]
+},{
+  "id": 9,
+  "name": "The Internet Troll",
+  "buildingName": "COMMENT SECTION",
+  "requirement": 5,
+  "clickP": 1000,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 0,
+  "cost":10000,
+  "displayed-text": "Let's argue!, +1000 Base Click Power"
+  },{
+  "id": 10,
+  "name": "Soviet Dictator",
+  "buildingName": "MAUSOLEUM",
+  "requirement": 1,
+  "clickP": 0,
+  "ClickMultiplier": 4,
+  "buildingMultiplier": 0,
+  "cost":2500,
+  "displayed-text": "He lives!, +4 Click Multiplier"
+  },{
+  "id": 11,
+  "name": "Procrastination",
+  "buildingName": "THE INTERNET",
+  "requirement": 10,
+  "clickP": 10000,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 0,
+  "cost":15000,
+  "displayed-text": "They'll do it when they're dead, +10000 Base Click Power"
+  },{
+  "id": 12,
+  "name": "Empty Sarcophagus",
+  "buildingName": "PYRAMID",
+  "requirement": 10,
+  "clickP": 0,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 12,
+  "cost":1000,
+  "displayed-text": "\"The British were here...\", +12 Pyramid Multiplier"
+  },{
+  "id": 13,
+  "name": "Microsoft Excel",
+  "buildingName": "LIFELESS JOB",
+  "requirement": 20,
+  "clickP": 0,
+  "ClickMultiplier": 0,
+  "buildingMultiplier": 20,
+  "cost":7000,
+  "displayed-text": "These columns and rows are cool, +20 Lifeless Job Multiplier"
+  }]
 }
