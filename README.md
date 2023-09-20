@@ -1,71 +1,67 @@
-# Freestyle JavaScript Game
+# Zombie Clicker (Browser Clicker Game)
 
-## Story
+## Introduction
 
-By now you know the basics of Javascript. Put your knowledge to the test,
-and create something awesome, creative, and motivating.
-Your task is to create a game in the browser. What kind of game?
+Zombie Clicker is a captivating browser-based clicker game inspired by the simple loop mechanics commonly found in mobile games. Dive into a post-apocalyptic world where your primary goal is to amass a horde of zombies. Invest in upgrades, accumulate resources, and watch as your undead army grows, with the ultimate aim of turning the entire world into zombies!
 
-Wait for it...
+## Table of Contents
 
-Any kind :) Your creativity (and your JavaScript knowledge) is the only limit.
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Game Mechanics](#game-mechanics)
+- [Team Members](#team-members)
+- [Technologies Used](#technologies-used)
+- [Conquer the World](#conquer-the-world)
 
-## What are you going to learn?
+## Features
 
-- Finding DOM elements in the document tree.
-- Manipulate the DOM using JavaScript.
-- Handle user interactions with JavaScript event handlers.
-- Use HTML data attributes.
-- Use CSS styling.
+Zombie Clicker offers players a unique gaming experience with the following features:
 
-## Tasks
+- **Resource Management:** Use brains as the primary currency to invest in various upgrades.
+  
+- **Building and Inventory Upgrades:** Enhance your buildings and inventory to harvest more brains and expand your zombie horde faster.
+  
+- **Engaging Gameplay:** Dive into a world where every click brings you closer to global zombie domination.
 
-1. Figure out as a team what game you want to work on and what features you want to finish.
-    - A game is chosen that the whole team agrees to implement.
-    - The game idea is checked by a mentor to make sure it can be realistically implemented in a sprint
-    - The game may be based on one of the following ideas: memory card game, Snake, Towers of Hanoi, simple platformer, Flappy Bird, Space Invaders, classic board games, turn based games, etc.
-    - There is a backlog of possible features.
-    - A plan is created, based on story estimations of what can be finished by the end of the sprint.
+## Getting Started
 
-2. Create a playable game based on JavaScript DOM manipulation and event handling.
-    - The game is based on handling some kind of event(s) (mouse, keyboard...).
-    - The game mainly relies on DOM manipulation to move elements around on the screen or change their appearance (beside CSS of course).
-    - The code is separated into several JavaScript functions.
+To dive into the world of Zombie Clicker, follow these steps:
 
-3. [OPTIONAL] The game or parts of it can be time-driven. This adds some complexity, as you have to change things around in given time intervals.
-    - Some part of the game changes over time without any interaction (such as a moving enemy or avatar).
+1. Clone the Zombie Clicker repository from GitHub.
+2. Start a small HTTP server.
+3. Access the game in your preferred browser using the designated port.
+4. Begin your journey to global zombie domination!
 
-4. [OPTIONAL] Implement a way to check the highest scores.
-    - The highscore data is stored between games in a database. Scores can be linked to registered users. If the user is not registered, the score can be linked to a name.
+## Game Mechanics
 
-## General requirements
+Zombie Clicker captures the essence of classic clicker games:
 
-None
+- **Click to Collect:** Manually click to gather brains and use them as currency.
+  
+- **Invest in Upgrades:** Use the brains you've collected to invest in building and inventory upgrades, enhancing your brain harvesting capabilities.
+  
+- **Automated Brain Collection:** As you upgrade, your horde will automatically collect brains over time, allowing for passive gameplay.
 
-## Hints
+## Team Members
 
-- Have fun, create a game that is motivating for you! :)
-- Figure out what game and the features to implement, based on the following hints.
-    - Have a brainstorming session, throw in game and feature ideas without criticizing each other (any idea is a good idea), and write them down somewhere.
-    - Discuss the collected ideas and decide on a game.
-    - **Talk to a mentor about the idea and whether it can be realistically implemented in a sprint.**
-    - Collect any feature ideas you have and specify them so that every team member knows what the expectations are. (These are the [user stories](https://www.mountaingoatsoftware.com/agile/user-stories) in your backlog.)
-    - Estimate each user story and figure out how many you can finish in this sprint.
-- You can open the `index.html` by starting a small HTTP server. For more information, see the Background materials section.
-- Decide whether to create backend functionality. You can use any previously learned technology, such as Flask.
-- Use git branches as you develop new features.
-- If you search the internet for javascript games, you'll see lots of solutions using [canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API). It is a nice technology, but we have not met canvas and the main focus of this project is to practice DOM and event handling, so please **say no to canvas for this project**. Later on feel free to learn about canvas with a pet project game for example.
+- Dawid Pietruszewski ([GitHub Profile](https://github.com/dapie346))
+- Oskar Rudy ([GitHub Profile](https://github.com/Ostin-Oskarose))
+- Marcin Stodolny ([GitHub Profile](https://github.com/marcinstodolny))
 
-## Background materials
+## Technologies Used
 
-- <i class="far fa-exclamation"></i> [Javascript – Events](project/curriculum/materials/pages/javascript/javascript-events.md)
-- <i class="far fa-exclamation"></i> [Javascript – DOM manipulation](project/curriculum/materials/pages/javascript/javascript-dom.md)
-- <i class="far fa-exclamation"></i> [Javascript – Extending the DOM](project/curriculum/materials/pages/javascript/javascript-extending-the-dom.md)
-- <i class="far fa-exclamation"></i> [How to start a local HTTP server](project/curriculum/materials/pages/tools/serve-files.md)
-- [Javascript – Debugging](project/curriculum/materials/pages/javascript/javascript-debugging.md)
-- [Javascript – Other features](project/curriculum/materials/pages/javascript/javascript-other-features.md)
-- [Javascript.info tutorial](https://javascript.info/)
-- [MDN HTML Drag&Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
-- [MDN Drag operations documentation](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations)
-- <i class="far fa-book-open"></i> [CSS Flexbox guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-- <i class="far fa-book-open"></i> [CSS Grid guide](https://css-tricks.com/snippets/css/complete-guide-grid/)
+Zombie Clicker was developed using the following technologies:
+
+![HTML](https://img.shields.io/badge/HTML-E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS-1572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black)
+![Git](https://img.shields.io/badge/Git-F05032.svg?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717.svg?style=for-the-badge&logo=github&logoColor=white)
+![Pycharm](https://img.shields.io/badge/PyCharm-21D192.svg?style=for-the-badge&logo=pycharm&logoColor=white)
+![Trello](https://img.shields.io/badge/Trello-0079BF.svg?style=for-the-badge&logo=trello&logoColor=white)
+
+These tools and platforms were essential in bringing Zombie Clicker to life.
+
+## Conquer the World
+
+Are you ready to lead your zombie horde and conquer the world? Dive into Zombie Clicker now and see if you have what it takes to turn everyone into zombies. Good luck, and may the brains be ever in your favor!
